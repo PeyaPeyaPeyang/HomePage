@@ -1,0 +1,46 @@
+name: キリ番報告
+description: キリ番踏んだ場合はこちら
+title: "【キリ番】"
+labels: ["Type: キリ番"]
+assignees: ["PeyaPeyaPeyang"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        キリ番を踏みましたか？以下のフォームを記入し提出してください！
+  - type: textarea
+    id: description
+    attributes:
+      label: "踏んだ番号"
+      description: "何番を踏みましたか？"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: "要望等"
+      description: "私や, このサイトに関して要望がある場合は入力してください。"
+      placeholder: |
+        1. Hogehoge機能が欲しい
+        2. ぺやんの12連勤を止めてほしい
+    validations:
+      required: false
+  - type: textarea
+    id: other
+    attributes:
+      label: "その他"
+      description: |
+        ログ、スクリーンショット等その他お好きなように添付してください。
+        このエリアに画像をドラッグ&ドロップすることでも添付できます。
+    validations:
+      required: false
+  - type: checkboxes
+    id: validation
+    attributes:
+      label: "確認事項"
+      description: "以下の項目を確認してください。"
+      options:
+        - label: "私が踏んだ番号はキリ番です。"
+          required: true
+        - label: "私が踏んだ番号を他の人が踏んでいないことを確認しました。"
+          required: true
