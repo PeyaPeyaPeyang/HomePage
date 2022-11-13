@@ -38,7 +38,7 @@ jobs:
           LAST_COMMIT_DATE=${LAST_COMMIT_DATE//\$/\\\$}
           LAST_COMMIT_MESSAGE=${LAST_COMMIT_MESSAGE//$/\\\$}
           
-          find www -type f | xargs sed \
+          find src/www -type f | xargs sed \
           -e "s/\\\$LAST_COMMIT_DATE\\\$/$LAST_COMMIT_DATE/g" \
           -e "s/\\\$LAST_COMMIT_MESSAGE\\\$/$LAST_COMMIT_MESSAGE/g" \
           -e "s/\\\$CONTACT_FORM_ID\\\$/$CONTACT_FORM_ID/g" \
