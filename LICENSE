@@ -39,5 +39,8 @@ B. The author is not responsible for any kind of damages or loss
 
 C. Copyrighted to Peyang
 
-D. Above three clauses are applied both to source and binary
+D. Above three clauses without the following files and directory files are applied both to source and binary
   form of this software.
+  /src/assets/banners/
+  /src/assets/background.png
+  /src/assets/sparkles.js
