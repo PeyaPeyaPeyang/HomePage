@@ -6,7 +6,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from base64 import b64encode
 
-dir = 'www/private/pages/'
+dir = '../www/private/pages/'
 
 
 class PasswordParser(hp.HTMLParser):

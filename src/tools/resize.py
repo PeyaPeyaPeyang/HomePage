@@ -4,7 +4,7 @@ from PIL import Image
 
 to_width = 650
 
-dir = 'www/assets/contents/artifacts/'
+dir = '../www/assets/contents/artifacts/'
 
 target_images = glob.glob(dir + '**/*.png', recursive=True)
 
