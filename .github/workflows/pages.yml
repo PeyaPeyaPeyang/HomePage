@@ -54,6 +54,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: a9b684856b00642bf54b626fbb9ea554
           projectName: peya-profile
-          directory: src
+          directory: src/www
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
