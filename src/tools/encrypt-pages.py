@@ -6,7 +6,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from base64 import b64encode
 
-dir = '../www/private/pages/'
+dir = '../www/private/pages/pages'
 
 
 class PasswordParser(hp.HTMLParser):
@@ -56,6 +56,6 @@ def encryptPage(page):
 
 
 if __name__ == '__main__':
-    target_pages = glob.glob(dir + '**/*.raw.html', recursive=True)
+    target_pages = glob.glob(dir + '**/*.html', recursive=True)
     for page in target_pages:
         encryptPage(page)
