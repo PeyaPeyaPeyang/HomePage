@@ -33,7 +33,7 @@
             fetch(url)
                 .then(response => response.text())
                 .then(text => {
-                    (mainframe).srcdoc = decrypt(text, passwordStr, dist);
+                    (mainframe).srcdoc = decrypt(text, passwordStr, dist)
                 })
                 .catch(error => {
                     console.error(error);
@@ -52,10 +52,18 @@
             ).toString(CryptoJS.enc.Utf8);
         }
 
+        const frameLoad = () => setTimeout(() => {
+            const b = (mainframe).contentDocument.getElementsByTagName('a');
+            for (let i = 0; i < b.length; i++) {
+                b[i].attributes["target"] = "_top";
+                b[i].setAttribute("target", "_top");
+            }
+        }, 100);
+
         window.addEventListener('load', onLoad);
     </script>
 </head>
 <body>
-<iframe src="#" id="mainframe" style="width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 1000;"></iframe>
+<iframe src="#" id="mainframe" style="width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; z-index: 1000;" onload="frameLoad()"></iframe>
 </body>
 </html>
