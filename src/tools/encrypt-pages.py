@@ -49,11 +49,11 @@ def encryptPage(page):
         print('Password is ' + password)
 
         data = data.replace('<meta name="password" content="' + password + '">', '')
-        with open(page[:-9] + '.asc', 'w', encoding="utf-8") as f:
-            name = page[page.rfind('\\')+1:-9]
+        name = page[page.rfind('\\')+1:-5]
+        with open(dir + "/../" + name + '.asc', 'w', encoding="utf-8") as f:
             encryptedData = encryptData(data.encode('utf-8'), password + "|" + name)
             f.write(encryptedData)
-
+            print('Encrypted data written to ' + dir + "/../" + name + '.asc')
 
 if __name__ == '__main__':
     target_pages = glob.glob(dir + '**/*.html', recursive=True)
