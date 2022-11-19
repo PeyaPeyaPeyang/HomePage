@@ -2,21 +2,13 @@ const closeKohkokuListeners = [];
 
 window.onAdClose = (func) => {
     closeKohkokuListeners.push(func);
-}
+};
 
 const kohkokus = [
-    [
-        "Lorem_ipsum_cloud.svg", "https://cloud.lorem.ipsum/"
-    ],
-    [
-        "Bermuda_phone.svg", "https://camp-fill.co.jpn/projects/bermuda-2022/"
-    ],
-    [
-        "ThroughputBuildings.jpg", "http://throughput-building.chn/"
-    ],
-    [
-        "Gaming_pail.svg", "https://dotbeans.tool/pail/"
-    ]
+    ["Lorem_ipsum_cloud.svg", "https://cloud.lorem.ipsum/"],
+    ["Bermuda_phone.svg", "https://camp-fill.co.jpn/projects/bermuda-2022/"],
+    ["ThroughputBuildings.jpg", "http://throughput-building.chn/"],
+    ["Gaming_pail.svg", "https://dotbeans.tool/pail/"],
 ];
 
 const kohkokuHTML = (name, url) => `
@@ -28,38 +20,38 @@ const kohkokuHTML = (name, url) => `
 `;
 
 const genKohkokuElement = () => {
-    const kohkokuFooter = document.createElement('footer');
+    const kohkokuFooter = document.createElement("footer");
     const kohkoku = kohkokus[Math.floor(Math.random() * kohkokus.length)];
 
     kohkokuFooter.innerHTML = kohkokuHTML(kohkoku[0], kohkoku[1]);
     return kohkokuFooter;
-}
-
-
-const closeKohkoku = () => {
-    document.getElementById('kohkoku').style = 'display: none';
-    closeKohkokuListeners.forEach(func => func());
 };
 
+const closeKohkoku = () => {
+    document.getElementById("kohkoku").style = "display: none";
+    closeKohkokuListeners.forEach((func) => func());
+};
 
 window.addEventListener("load", () => {
     const body = document.getElementsByTagName("body")[0];
     body.appendChild(genKohkokuElement());
 
     setTimeout(() => {
-        const counter = document.getElementById('counter');
+        const counter = document.getElementById("counter");
 
         // if counter is loaded, adblock is not detected.
         if (counter.complete && counter.naturalHeight !== 0) {
         } else {
-            alert('AdBlockが検出されました。\n' +
-                'ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n' +
-                '(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！');
+            alert(
+                "AdBlockが検出されました。\n" +
+                    "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n" +
+                    "(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！"
+            );
         }
     }, 1000);
-})
+});
 
 document.oncontextmenu = () => {
     alert("右クリックは禁止です！");
     return false;
-}
+};
