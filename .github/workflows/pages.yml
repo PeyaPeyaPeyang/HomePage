@@ -33,11 +33,10 @@ jobs:
           # to
           # 2022/02/02 12:00:00
           LAST_COMMIT_DATE=$(echo $LAST_COMMIT_DATE | sed -e "s/T\|+[0-9]\{2\}:[0-9]\{2\}/ /g")
-          
-          
+
           LAST_COMMIT_DATE=${LAST_COMMIT_DATE//\$/\\\$}
           LAST_COMMIT_MESSAGE=${LAST_COMMIT_MESSAGE//$/\\\$}
-          
+
           find src/www -type f | xargs sed \
           -e "s/\\\$LAST_COMMIT_DATE\\\$/$LAST_COMMIT_DATE/g" \
           -e "s/\\\$LAST_COMMIT_MESSAGE\\\$/$LAST_COMMIT_MESSAGE/g" \
@@ -48,12 +47,35 @@ jobs:
           -e "s/\\\$CONTACT_FORM_EMAIL_ID\\\$/$CONTACT_FORM_EMAIL_ID/g" \
           -e "s/\\\$CONTACT_FORM_MESSAGE_ID\\\$/$CONTACT_FORM_MESSAGE_ID/g" \
           -i
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
+        id: setup_node_id
+        with:
+          node-version: 16
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: a9b684856b00642bf54b626fbb9ea554
           projectName: peya-profile
-          directory: src/www
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
