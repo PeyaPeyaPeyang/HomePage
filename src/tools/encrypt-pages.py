@@ -1,29 +1,28 @@
-import os
 import glob
-import html.parser as hp
-from hashlib import md5
+from Naked.toolshed.shell import muterun_js
+import os
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 from base64 import b64encode
+from hashlib import md5
 
 dir = '../www/private/pages/pages'
+encrypter = "./encrypter.js"
 
 
-class PasswordParser(hp.HTMLParser):
-    def __init__(self):
-        hp.HTMLParser.__init__(self)
-        self.password = None
+def encryptPassword(raw):
+    with open(encrypter, 'r', encoding="utf-8") as f:
+        data = f.read()
+        data += "process.stdout.write(bakePassword('" + raw + "'))"
+        with open(encrypter + ".tmp", 'w', encoding="utf-8") as f:
+            f.write(data)
 
-    def handle_starttag(self, tag, attrs):
-        if tag != 'meta':
-            return
+    result = muterun_js(encrypter + ".tmp")
 
-        isPasswordTag = False
-        for attr in attrs:
-            if attr[0] == 'name' and attr[1] == 'password':
-                isPasswordTag = True
-            if isPasswordTag and attr[0] == 'content':
-                self.password = attr[1]
+    result = result.stdout.decode('utf-8').replace('\x00', '')
+
+    os.remove(encrypter + ".tmp")
+    return result
 
 
 def encryptData(rawData, password):
@@ -40,20 +39,16 @@ def encryptPage(page):
 
     with open(page, 'r', encoding="utf-8") as f:
         data = f.read()
-        parser = PasswordParser()
-        parser.feed(data)
-        if parser.password is None:
-            print('No password found for ' + page)
-            return
-        password = parser.password
+        password = encryptPassword(page[page.rfind('\\') + 1:page.rfind('.')])
         print('Password is ' + password)
 
-        data = data.replace('<meta name="password" content="' + password + '">', '')
-        name = page[page.rfind('\\')+1:-5]
-        with open(dir + "/../" + name + '.asc', 'w', encoding="utf-8") as f:
-            encryptedData = encryptData(data.encode('utf-8'), password + "|" + name)
+        name = page[page.rfind('\\') + 1:-5]
+        with open(dir + "/../" + password + '.asc', 'w', encoding="utf-8") as f:
+            print("name: " + str(password == "えきむっごきへで"))
+            encryptedData = encryptData(data.encode('utf-8'), name + "|" + password)
             f.write(encryptedData)
             print('Encrypted data written to ' + dir + "/../" + name + '.asc')
+
 
 if __name__ == '__main__':
     target_pages = glob.glob(dir + '**/*.html', recursive=True)
