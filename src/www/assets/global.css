@@ -219,6 +219,7 @@ td {
 
     width: 90vw;
     height: auto;
+    aspect-ratio: 10;
 
     max-width: 800px;
 }

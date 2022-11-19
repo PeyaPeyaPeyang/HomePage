@@ -13,6 +13,8 @@ body {
 
 #counter {
     filter: invert(1);
+    width: 77px;
+    height: 39px;
 }
 
 #title {

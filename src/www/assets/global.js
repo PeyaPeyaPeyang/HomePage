@@ -27,7 +27,7 @@ const kohkokus = [
 const kohkokuHTML = (name, url) => `
     <div id="kohkoku" style="z-index: 1000; cursor: default; user-select: all;">
         <a aria-label="Kohkoku" href="${url}" target="_blank"><img decoding="async" loading="lazy" style="cursor: pointer" id="kohkoku-image" src="/assets/kohkokus/${name}" alt="Kohkoku画像"></a>
-        <span class="button" onclick="closeKohkoku()"><a href="javascript:void(0)">➕</a></span>
+        <span class="button" onclick="closeKohkoku()"><a href="#隠しページパスワードはad">➕</a></span>
         <span id="kohkoku-information" style="cursor: text; user-select: text;">この広告は1分以上更新がない場合に表示されます。このページの更新/GitHub経由での更新後、24時間以内に表示されなくなるはずです。</span>
     </div>
 `;
