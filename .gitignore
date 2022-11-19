@@ -23,9 +23,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-/src/www/private/pages/*.raw.html
-/src/www/private/pages/.gitignore
-/src/www/private/pages/.git/**
+/src/pages/private/pages/*.raw.html
+/src/pages/private/pages/.gitignore
+/src/pages/private/pages/.git/**
 
 /node_modules
 /dist
