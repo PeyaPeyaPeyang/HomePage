@@ -11,8 +11,22 @@ const context = {};
 
 const allFiles = [
     ...fs.readdirSync(resolve(__dirname, "src/pages")),
-    ...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
+    //...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
 ];
+
+const htmlFiles = allFiles.filter(
+    // .htmうごかないかも
+    (file) => file.endsWith(".html") || file.endsWith(".htm")
+);
+
+const inputFiles = {};
+
+htmlFiles.forEach((htmlFile) => {
+    // 拡張子とってkvにするよ
+    inputFiles[
+        htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)
+    ] = resolve(__dirname, "src/pages/" + htmlFile);
+});
 
 export default defineConfig({
     root: "src/pages",
@@ -20,12 +34,13 @@ export default defineConfig({
     publicDir: resolve(__dirname, "src/public"),
     build: {
         emptyOutDir: true,
-        outDir: "../../dist",
+        outDir: "../../dist", // /dist
+        rollupOptions: {
+            input: inputFiles,
+        },
     },
     resolve: {
-        alias: [
-            { find: "@/", replacement: "src/" }
-        ]
+        alias: [{ find: "@/", replacement: "src/" }],
     },
     plugins: [
         handlebars({
