@@ -179,9 +179,9 @@ const set_scroll = () => {
 al("mousemove", (e) => {
         if (e) {
             if (e.pageX < w.innerWidth + sleft)
-                x = e.pageX - 10;
+                x = e.pageX;
             if (e.pageY < w.innerHeight + sdown)
-                y = e.pageY - 10;
+                y = e.pageY - 5;
         } else {
             set_scroll();
             y = event.y + sdown;
