@@ -26,3 +26,6 @@ fabric.properties
 /src/www/private/pages/*.raw.html
 /src/www/private/pages/.gitignore
 /src/www/private/pages/.git/**
+
+/node_modules
+/dist

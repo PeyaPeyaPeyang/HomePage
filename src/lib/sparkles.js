@@ -14,11 +14,14 @@ const w = window;
 const al = w.addEventListener;
 const m = Math;
 
-let x = ox = 400;
-let y = oy = 300;
+let x = 400;
+let ox = 400;
+let y = 300;
+let oy = 300;
 let swide = 800;
 let shigh = 600;
-let sleft = sdown = 0;
+let sleft = 0;
+let sdown = 0;
 
 const tiny = [];
 const star = [];
@@ -94,7 +97,7 @@ const sparkle = () => {
         if (starv[c]) update_star(c);
         if (tinyv[c]) update_tiny(c);
     }
-    setTimeout("sparkle()", 40);
+    setTimeout(() => { sparkle() }, 40);
 }
 
 const update_star = (i) => {

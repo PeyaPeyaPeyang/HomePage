@@ -8,14 +8,14 @@
 
 body {
     background-color: #000;
-    background-image: url('background.png'), url('background.png');
+    background-image: url("/images/background.png"), url("/images/background.png");
     background-repeat: repeat-y;
     background-position: -60px, calc(100vw - 100px);
     background-size: 150px;
-
 }
 
-header, .container {
+header,
+.container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -65,13 +65,7 @@ header, .container {
 .so_warning_box .accent {
     height: 100%;
     width: 100%;
-    background: repeating-linear-gradient(
-            -45deg,
-            red,
-            red 10px,
-            gold 10px,
-            gold 20px
-    );
+    background: repeating-linear-gradient(-45deg, red, red 10px, gold 10px, gold 20px);
 }
 
 .so_warning_box .content {
@@ -122,10 +116,11 @@ header, .container {
     border-radius: 100px;
 }
 
-p, span, #welcome-message {
+p,
+span,
+#welcome-message {
     font-size: small;
 }
-
 
 a {
     /* color: red; */
@@ -231,13 +226,13 @@ td {
 
     margin: 5px;
 
-    color: #C0C0C0;
+    color: #c0c0c0;
 
     font-family: "Meiryo", serif;
 }
 
 hr {
-    border: solid 1px #C0C0C0;
+    border: solid 1px #c0c0c0;
     margin: 50px 10px 10px;
 
     width: 60vw;
