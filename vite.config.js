@@ -1,5 +1,6 @@
-import fs from "fs"
-import { resolve } from "path"
+import fs from "node:fs"
+import { resolve } from "node:path"
+
 import { defineConfig } from "vite"
 import handlebars from "vite-plugin-handlebars"
 import { ViteMinifyPlugin } from "vite-plugin-minify"
@@ -11,7 +12,7 @@ const context = {}
 
 const allFiles = [
     ...fs.readdirSync(resolve(__dirname, "src/pages")),
-    //...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
+    // ...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
 ]
 
 const htmlFiles = allFiles.filter(
@@ -21,12 +22,12 @@ const htmlFiles = allFiles.filter(
 
 const inputFiles = {}
 
-htmlFiles.forEach((htmlFile) => {
+for (const htmlFile of htmlFiles) {
     // 拡張子とってkvにするよ
     inputFiles[
         htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)
-    ] = resolve(__dirname, "src/pages/" + htmlFile)
-})
+    ] = resolve(__dirname, `src/pages/${htmlFile}`)
+}
 
 export default defineConfig({
     root: "src/pages",
