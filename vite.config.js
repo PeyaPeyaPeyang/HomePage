@@ -17,6 +17,7 @@ const allFiles = [
     "contents/artifacts.htm",
     "contents/contact_got.htm",
     "contents/contact.htm",
+    "contents/profile.htm",
     /*
     ...fs
         .readdirSync(resolve(__dirname, "src/pages/contents"))
