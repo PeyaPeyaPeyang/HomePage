@@ -6,7 +6,9 @@
     "scripts": {
         "postinstall": "patch-package",
         "check:format": "prettier --check .",
+        "check:lint": "run-s lint",
         "format": "prettier --write --cache .",
+        "lint": "eslint --cache .",
         "build": "vite build",
         "dev": "vite",
         "preview": "vite preview"
@@ -22,6 +24,16 @@
     },
     "homepage": "https://github.com/PeyaPeyaPeyang/HomePage#readme",
     "devDependencies": {
+        "eslint": "^8.28.0",
+        "eslint-define-config": "^1.12.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "npm:eslint-plugin-i@2.26.0-2",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-regexp": "^1.10.0",
+        "eslint-plugin-sort-class-members": "^1.15.2",
+        "eslint-plugin-unicorn": "^44.0.2",
+        "eslint-plugin-unused-imports": "^2.0.0",
+        "npm-run-all": "^4.1.5",
         "patch-package": "^6.5.0",
         "prettier": "^2.7.1",
         "vite": "^3.2.4",

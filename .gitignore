@@ -29,3 +29,5 @@ fabric.properties
 
 /node_modules
 /dist
+
+.eslintcache
