@@ -5,109 +5,25 @@
         <title>✞ぺやんぐのホームページ✞</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-        <link href="../assets/global.css" rel="stylesheet" />
-        <script src="../assets/global.js" type="text/javascript"></script>
-        <script src="../assets/sparkles.js" type="text/javascript"></script>
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <script type="module" src="@/lib/global.js"></script>
+        <script type="module" src="@/lib/sparkles.js"></script>
 
-        <link href="../assets/contents/content_header.css" rel="stylesheet" />
-        <script
-            src="../assets/contents/content_header.js"
-            type="text/javascript"
-        ></script>
-        <style>
-            input {
-                width: 100%;
-                font-size: 15px;
-                color: black;
-                margin-bottom: 10px;
-            }
+        <link
+            href="@/pages/components/component_header/style.css"
+            rel="stylesheet"
+        />
 
-            input[type="text"] {
-                cursor: text;
-            }
+        <link href="@/styles/contents/contact.css" rel="stylesheet" />
 
-            textarea {
-                width: 100%;
-                font-size: 20px;
-
-                color: black;
-                cursor: text;
-            }
-
-            input.small {
-                width: 25%;
-            }
-
-            input.medium {
-                width: calc(50% + 16px);
-                font-size: 20px;
-            }
-
-            #submit_btn {
-                margin-top: 10px;
-                width: 75px;
-                cursor: default;
-            }
-
-            fieldset {
-                border: 1px solid #ccc;
-                padding: 20px 90px 20px 90px;
-                width: 50vw;
-            }
-
-            form {
-                width: 100%;
-                height: 100%;
-            }
-        </style>
-        <script type="text/javascript">
-            const emailRegex =
-                /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/
-
-            const validation = () => {
-                const submitButton = document.getElementById("submit_btn")
-                const name = document.getElementById("name")
-                const email = document.getElementById("email")
-                const title = document.getElementById("f_title")
-                const body = document.getElementById("body")
-                let disabled
-
-                if (name.value.length < 1) disabled = true
-                else if (email.value.length < 1) disabled = true
-                else if (!emailRegex.test(email.value)) disabled = true
-                else if (title.value.length < 1) disabled = true
-                else disabled = body.value.length < 1
-
-                submitButton.disabled = disabled
-                return disabled
-            }
-
-            const doSubmit = () => {
-                const form = document.getElementsByTagName("form")[0]
-                const action = form.getAttribute("action")
-                const options = {
-                    method: "POST",
-                    body: new FormData(form),
-                    mode: "no-cors",
-                }
-
-                fetch(action, options)
-                    .then(() => {
-                        window.location = "contact_got.htm"
-                    })
-                    .catch(() => {
-                        alert(
-                            "送信に失敗しました！しばらくしてからためしてください！",
-                        )
-                    })
-            }
-        </script>
+        <script type="module" src="@/lib/contents/contact.js"></script>
     </head>
+
     <body>
         <div id="wrapper">
-            <header></header>
+            <header class="container">{{> header}}</header>
             <div class="container">
-                <div id="content_header"></div>
+                {{> content_header}}
 
                 <h2 class="title">お問い合わせ</h2>
                 <br />
