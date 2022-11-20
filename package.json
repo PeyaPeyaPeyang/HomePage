@@ -5,6 +5,8 @@
     "main": "index.js",
     "scripts": {
         "postinstall": "patch-package",
+        "check:format": "prettier --check .",
+        "format": "prettier --write --cache .",
         "build": "vite build",
         "dev": "vite",
         "preview": "vite preview"
@@ -21,6 +23,7 @@
     "homepage": "https://github.com/PeyaPeyaPeyang/HomePage#readme",
     "devDependencies": {
         "patch-package": "^6.5.0",
+        "prettier": "^2.7.1",
         "vite": "^3.2.4",
         "vite-plugin-handlebars": "^1.6.0",
         "vite-plugin-minify": "^1.5.2"

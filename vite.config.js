@@ -1,32 +1,32 @@
-import fs from "fs";
-import { resolve } from "path";
-import { defineConfig } from "vite";
-import handlebars from "vite-plugin-handlebars";
-import { ViteMinifyPlugin } from "vite-plugin-minify";
+import fs from "fs"
+import { resolve } from "path"
+import { defineConfig } from "vite"
+import handlebars from "vite-plugin-handlebars"
+import { ViteMinifyPlugin } from "vite-plugin-minify"
 
 /**
  * html内で{{hoge}}とか{{fuga}}とかをグローバルに参照するためのkv
  */
-const context = {};
+const context = {}
 
 const allFiles = [
     ...fs.readdirSync(resolve(__dirname, "src/pages")),
     //...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
-];
+]
 
 const htmlFiles = allFiles.filter(
     // .htmうごかないかも
-    (file) => file.endsWith(".html") || file.endsWith(".htm")
-);
+    (file) => file.endsWith(".html") || file.endsWith(".htm"),
+)
 
-const inputFiles = {};
+const inputFiles = {}
 
 htmlFiles.forEach((htmlFile) => {
     // 拡張子とってkvにするよ
     inputFiles[
         htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)
-    ] = resolve(__dirname, "src/pages/" + htmlFile);
-});
+    ] = resolve(__dirname, "src/pages/" + htmlFile)
+})
 
 export default defineConfig({
     root: "src/pages",
@@ -40,7 +40,7 @@ export default defineConfig({
         },
     },
     resolve: {
-        alias: [{ find: "@/", replacement: "src/" }],
+        alias: [{ find: "@", replacement: resolve(__dirname, "src") }],
     },
     plugins: [
         handlebars({
@@ -49,4 +49,4 @@ export default defineConfig({
         }),
         ViteMinifyPlugin({}),
     ],
-});
+})

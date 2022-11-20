@@ -4,11 +4,10 @@
 
 body {
     background-color: #fff;
-    background-image: url('background.png'), url('background.png');
+    background-image: url("background.png"), url("background.png");
     background-repeat: repeat-y;
     background-position: -60px, calc(100vw - 100px);
     background-size: 150px;
-
 }
 
 #counter {
