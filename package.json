@@ -5,9 +5,11 @@
     "main": "index.js",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
-        "postinstall": "patch-package",
+        "postinstall": "run-s setup:*",
         "check:format": "prettier --check .",
         "check:lint": "run-s lint",
+        "setup:git": "simple-git-hooks",
+        "setup:patch": "patch-package",
         "format": "prettier --write --cache .",
         "lint": "eslint --cache .",
         "build": "vite build",
@@ -34,11 +36,24 @@
         "eslint-plugin-sort-class-members": "^1.15.2",
         "eslint-plugin-unicorn": "^44.0.2",
         "eslint-plugin-unused-imports": "^2.0.0",
+        "lint-staged": "^13.0.3",
         "npm-run-all": "^4.1.5",
         "patch-package": "^6.5.0",
         "prettier": "^2.7.1",
+        "simple-git-hooks": "^2.8.1",
         "vite": "^3.2.4",
         "vite-plugin-handlebars": "^1.6.0",
         "vite-plugin-minify": "^1.5.2"
+    },
+    "lint-staged": {
+        "*": [
+            "prettier --write --cache --ignore-unknown"
+        ],
+        "src/**/*.js": [
+            "eslint --cache --fix"
+        ]
+    },
+    "simple-git-hooks": {
+        "pre-commit": "pnpm exec lint-staged --concurrent false"
     }
 }
