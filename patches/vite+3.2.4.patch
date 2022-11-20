@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite/dist/node/chunks/dep-67e7f8ab.js b/node_modules/vite/dist/node/chunks/dep-67e7f8ab.js
+index 9cb4837..d499034 100644
+--- a/node_modules/vite/dist/node/chunks/dep-67e7f8ab.js
++++ b/node_modules/vite/dist/node/chunks/dep-67e7f8ab.js
+@@ -42640,7 +42640,7 @@ function buildHtmlPlugin(config) {
+     return {
+         name: 'vite:build-html',
+         async transform(html, id) {
+-            if (id.endsWith('.html')) {
++            if (id.endsWith('.html') || id.endsWith('.htm')) {
+                 const relativeUrlPath = path$o.posix.relative(config.root, normalizePath$3(id));
+                 const publicPath = `/${relativeUrlPath}`;
+                 const publicBase = getBaseInHTML(relativeUrlPath, config);
