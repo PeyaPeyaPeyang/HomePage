@@ -116,7 +116,7 @@
 
                 <table id="whats-new">
                     <tr>
-                        <td>What's new? 更新日時：$LAST_COMMIT_DATE$</td>
+                        <td>What's new? 更新日時：{{ commit_date }}</td>
                     </tr>
                     <tr>
                         <td>
@@ -124,7 +124,7 @@
                                 align="left"
                                 style="margin-top: 0; margin-bottom: 0"
                             >
-                                $LAST_COMMIT_MESSAGE$
+                                {{ commit_message }}
                             </p>
                         </td>
                     </tr>

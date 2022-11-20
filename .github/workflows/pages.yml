@@ -17,25 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Variables
-        env:
-          LAST_COMMIT_DATE: ${{ github.event.head_commit.timestamp }}
-          LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-        run: |
-          # Convert
-          # 2022/02/02T12:00:00+0000
-          # to
-          # 2022/02/02 12:00:00
-          LAST_COMMIT_DATE=$(echo $LAST_COMMIT_DATE | sed -e "s/T\|+[0-9]\{2\}:[0-9]\{2\}/ /g")
-
-          LAST_COMMIT_DATE=${LAST_COMMIT_DATE//\$/\\\$}
-          LAST_COMMIT_MESSAGE=${LAST_COMMIT_MESSAGE//$/\\\$}
-
-          find src/www -type f | xargs sed \
-          -e "s/\\\$LAST_COMMIT_DATE\\\$/$LAST_COMMIT_DATE/g" \
-          -e "s/\\\$LAST_COMMIT_MESSAGE\\\$/$LAST_COMMIT_MESSAGE/g" \
-          -i
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
