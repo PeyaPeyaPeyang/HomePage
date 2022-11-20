@@ -21,13 +21,6 @@ jobs:
         env:
           LAST_COMMIT_DATE: ${{ github.event.head_commit.timestamp }}
           LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-
-          CONTACT_FORM_ID: "1FAIpQLSdbWHyUn7Xc8oLpxKTeLmP6rX8Ul7EoY5L9oSuaLfabiEP9Wg"
-          CONTACT_FORM_USER_ID: 0
-          CONTACT_FORM_TITLE_ID: 2078083426
-          CONTACT_FORM_NAME_ID: 1409364796
-          CONTACT_FORM_EMAIL_ID: 1668002432
-          CONTACT_FORM_MESSAGE_ID: 716654385
         run: |
           # Convert
           # 2022/02/02T12:00:00+0000
@@ -41,12 +34,6 @@ jobs:
           find src/www -type f | xargs sed \
           -e "s/\\\$LAST_COMMIT_DATE\\\$/$LAST_COMMIT_DATE/g" \
           -e "s/\\\$LAST_COMMIT_MESSAGE\\\$/$LAST_COMMIT_MESSAGE/g" \
-          -e "s/\\\$CONTACT_FORM_ID\\\$/$CONTACT_FORM_ID/g" \
-          -e "s/\\\$CONTACT_FORM_USER_ID\\\$/$CONTACT_FORM_USER_ID/g" \
-          -e "s/\\\$CONTACT_FORM_TITLE_ID\\\$/$CONTACT_FORM_TITLE_ID/g" \
-          -e "s/\\\$CONTACT_FORM_NAME_ID\\\$/$CONTACT_FORM_NAME_ID/g" \
-          -e "s/\\\$CONTACT_FORM_EMAIL_ID\\\$/$CONTACT_FORM_EMAIL_ID/g" \
-          -e "s/\\\$CONTACT_FORM_MESSAGE_ID\\\$/$CONTACT_FORM_MESSAGE_ID/g" \
           -i
 
       - name: Setup pnpm
