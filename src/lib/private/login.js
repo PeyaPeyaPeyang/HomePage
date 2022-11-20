@@ -24,7 +24,7 @@ const generateRange = (startChar, endChar) => {
 const chars = generateRange("あ", "ん")
 const hashLength = 8
 
-const bakePassword = (rawPassword) => {
+export const bakePassword = (rawPassword) => {
     let inputPassword = rawPassword
 
     if (inputPassword.length > 100) return "?"
@@ -80,6 +80,8 @@ const bakePassword = (rawPassword) => {
 
     return hashChar
 }
+
+window.bakePassword = bakePassword
 
 window.submit = (inputPassword) => {
     if (password === "") {

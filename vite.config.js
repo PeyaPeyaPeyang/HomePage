@@ -10,11 +10,15 @@ import { ViteMinifyPlugin } from "vite-plugin-minify"
  */
 const context = {}
 
+const readdirNested = (baseDir, dirName) =>
+    fs
+        .readdirSync(resolve(baseDir, dirName))
+        .map((file) => `${dirName}/${file}`)
+
 const allFiles = [
     ...fs.readdirSync(resolve(__dirname, "src/pages")),
-    ...fs
-        .readdirSync(resolve(__dirname, "src/pages/contents"))
-        .map((file) => `contents/${file}`),
+    ...readdirNested("src/pages", "contents"),
+    ...readdirNested("src/pages", "private"),
 ]
 
 const htmlFiles = allFiles.filter(

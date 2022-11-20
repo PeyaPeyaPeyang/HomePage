@@ -5,31 +5,20 @@
         <title>♡ぺやんぐの隠しページ♡</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-        <link href="../assets/global.css" rel="stylesheet" />
-        <link href="../assets/private/private.css" rel="stylesheet" />
-        <script src="../assets/global.js" type="text/javascript"></script>
-        <script src="../assets/sparkles.js" type="text/javascript"></script>
-        <script src="../assets/login.js" type="text/javascript"></script>
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <link href="@/styles/private/global.css" rel="stylesheet" />
 
-        <style>
-            input {
-                width: 250px;
-                font-size: 15px;
-                color: black;
-                margin-bottom: 10px;
-                cursor: text;
-            }
+        <script type="module" src="@/lib/global.js"></script>
+        <script type="module" src="@/lib/sparkles.js"></script>
 
-            button {
-                cursor: pointer;
-                color: black;
-                height: 22px;
-            }
-        </style>
+        <script type="module" src="@/lib/private/login.js"></script>
+
+        <link href="@/styles/private/login.css" rel="stylesheet" />
     </head>
     <body>
         <div id="wrapper">
-            <header></header>
+            <header class="container">{{> header}}</header>
+
             <div class="container">
                 <br />
                 <h2 class="title">
