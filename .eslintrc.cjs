@@ -6,7 +6,6 @@ module.exports = defineConfig({
     env: {
         browser: true,
         node: true,
-        // jest: true,
     },
     extends: ["eslint:recommended", "plugin:eslint-comments/recommended"],
     rules: {
