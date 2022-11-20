@@ -15,9 +15,9 @@ B. このソフトを利用することによって生じた損害等につい�
 C. 著作者人格権は ぺやんぐ に帰属します。著作権は放棄します。
 
 D. 以上の３項は、以下のファイル・ディレクトリに属するファイルを除きソース・実行バイナリの双方に適用されます。
-  /src/assets/banners/
-  /src/assets/background.png
-  /src/assets/sparkles.js
+  /src/public/images/banners/
+  /src/public/images/background.png
+  /src/lib/sparkles.js
 
 ---
 
@@ -41,6 +41,6 @@ C. Copyrighted to Peyang
 
 D. Above three clauses without the following files and directory files are applied both to source and binary
   form of this software.
-  /src/assets/banners/
-  /src/assets/background.png
-  /src/assets/sparkles.js
+  /src/public/images/banners/
+  /src/public/images/background.png
+  /src/lib/sparkles.js
