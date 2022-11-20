@@ -4,6 +4,7 @@
     "description": "+ [ぺやんぐのホームページ](https://peya.tokyo)のソースもとい掲示板です.",
     "main": "index.js",
     "scripts": {
+        "preinstall": "npx only-allow pnpm",
         "postinstall": "patch-package",
         "check:format": "prettier --check .",
         "check:lint": "run-s lint",
