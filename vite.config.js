@@ -12,7 +12,16 @@ const context = {}
 
 const allFiles = [
     ...fs.readdirSync(resolve(__dirname, "src/pages")),
-    // ...fs.readdirSync(resolve(__dirname, "src/pages/contents")),
+    "contents/100que.htm",
+    "contents/welcome.htm",
+    "contents/artifacts.htm",
+    "contents/contact_got.htm",
+    "contents/contact.htm",
+    /*
+    ...fs
+        .readdirSync(resolve(__dirname, "src/pages/contents"))
+        .map((file) => `contents/${file}`),
+    */
 ]
 
 const htmlFiles = allFiles.filter(

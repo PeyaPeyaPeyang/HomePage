@@ -5,18 +5,19 @@
         <title>✞ぺやんぐのホームページ✞</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-        <link href="../assets/global.css" rel="stylesheet" />
-        <script src="../assets/global.js"></script>
-        <script src="../assets/sparkles.js"></script>
-        <link href="../assets/contents/content_header.css" rel="stylesheet" />
-        <script src="../assets/contents/content_header.js"></script>
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <script type="module" src="@/lib/global.js"></script>
+        <script type="module" src="@/lib/sparkles.js"></script>
+
+        <link
+            href="@/pages/components/component_header/style.css"
+            rel="stylesheet"
+        />
     </head>
     <body>
-        <header></header>
+        <header class="container">{{> header}}</header>
         <div id="wrapper">
-            <div class="container">
-                <div id="content_header"></div>
-            </div>
+            <div class="container">{{> content_header}}</div>
         </div>
     </body>
 </html>
