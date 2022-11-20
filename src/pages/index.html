@@ -57,39 +57,9 @@
         <script type="module" src="@/lib/global.js"></script>
         <script type="module" src="@/lib/sparkles.js"></script>
 
-        <script type="text/javascript">
-            setTimeout(() => {
-                const sayonara = document.getElementById("sayonara-lines")
+        <script type="module" src="@/lib/index.html.js"></script>
 
-                for (let i = 0; i < 100; i++) {
-                    sayonara.append("↲\n")
-                }
-
-                window.onAdClose(() => {
-                    document.getElementById("kohkoku-margin").remove()
-                })
-            }, 1000)
-        </script>
-        <style>
-            #banners {
-                width: 60%;
-                text-align: center;
-            }
-
-            .banner {
-                display: inline-grid;
-            }
-
-            .banner span {
-                margin-bottom: 5px;
-            }
-
-            .banner img {
-                cursor: pointer;
-                width: 200px;
-                height: 40px;
-            }
-        </style>
+        <link href="@/styles/index.html.css" rel="stylesheet" />
     </head>
     <!-- This site is like '90s website.
         So、I'm using html4.
