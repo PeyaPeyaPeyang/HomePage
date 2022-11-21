@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+        <title>✞ぺやんぐのホームページ✞</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <script type="module" src="@/lib/global.js"></script>
+        <script type="module" src="@/lib/sparkles.js"></script>
+
+        <link
+            href="@/pages/components/component_header/style.css"
+            rel="stylesheet"
+        />
+
+        <link href="@/styles/contents/artifacts.css" rel="stylesheet" />
+
+        <script type="module" src="@/lib/contents/artifacts.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header class="container">{{> header}}</header>
+
+            <div class="container">
+                {{> content_header}}
+
+                <h2 class="title">ぺやんのつくったもの一覧</h2>
+
+                <div class="nav">
+                    <ul>
+                        <li><a href="#">すべて</a></li>
+                        <li><a href="#type-libraries">ライブラリ</a></li>
+                        <li>
+                            <a href="#type-plugins">
+                                Minecraft サーバープラグイン
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#type-user-style">
+                                UserStyle(カスタムCSS)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <h2 id="type-libraries">ライブラリ</h2>
+                <div class="nav">
+                    <ul class="artifact_list" data-list-for="library"></ul>
+                </div>
+                <ul class="artifacts" id="library">
+                    <li id="peyang_paper_utils">
+                        <div class="artifact_title">
+                            <a href="#peyang_paper_utils">
+                                <h2>PeyangPaperUtils</h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="3"></div>
+
+                        <table class="artifact_attributes">
+                            <tbody>
+                                <tr>
+                                    <td>プログラミング言語</td>
+                                    <td>Java</td>
+                                </tr>
+                                <tr>
+                                    <td>組織</td>
+                                    <td>KUN Lab</td>
+                                </tr>
+                                <tr>
+                                    <td>フレームワーク</td>
+                                    <td>PaperMC</td>
+                                </tr>
+                                <tr>
+                                    <td>対応サーババージョン</td>
+                                    <td>1.13.2+</td>
+                                </tr>
+                                <tr>
+                                    <td>ドキュメント</td>
+                                    <td>
+                                        <a
+                                            href="https://teamkun.github.io/PeyangPaperUtils"
+                                        >
+                                            Javadoc
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        ぺやんぐがLab内で作ったものをまとめたライブラリ。(権利関係の問題で、Lab名義。)
+                        <br />
+                        <br />
+                        BukkitRunnableでプラグインインスタンスをいちいち指定するのはめんどうだったので、Runnerがあります。
+                        <br />
+                        コマンドを簡単に作りたかったので、CommandManagerがあります。
+                        <br />
+                        サブコマンドも簡単に作りたかったので、SubCommandWithがあります。
+                        <br />
+                        コマンドのヘルプをつくるのがめんどうだったので、CommandManagerはヘルプを提供します。
+                        <br />
+                        <br />
+                        プレイヤへレスポンスを簡単に返したかったので、Terminalがあります。
+                        <br />
+                        ターミナルはプログレスバー/質問システムなどを提供します。
+                    </li>
+                    <li id="peyang_super_library">
+                        <div class="artifact_title">
+                            <a href="#peyang_super_library">
+                                <h2>PeyangSuperLibrary</h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="1"></div>
+
+                        <table class="artifact_attributes">
+                            <tbody>
+                                <tr>
+                                    <td>プログラミング言語</td>
+                                    <td>Java</td>
+                                </tr>
+                                <tr>
+                                    <td>組織</td>
+                                    <td>P2P-Develop</td>
+                                </tr>
+                                <tr>
+                                    <td>フレームワーク</td>
+                                    <td>
+                                        Spigot, Bukkit, PaperMC,
+                                        無し(単独動作可)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>対応サーババージョン</td>
+                                    <td>1.12.2+?</td>
+                                </tr>
+                                <tr>
+                                    <td>ドキュメント</td>
+                                    <td>
+                                        <a href="https://lib.peya.tokyo/">
+                                            Javadoc
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ダウンロード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/P2P-Develop/PeyangSuperLibrary/releases"
+                                        >
+                                            GitHub
+                                        </a>
+                                        <br />
+                                        <a
+                                            href="https://mvnrepository.com/artifact/tokyo.peya.lib/PeyangSuperLibrary"
+                                        >
+                                            Maven Central
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ソースコード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/P2P-Develop/PeyangSuperLibrary"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        雑多に使うものをまとめたライブラリ。
+                        <br />
+                        無駄にMavenCentralから入手できる。
+                        <br />
+                        なんで?
+                    </li>
+                </ul>
+
+                <h2 id="type-plugins">Minecraft サーバープラグイン</h2>
+                <div class="nav">
+                    <ul class="artifact_list" data-list-for="plugin"></ul>
+                </div>
+                <ul class="artifacts" id="plugin">
+                    <li id="teamkun_plugin_manager">
+                        <div class="artifact_title">
+                            <a href="#teamkun_plugin_manager">
+                                <h2>TeamKUNPluginManager</h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="2"></div>
+
+                        <table class="artifact_attributes">
+                            <tbody>
+                                <tr>
+                                    <td>プログラミング言語</td>
+                                    <td>Java</td>
+                                </tr>
+                                <tr>
+                                    <td>組織</td>
+                                    <td>KUN Lab</td>
+                                </tr>
+                                <tr>
+                                    <td>フレームワーク</td>
+                                    <td>PaperMC</td>
+                                </tr>
+                                <tr>
+                                    <td>対応サーババージョン</td>
+                                    <td>1.16.5</td>
+                                </tr>
+                                <tr>
+                                    <td>ドキュメント</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/TeamKun/TeamKUNPluginManager/wiki"
+                                        >
+                                            Wiki
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ダウンロード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/TeamKun/TeamKUNPluginManager/releases"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ソースコード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/TeamKun/TeamKUNPluginManager"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        Minecraftのプラグインを管理する。
+                        <br />
+                        インストール時に、そのプラグインの依存関係を自動で解決してくれる。
+                        <br />
+                        aptとかnpmみたいなインタフェースを目指したものの...(爆)
+                        <br />
+                        GitHubのリポジトリ名や、SpigotMCの公開名でも依存関係の解決ができるのが特徴。
+                        <br />
+                        たぶん世界初じゃない？？？
+                    </li>
+                    <li id="hp_sync">
+                        <div class="artifact_title">
+                            <a href="#hp_sync"><h2>HP同期プラグイン</h2></a>
+                        </div>
+                        <div class="artifact_images" data-image-count="0"></div>
+                        <div class="youtube_embed">
+                            <lite-youtube videoid="AhGo-5AIQ44"></lite-youtube>
+                        </div>
+
+                        <table class="artifact_attributes">
+                            <tbody>
+                                <tr>
+                                    <td>プログラミング言語</td>
+                                    <td>Java</td>
+                                </tr>
+                                <tr>
+                                    <td>組織</td>
+                                    <td>KUN Lab</td>
+                                </tr>
+                                <tr>
+                                    <td>フレームワーク</td>
+                                    <td>PaperMC</td>
+                                </tr>
+                                <tr>
+                                    <td>対応サーババージョン</td>
+                                    <td>1.16.5</td>
+                                </tr>
+                                <tr>
+                                    <td>ドキュメント</td>
+                                    <td>
+                                        ソースコードがドキュメントだ！！！(爆)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ダウンロード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/TeamKun/ToiletPlugin/releases"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ソースコード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/TeamKun/ToiletPlugin"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        みんなとHPを同期するプラグイン。
+                        <br />
+                        チームでHPを同期し、ダメージ/回復が共有される。
+                        <br />
+                        バランスをとるために、回復にはレートリミットがある。
+                    </li>
+                    <li id="psac">
+                        <div class="artifact_title">
+                            <a href="#psac">
+                                <h2><del>PeyangSuperbAntiCheat</del></h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="1"></div>
+
+                        <table class="artifact_attributes">
+                            <tbody>
+                                <tr>
+                                    <td>プログラミング言語</td>
+                                    <td>Java</td>
+                                </tr>
+                                <tr>
+                                    <td>組織</td>
+                                    <td>P2P-Develop</td>
+                                </tr>
+                                <tr>
+                                    <td>フレームワーク</td>
+                                    <td>Spigot</td>
+                                </tr>
+                                <tr>
+                                    <td>対応サーババージョン</td>
+                                    <td>1.12.2</td>
+                                </tr>
+                                <tr>
+                                    <td>ダウンロード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/P2P-Develop/PeyangSuperbAntiCheat/releases"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ソースコード</td>
+                                    <td>
+                                        <a
+                                            href="https://github.com/P2P-Develop/PeyangSuperbAntiCheat"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        HypixelのWatchdogのBotを再現するプロジェクト。
+                        <br />
+                        Botの再現はできたものの、開発終了してしまった。。。
+                        <br />
+                        ユーザのレポート機能などもある。
+                        <br />
+                        ほぼ実際の動作に近いはず。
+                    </li>
+                </ul>
+
+                <h2 id="type-user-style">UserStyle(カスタムCSS)</h2>
+                <div class="nav">
+                    <ul class="artifact_list" data-list-for="user_style"></ul>
+                </div>
+                <ul class="artifacts" id="user_style">
+                    <li id="pterodactyl">
+                        <div class="artifact_title">
+                            <a href="#pterodactyl">
+                                <h2>Peyang Pterodactyl Theme</h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="2"></div>
+
+                        <table class="artifact_attributes">
+                            <tr>
+                                <td>プログラミング言語</td>
+                                <td>CSS</td>
+                            </tr>
+                            <tr>
+                                <td>ダウンロード</td>
+                                <td>
+                                    <a
+                                        href="https://gist.github.com/PeyaPeyaPeyang/6022f4d4ae42728e4f8d27df5d85f75a/raw/ae0f4dd8bdcaa941c4dae2fd69cbf7d3feee9d06/1.PeyangPterodactylTheme.user.css"
+                                    >
+                                        GitHub Gist
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ソースコード</td>
+                                <td>
+                                    <a
+                                        href="https://gist.github.com/PeyaPeyaPeyang/6022f4d4ae42728e4f8d27df5d85f75a"
+                                    >
+                                        GitHub Gist
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pterodactyl</td>
+                                <td>Panel 1.7.0</td>
+                            </tr>
+                        </table>
+
+                        Pterodactylのテーマが気に入らなかったので、(勝手に)つくりかえた！！
+                        <br />
+                        サーバオーバビューの謎のスクロールバーを無くした！！
+                        <br />
+                        背景画像を作成し、各コンポーネントを半透明にした！！
+                        <br />
+                        エディタのテーマをVSCodeライクにした(カスタマイズ可能)！！
+                    </li>
+                    <li id="old_wiki">
+                        <div class="artifact_title">
+                            <a href="#old_wiki">
+                                <h2>Wikipediaを前のスタイルに戻すやつ(仮)</h2>
+                            </a>
+                        </div>
+                        <div class="artifact_images" data-image-count="2"></div>
+
+                        <table class="artifact_attributes">
+                            <tr>
+                                <td>プログラミング言語</td>
+                                <td>CSS</td>
+                            </tr>
+                            <tr>
+                                <td>ダウンロード</td>
+                                <td>
+                                    <a
+                                        href="https://gist.github.com/PeyaPeyaPeyang/ef513e77d5313c5910155b13b8a0a0bd/raw/6971197e433787167bcb50208ce171328883020f/EnableOldStyle.userstyle.css"
+                                    >
+                                        GitHub Gist
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ソースコード</td>
+                                <td>
+                                    <a
+                                        href="https://gist.github.com/PeyaPeyaPeyang/ef513e77d5313c5910155b13b8a0a0bd"
+                                    >
+                                        GitHub Gist
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        Wikipediaが最近スタイル変わったんだけど、なんか文字が見づらくなった気がしない？
+                        <br />
+                        というわけでユーザスタイル作ったからみんなも使ってみてね。
+                        <br />
+                        新しいスタイルにもいいとこはあったから、いいとこ取りって感じかな。
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

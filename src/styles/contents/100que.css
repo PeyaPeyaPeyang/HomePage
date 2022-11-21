@@ -1,0 +1,19 @@
+.profile_table {
+    width: 55vw;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.profile_table th,
+.profile_table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.profile_table th {
+    background-color: #333;
+}
+
+.profile_table tr:nth-child(even) {
+    background-color: #101010;
+}

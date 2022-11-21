@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+        <title>✞ぺやんぐのホームページ✞</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <script type="module" src="@/lib/global.js"></script>
+        <script type="module" src="@/lib/sparkles.js"></script>
+
+        <link
+            href="@/pages/components/component_header/style.css"
+            rel="stylesheet"
+        />
+
+        <link href="@/styles/contents/contact.css" rel="stylesheet" />
+
+        <script type="module" src="@/lib/contents/contact.js"></script>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <header class="container">{{> header}}</header>
+            <div class="container">
+                {{> content_header}}
+
+                <h2 class="title">お問い合わせ</h2>
+                <br />
+                <br />
+                <div>
+                    <form
+                        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdbWHyUn7Xc8oLpxKTeLmP6rX8Ul7EoY5L9oSuaLfabiEP9Wg/formResponse"
+                        method="post"
+                    >
+                        <fieldset>
+                            <input
+                                class="small"
+                                id="name"
+                                name="entry.1409364796"
+                                onchange="validation()"
+                                onfocus="validation()"
+                                onkeydown="validation()"
+                                placeholder="お名前"
+                                type="text"
+                                value="名無しさん"
+                            />
+                            <input
+                                class="small"
+                                id="email"
+                                name="entry.1668002432"
+                                onchange="validation()"
+                                onfocus="validation()"
+                                onkeydown="validation()"
+                                placeholder="メールアドレス"
+                                type="text"
+                            />
+                            <br />
+                            <input
+                                class="medium"
+                                id="f_title"
+                                name="entry.2078083426"
+                                onchange="validation()"
+                                onfocus="validation()"
+                                onkeydown="validation()"
+                                placeholder="タイトル"
+                                type="text"
+                            />
+                            <br />
+                            <textarea
+                                id="body"
+                                laceholder="お問い合わせ内容"
+                                name="entry.716654385"
+                                onchange="validation()"
+                                onfocus="validation()"
+                                onkeydown="validation()"
+                            ></textarea>
+                            <br />
+                            <input
+                                disabled
+                                id="submit_btn"
+                                onclick="doSubmit()"
+                                type="button"
+                                value="送信"
+                            />
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -16,44 +16,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set Variables
-        env:
-          LAST_COMMIT_DATE: ${{ github.event.head_commit.timestamp }}
-          LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
 
-          CONTACT_FORM_ID: "1FAIpQLSdbWHyUn7Xc8oLpxKTeLmP6rX8Ul7EoY5L9oSuaLfabiEP9Wg"
-          CONTACT_FORM_USER_ID: 0
-          CONTACT_FORM_TITLE_ID: 2078083426
-          CONTACT_FORM_NAME_ID: 1409364796
-          CONTACT_FORM_EMAIL_ID: 1668002432
-          CONTACT_FORM_MESSAGE_ID: 716654385
-        run: |
-          # Convert
-          # 2022/02/02T12:00:00+0000
-          # to
-          # 2022/02/02 12:00:00
-          LAST_COMMIT_DATE=$(echo $LAST_COMMIT_DATE | sed -e "s/T\|+[0-9]\{2\}:[0-9]\{2\}/ /g")
-          
-          
-          LAST_COMMIT_DATE=${LAST_COMMIT_DATE//\$/\\\$}
-          LAST_COMMIT_MESSAGE=${LAST_COMMIT_MESSAGE//$/\\\$}
-          
-          find src/www -type f | xargs sed \
-          -e "s/\\\$LAST_COMMIT_DATE\\\$/$LAST_COMMIT_DATE/g" \
-          -e "s/\\\$LAST_COMMIT_MESSAGE\\\$/$LAST_COMMIT_MESSAGE/g" \
-          -e "s/\\\$CONTACT_FORM_ID\\\$/$CONTACT_FORM_ID/g" \
-          -e "s/\\\$CONTACT_FORM_USER_ID\\\$/$CONTACT_FORM_USER_ID/g" \
-          -e "s/\\\$CONTACT_FORM_TITLE_ID\\\$/$CONTACT_FORM_TITLE_ID/g" \
-          -e "s/\\\$CONTACT_FORM_NAME_ID\\\$/$CONTACT_FORM_NAME_ID/g" \
-          -e "s/\\\$CONTACT_FORM_EMAIL_ID\\\$/$CONTACT_FORM_EMAIL_ID/g" \
-          -e "s/\\\$CONTACT_FORM_MESSAGE_ID\\\$/$CONTACT_FORM_MESSAGE_ID/g" \
-          -i
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: a9b684856b00642bf54b626fbb9ea554
           projectName: peya-profile
-          directory: src/www
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main

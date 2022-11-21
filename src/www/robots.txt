@@ -1,4 +1,0 @@
-Disallow: /private/
-Allow: /private/login.htm
-
-Disallow: /contents/welcome.htm
