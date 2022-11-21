@@ -5,6 +5,7 @@ import { getLastCommit } from "git-last-commit"
 import { defineConfig } from "vite"
 import handlebars from "vite-plugin-handlebars"
 import { ViteMinifyPlugin } from "vite-plugin-minify"
+import tsconfigPaths from "vite-tsconfig-paths"
 
 import type { Commit } from "git-last-commit"
 import type { Plugin as VitePlugin } from "vite"
@@ -76,6 +77,9 @@ export default defineConfig(async ({ mode }) => {
             alias: [{ find: "@", replacement: resolvePath(__dirname, "src") }],
         },
         plugins: [
+            tsconfigPaths({
+                root: resolvePath(__dirname, "src"),
+            }),
             handlebars({
                 partialDirectory: resolvePath(
                     __dirname,

@@ -2,7 +2,10 @@
     "extends": "../tsconfig.base.json",
     "compilerOptions": {
         "allowJs": true,
-        "lib": ["ESNext", "DOM"]
+        "lib": ["ESNext", "DOM"],
+        "paths": {
+            "@/*": ["./*"]
+        }
     },
     "include": ["./", "../types"]
 }
