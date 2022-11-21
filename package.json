@@ -26,6 +26,9 @@
         "url": "https://github.com/PeyaPeyaPeyang/HomePage/issues"
     },
     "homepage": "https://github.com/PeyaPeyaPeyang/HomePage#readme",
+    "dependencies": {
+        "@justinribeiro/lite-youtube": "^1.4.0"
+    },
     "devDependencies": {
         "eslint": "^8.28.0",
         "eslint-define-config": "^1.12.0",

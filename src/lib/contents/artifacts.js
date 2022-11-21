@@ -1,3 +1,5 @@
+import "@justinribeiro/lite-youtube"
+
 window.addEventListener("load", () => {
     const table_of_contents = document.querySelectorAll(".artifact_list")
 

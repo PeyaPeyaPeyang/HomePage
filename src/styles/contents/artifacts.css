@@ -63,3 +63,9 @@ a > h2 {
 .artifact_list {
     padding: 0;
 }
+
+.youtube_embed {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 40px;
+}

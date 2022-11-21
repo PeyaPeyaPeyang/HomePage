@@ -16,15 +16,6 @@
 
         <link href="@/styles/contents/artifacts.css" rel="stylesheet" />
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/lite-youtube-embed"
-            type="text/javascript"
-        ></script>
-        <link
-            href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.2.0/src/lite-yt-embed.css"
-            rel="stylesheet"
-        />
-
         <script type="module" src="@/lib/contents/artifacts.js"></script>
     </head>
     <body>
@@ -266,15 +257,9 @@
                             <a href="#hp_sync"><h2>HP同期プラグイン</h2></a>
                         </div>
                         <div class="artifact_images" data-image-count="0"></div>
-                        <lite-youtube
-                            videoid="AhGo-5AIQ44"
-                            autoplay="1"
-                            loop="1"
-                            start="0"
-                            end="0"
-                            width="650"
-                            height="350"
-                        ></lite-youtube>
+                        <div class="youtube_embed">
+                            <lite-youtube videoid="AhGo-5AIQ44"></lite-youtube>
+                        </div>
 
                         <table class="artifact_attributes">
                             <tbody>
