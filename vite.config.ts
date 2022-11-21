@@ -39,7 +39,7 @@ for (const htmlFile of htmlFiles) {
     ] = resolvePath(__dirname, `src/pages/${htmlFile}`)
 }
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ mode }) => {
     const lastCommit = await new Promise<Commit>((resolve, reject) => {
         getLastCommit((err: Error | undefined, commit) => {
             if (err) reject(err)
@@ -64,6 +64,7 @@ export default defineConfig(async () => {
             rollupOptions: {
                 input: inputFiles,
             },
+            sourcemap: mode === "development",
         },
         server: {
             watch: {
