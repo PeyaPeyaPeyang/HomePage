@@ -1,7 +1,7 @@
 {
-    "name": "homepage",
-    "version": "0.0.0",
-    "description": "+ [ぺやんぐのホームページ](https://peya.tokyo)のソースもとい掲示板です.",
+    "name": "peyang-homepage",
+    "version": "1.0.0",
+    "description": "Peyang's homepage",
     "main": "index.js",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
