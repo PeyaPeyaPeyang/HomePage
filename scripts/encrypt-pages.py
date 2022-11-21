@@ -6,22 +6,22 @@ from Crypto.Util.Padding import pad
 from base64 import b64encode
 from hashlib import md5
 
-dir = '../www/private/pages/pages'
-encrypter = "./encrypter.js"
+dir = 'src/public/private/pages/pages'
+encrypter = "scripts/encrypter.js"
 
 
 def encryptPassword(raw):
     with open(encrypter, 'r', encoding="utf-8") as f:
         data = f.read()
         data += "process.stdout.write(bakePassword('" + raw + "'))"
-        with open(encrypter + ".tmp", 'w', encoding="utf-8") as f:
+        with open(encrypter + ".tmp.js", 'w', encoding="utf-8") as f:
             f.write(data)
 
-    result = muterun_js(encrypter + ".tmp")
+    result = muterun_js(encrypter + ".tmp.js")
 
     result = result.stdout.decode('utf-8').replace('\x00', '')
 
-    os.remove(encrypter + ".tmp")
+    os.remove(encrypter + ".tmp.js")
     return result
 
 
@@ -44,10 +44,9 @@ def encryptPage(page):
 
         name = page[page.rfind('\\') + 1:-5]
         with open(dir + "/../" + password + '.asc', 'w', encoding="utf-8") as f:
-            print("name: " + str(password == "えきむっごきへで"))
             encryptedData = encryptData(data.encode('utf-8'), name + "|" + password)
             f.write(encryptedData)
-            print('Encrypted data written to ' + dir + "/../" + name + '.asc')
+            print('Encrypted data written to ' + dir + "/../" + password + '.asc')
 
 
 if __name__ == '__main__':

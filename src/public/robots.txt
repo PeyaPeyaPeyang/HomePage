@@ -1,6 +1,8 @@
-Disallow: /private/
-Allow: /private/login.htm
-
-Disallow: /contents/welcome.htm
 
 User-agent: *
+Disallow: /private/
+User-agent: *
+Allow: /private/login.htm
+
+User-agent: *
+Disallow: /contents/welcome.htm
