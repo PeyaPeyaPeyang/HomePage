@@ -62,6 +62,12 @@ export default defineConfig(async () => {
                 input: inputFiles,
             },
         },
+        server: {
+            watch: {
+                // WSL2の場合はこれが必要
+                usePolling: true,
+            },
+        },
         resolve: {
             alias: [{ find: "@", replacement: resolvePath(__dirname, "src") }],
         },
