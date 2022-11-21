@@ -57,7 +57,7 @@ export default defineConfig(async ({ mode }) => {
 
     return {
         root: "src/pages",
-        base: "",
+        base: "/",
         publicDir: resolvePath(__dirname, "src/public"),
         build: {
             emptyOutDir: true,
