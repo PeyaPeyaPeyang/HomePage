@@ -2,7 +2,7 @@
     "name": "peyang-homepage",
     "version": "1.0.0",
     "description": "Peyang's homepage",
-    "main": "index.js",
+    "type": "module",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
         "postinstall": "run-s setup:*",
@@ -30,11 +30,14 @@
         "@justinribeiro/lite-youtube": "^1.4.0"
     },
     "devDependencies": {
+        "@types/node": "^18.11.9",
+        "@typescript-eslint/eslint-plugin": "^5.43.0",
+        "@typescript-eslint/parser": "^5.43.0",
         "eslint": "^8.28.0",
         "eslint-define-config": "^1.12.0",
+        "eslint-import-resolver-typescript": "^3.5.2",
         "eslint-plugin-eslint-comments": "^3.2.0",
         "eslint-plugin-import": "npm:eslint-plugin-i@2.26.0-2",
-        "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-regexp": "^1.10.0",
         "eslint-plugin-sort-class-members": "^1.15.2",
         "eslint-plugin-unicorn": "^44.0.2",
@@ -45,6 +48,7 @@
         "patch-package": "^6.5.0",
         "prettier": "^2.7.1",
         "simple-git-hooks": "^2.8.1",
+        "typescript": "^4.9.3",
         "vite": "^3.2.4",
         "vite-plugin-handlebars": "^1.6.0",
         "vite-plugin-minify": "^1.5.2"

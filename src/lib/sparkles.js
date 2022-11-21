@@ -1,3 +1,6 @@
+/**
+ * @type string
+ */
 const colour = "random" // in addition to "random" can be set to any valid colour eg "#f0f" or "red"
 const sparkles = 50
 const mleft = 25
@@ -186,13 +189,10 @@ const set_scroll = () => {
     if (typeof self.pageYOffset === "number") {
         sdown = self.pageYOffset
         sleft = self.pageXOffset
-    } else if (d.body && (d.body.scrollTop || d.body.scrollLeft)) {
+    } else if (d.body.scrollTop || d.body.scrollLeft) {
         sdown = d.body.scrollTop
         sleft = d.body.scrollLeft
-    } else if (
-        d.documentElement &&
-        (d.documentElement.scrollTop || d.documentElement.scrollLeft)
-    ) {
+    } else if (d.documentElement.scrollTop || d.documentElement.scrollLeft) {
         sleft = d.documentElement.scrollLeft
         sdown = d.documentElement.scrollTop
     } else {
@@ -202,14 +202,8 @@ const set_scroll = () => {
 }
 
 al("mousemove", (e) => {
-    if (e) {
-        if (e.pageX < w.innerWidth + sleft) x = e.pageX
-        if (e.pageY < w.innerHeight + sdown) y = e.pageY - 5
-    } else {
-        set_scroll()
-        y = event.y + sdown
-        x = event.x + sleft
-    }
+    if (e.pageX < w.innerWidth + sleft) x = e.pageX
+    if (e.pageY < w.innerHeight + sdown) y = e.pageY - 5
 })
 al("scroll", set_scroll)
 al("resize", set_width)

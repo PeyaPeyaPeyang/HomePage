@@ -31,3 +31,6 @@ fabric.properties
 /dist
 
 .eslintcache
+
+.vscode/*
+!.vscode/settings.json

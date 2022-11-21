@@ -1,23 +1,26 @@
-import fs from "node:fs"
+import { readdirSync } from "node:fs"
 import { resolve as resolvePath } from "node:path"
 
-import git from "git-last-commit"
+import { getLastCommit } from "git-last-commit"
 import { defineConfig } from "vite"
 import handlebars from "vite-plugin-handlebars"
 import { ViteMinifyPlugin } from "vite-plugin-minify"
+
+import type { Commit } from "git-last-commit"
+import type { Plugin as VitePlugin } from "vite"
 
 /**
  * html内で{{hoge}}とか{{fuga}}とかをグローバルに参照するためのkv
  */
 const context = {}
 
-const readdirNested = (baseDir, dirName) =>
-    fs
-        .readdirSync(resolvePath(baseDir, dirName))
-        .map((file) => `${dirName}/${file}`)
+const readdirNested = (baseDir: string, dirName: string) =>
+    readdirSync(resolvePath(baseDir, dirName)).map(
+        (file) => `${dirName}/${file}`,
+    )
 
 const allFiles = [
-    ...fs.readdirSync(resolvePath(__dirname, "src/pages")),
+    ...readdirSync(resolvePath(__dirname, "src/pages")),
     ...readdirNested("src/pages", "contents"),
     ...readdirNested("src/pages", "private"),
 ]
@@ -27,7 +30,7 @@ const htmlFiles = allFiles.filter(
     (file) => file.endsWith(".html") || file.endsWith(".htm"),
 )
 
-const inputFiles = {}
+const inputFiles: { [key: string]: string } = {}
 
 for (const htmlFile of htmlFiles) {
     // 拡張子とってkvにするよ
@@ -37,8 +40,8 @@ for (const htmlFile of htmlFiles) {
 }
 
 export default defineConfig(async () => {
-    const lastCommit = await new Promise((resolve, reject) => {
-        git.getLastCommit((err, commit) => {
+    const lastCommit = await new Promise<Commit>((resolve, reject) => {
+        getLastCommit((err: Error | undefined, commit) => {
             if (err) reject(err)
             else resolve(commit)
         })
@@ -81,7 +84,7 @@ export default defineConfig(async () => {
                     ...context,
                     ...commitContext,
                 },
-            }),
+            }) as unknown as VitePlugin,
             ViteMinifyPlugin({}),
         ],
     }
