@@ -28,7 +28,7 @@ jobs:
           fi
 
       - name: Create tag if versions have upgraded
-        if: steps.tag-version.outputs.compare == 'true'
+        if: steps.tag-version.outputs.compare == 'false'
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
