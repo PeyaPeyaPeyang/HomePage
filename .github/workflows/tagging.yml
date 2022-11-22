@@ -4,8 +4,6 @@ on:
     branches:
       - production
 
-runs:
-
 jobs:
   create-tag:
     runs-on: ubuntu-latest
