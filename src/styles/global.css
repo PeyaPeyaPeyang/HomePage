@@ -43,6 +43,11 @@ header,
     font-size: 35px;
 }
 
+#counter {
+    width: 80px;
+    height: 40px;
+}
+
 .so_warning_box {
     position: fixed;
     right: 10px;
