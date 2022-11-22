@@ -1,0 +1,31 @@
+name: Create tag
+on:
+  push:
+    branches:
+      - production
+
+runs:
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get package version
+        id: package-version
+        run: echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
+      - name: Get tag version and compare versions
+        id: tag-version
+        run: |
+          echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
+          echo "::set-output name=compare::$(node -p -e "require('semver').gt('${{ steps.package-version.outputs.version }}', '${{ steps.tag-version.outputs.tag }}')")"
+      - name: Create tag if versions have upgraded
+        if: steps.tag-version.outputs.compare == 'true'
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a ${{ steps.package-version.outputs.version }} -m "Production release ${{ steps.package-version.outputs.version }}"
+          git push --follow-tags
