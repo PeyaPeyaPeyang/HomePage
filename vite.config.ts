@@ -50,7 +50,7 @@ export default defineConfig(async ({ mode }) => {
 
     const commitDate = new Date(+lastCommit.committedOn * 1000)
 
-    const formatDateTime = (date: Date): string => {
+    const formatDateTime = (date: Date) => {
         const year = date.getFullYear()
         const month = date.getMonth() + 1
         const day = date.getDate()
