@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
+    <head
+        prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#"
+    >
         <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-        <title>✞ぺやんぐのホームページ✞</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>✞ぺやんぐのホームページ✞ | プロフィール</title>
+        <meta property="og:title" content="ぺやんプロフィール" />
+        {{> ogp}}
 
         <link href="@/styles/global.css" rel="stylesheet" />
         <script type="module" src="@/lib/global.js"></script>
