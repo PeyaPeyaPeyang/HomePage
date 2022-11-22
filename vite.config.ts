@@ -50,8 +50,19 @@ export default defineConfig(async ({ mode }) => {
 
     const commitDate = new Date(+lastCommit.committedOn * 1000)
 
+    const formatDateTime = (date: Date): string => {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        const second = date.getSeconds()
+
+        return `${year}/${month}/${day} ${hour}:${minute}:${second}`
+    }
+
     const commitContext = {
-        commit_date: commitDate.toLocaleString(),
+        commit_date: formatDateTime(commitDate),
         commit_message: lastCommit.subject,
     }
 
