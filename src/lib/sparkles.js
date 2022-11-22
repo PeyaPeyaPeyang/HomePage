@@ -203,7 +203,7 @@ const set_scroll = () => {
 
 al("mousemove", (e) => {
     if (e.pageX < w.innerWidth + sleft) x = e.pageX
-    if (e.pageY < w.innerHeight + sdown) y = e.pageY - 5
+    if (e.pageY < w.innerHeight + sdown) y = e.pageY
 })
 al("scroll", set_scroll)
 al("resize", set_width)
