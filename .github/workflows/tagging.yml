@@ -19,7 +19,14 @@ jobs:
         id: tag-version
         run: |
           echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
-          echo "::set-output name=compare::$(node -p -e "require('semver').gt('${{ steps.package-version.outputs.version }}', '${{ steps.tag-version.outputs.tag }}')")"
+          version=$(node -p -e "require('./package.json').version")
+          tag=$(git describe --tags --abbrev=0)
+          if [[ $version == $tag ]]; then
+            echo "::set-output name=compare::true"
+          else
+            echo "::set-output name=compare::false"
+          fi
+
       - name: Create tag if versions have upgraded
         if: steps.tag-version.outputs.compare == 'true'
         run: |
