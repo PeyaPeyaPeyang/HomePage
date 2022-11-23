@@ -30,14 +30,8 @@ module.exports = defineConfig({
             },
         ],
         "@typescript-eslint/ban-tslint-comment": "error",
-        "@typescript-eslint/consistent-indexed-object-style": [
-            "error",
-            "index-signature",
-        ],
-        "@typescript-eslint/consistent-type-definitions": [
-            "error",
-            "interface",
-        ],
+        "@typescript-eslint/consistent-indexed-object-style": ["error", "index-signature"],
+        "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
         "@typescript-eslint/consistent-type-imports": [
             "error",
             {
@@ -106,6 +100,11 @@ module.exports = defineConfig({
             },
             {
                 blankLine: "always",
+                prev: "expression",
+                next: "const",
+            },
+            {
+                blankLine: "always",
                 prev: "let",
                 next: "*",
             },
@@ -116,6 +115,11 @@ module.exports = defineConfig({
             },
             {
                 blankLine: "always",
+                prev: "expression",
+                next: "let",
+            },
+            {
+                blankLine: "always",
                 prev: "var",
                 next: "*",
             },
@@ -123,6 +127,31 @@ module.exports = defineConfig({
                 blankLine: "never",
                 prev: "singleline-var",
                 next: "singleline-var",
+            },
+            {
+                blankLine: "never",
+                prev: "expression",
+                next: "var",
+            },
+            {
+                blankLine: "always",
+                prev: "*",
+                next: ["return", "continue", "break", "throw"],
+            },
+            {
+                blankLine: "always",
+                prev: "*",
+                next: ["block-like"],
+            },
+            {
+                blankLine: "always",
+                prev: "directive",
+                next: "*",
+            },
+            {
+                blankLine: "always",
+                prev: ["case", "default"],
+                next: "*",
             },
             {
                 blankLine: "always",
@@ -138,21 +167,6 @@ module.exports = defineConfig({
                 blankLine: "any",
                 prev: ["import", "require"],
                 next: ["import", "require"],
-            },
-            {
-                blankLine: "always",
-                prev: "*",
-                next: ["return", "continue", "break", "throw"],
-            },
-            {
-                blankLine: "always",
-                prev: "directive",
-                next: "*",
-            },
-            {
-                blankLine: "always",
-                prev: ["case", "default"],
-                next: "*",
             },
         ],
         "@typescript-eslint/prefer-includes": "error",
@@ -239,10 +253,7 @@ module.exports = defineConfig({
         yoda: "error",
 
         "import/newline-after-import": "error",
-        "import/no-nodejs-modules": [
-            "error",
-            { allow: builtinModules.map((mod) => `node:${mod}`) },
-        ],
+        "import/no-nodejs-modules": ["error", { allow: builtinModules.map((mod) => `node:${mod}`) }],
         "import/no-self-import": "error",
         "import/no-useless-path-segments": "error",
         "import/order": [
@@ -251,15 +262,7 @@ module.exports = defineConfig({
                 alphabetize: {
                     order: "asc",
                 },
-                groups: [
-                    "builtin",
-                    "external",
-                    "parent",
-                    "sibling",
-                    "index",
-                    "object",
-                    "type",
-                ],
+                groups: ["builtin", "external", "parent", "sibling", "index", "object", "type"],
                 "newlines-between": "always",
                 pathGroups: [
                     {
@@ -326,9 +329,7 @@ module.exports = defineConfig({
     overrides: [
         {
             files: ["*.ts", "*.tsx"],
-            extends: [
-                "plugin:@typescript-eslint/recommended-requiring-type-checking",
-            ],
+            extends: ["plugin:@typescript-eslint/recommended-requiring-type-checking"],
         },
         {
             files: ["*.cjs"],
