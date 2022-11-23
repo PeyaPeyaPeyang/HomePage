@@ -97,8 +97,8 @@ const sparkle = () => {
 
                 const child1 = star[c].childNodes[0] as HTMLSpanElement
 
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 child1.style.backgroundColor =
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                     colour === "random" ? newColour() : colour
 
                 const child2 = star[c].childNodes[1] as HTMLSpanElement
