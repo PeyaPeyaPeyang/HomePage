@@ -3,6 +3,7 @@ import { resolve as resolvePath } from "node:path"
 
 import { getLastCommit } from "git-last-commit"
 import { defineConfig } from "vite"
+import { checker } from "vite-plugin-checker"
 import handlebars from "vite-plugin-handlebars"
 import { ViteMinifyPlugin } from "vite-plugin-minify"
 import tsconfigPaths from "vite-tsconfig-paths"
@@ -101,6 +102,15 @@ export default defineConfig(async ({ mode }) => {
                     ...commitContext,
                 },
             }) as unknown as VitePlugin,
+            checker({
+                typescript: true,
+                eslint: {
+                    lintCommand: `eslint --cache-location=${resolvePath(
+                        __dirname,
+                        ".eslintcache",
+                    )} --cache ${resolvePath(__dirname, "src")}/**/*.{js,ts}`,
+                },
+            }),
             ViteMinifyPlugin({}),
         ],
         esbuild: {
