@@ -2,8 +2,7 @@ const emailRegex =
     /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-zA-Z\d](?:[a-zA-Z\d-]{0,61}[a-zA-Z\d])?(?:\.[a-zA-Z\d](?:[a-zA-Z\d-]{0,61}[a-zA-Z\d])?)+$/
 
 const validateEmail = () => {
-    const submitButton: HTMLButtonElement =
-        document.querySelector("#submit_btn")!
+    const submitButton: HTMLButtonElement = document.querySelector("#submit_btn")!
     const username: HTMLInputElement = document.querySelector("#name")!
     const email: HTMLInputElement = document.querySelector("#email")!
     const title: HTMLInputElement = document.querySelector("#f_title")!
