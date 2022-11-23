@@ -1,10 +1,10 @@
 const password = {
     えきむっごきへで: "最強の私の名前。",
-}
+} as { [key: string]: string }
 
-const generateRange = (startChar, endChar) => {
-    let startCharIndex = startChar.codePointAt(0)
-    let endCharIndex = endChar.codePointAt(0)
+const generateRange = (startChar: string, endChar: string) => {
+    let startCharIndex = startChar.codePointAt(0)!
+    let endCharIndex = endChar.codePointAt(0)!
 
     if (startCharIndex > endCharIndex) {
         const temp = startCharIndex
@@ -24,7 +24,7 @@ const generateRange = (startChar, endChar) => {
 const chars = generateRange("あ", "ん")
 const hashLength = 8
 
-export const bakePassword = (rawPassword) => {
+export const bakePassword = (rawPassword: string) => {
     let inputPassword = rawPassword
 
     if (inputPassword.length > 100) return "?"
@@ -38,7 +38,7 @@ export const bakePassword = (rawPassword) => {
         for (let i = 0; i < insufficiency; i++) {
             if (current >= inputPassword.length) current = 0
 
-            const charCode = inputPassword.codePointAt(current)
+            const charCode = inputPassword.codePointAt(current)!
 
             const selectChar =
                 charCode % 2 === 0
@@ -59,8 +59,8 @@ export const bakePassword = (rawPassword) => {
         i < inputPassword.length;
         i++, j--
     ) {
-        const h1 = (hash << 2) - hash + inputPassword.codePointAt(i)
-        const h2 = (hash << 4) - hash + inputPassword.codePointAt(j)
+        const h1 = (hash << 2) - hash + inputPassword.codePointAt(i)!
+        const h2 = (hash << 4) - hash + inputPassword.codePointAt(j)!
         const h3 = (hash << 6) - hash + chars.indexOf(inputPassword.charAt(i))
 
         hash = h1 ^ h2 ^ h3
@@ -83,8 +83,8 @@ export const bakePassword = (rawPassword) => {
 
 window.bakePassword = bakePassword
 
-window.submit = (inputPassword) => {
-    if (password === "") {
+export const submitPassword = (inputPassword: string) => {
+    if (inputPassword === "") {
         alert("パスワードを入力してください！")
 
         return
@@ -92,7 +92,7 @@ window.submit = (inputPassword) => {
 
     const bakedPassword = bakePassword(inputPassword)
 
-    if (password[bakedPassword] === undefined) {
+    if (!(bakedPassword in password)) {
         alert("パスワードが間違っています！")
 
         return
@@ -104,10 +104,15 @@ window.submit = (inputPassword) => {
     )
 }
 
-window.getRandomHint = () => {
+window.submitPassword = submitPassword
+
+export const getRandomHint = () => {
     const keys = Object.keys(password)
     const index = Math.floor(Math.random() * keys.length)
     const randomKey = keys[index]
+    const hint = password[randomKey]
 
-    return `${index + 1}ページ目のヒント：${password[randomKey]}`
+    return `${index + 1}ページ目のヒント：${hint}`
 }
+
+window.getRandomHint = getRandomHint

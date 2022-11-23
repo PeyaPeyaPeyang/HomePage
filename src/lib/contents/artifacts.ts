@@ -1,38 +1,38 @@
 import "@justinribeiro/lite-youtube"
 
 window.addEventListener("load", () => {
-    const table_of_contents = document.querySelectorAll(".artifact_list")
+    for (const element of document.querySelectorAll<HTMLUListElement>(
+        ".artifact_list",
+    )) {
+        if ("listFor" in element.dataset) continue
 
-    for (const list of table_of_contents) {
-        const listFor = list.attributes["data-list-for"].value
+        const listFor = element.dataset.listFor!.valueOf()
 
         const listArtifacts = document
-            .querySelector(`#${listFor}`)
+            .querySelector(`#${listFor}`)!
             .querySelectorAll("li")
 
         for (const artifact of listArtifacts) {
             const artifactTitle = artifact.querySelector(
                 ".artifact_title > a > h2",
-            ).innerHTML
-
+            )!.innerHTML
             const li = document.createElement("li")
             const anchor = document.createElement("a")
 
-            anchor.href = `#${artifact.attributes["id"].value}`
+            anchor.href = `#${artifact.getAttribute("id")!.valueOf()}`
             anchor.innerHTML = artifactTitle
             li.append(anchor)
-            list.append(li)
+            element.append(li)
         }
     }
 
-    const artifacts = document.querySelectorAll(".artifacts > li")
-
-    for (const artifact of artifacts) {
-        const artifactName = artifact.attributes["id"].value
-        const imagesContainer = artifact.querySelector(".artifact_images")
-
-        const imageCount =
-            0 + imagesContainer.attributes["data-image-count"].value
+    for (const artifact of document.querySelectorAll<HTMLLIElement>(
+        ".artifacts > li",
+    )) {
+        const artifactName = artifact.getAttribute("id")!.valueOf()
+        const imagesContainer =
+            artifact.querySelector<HTMLDivElement>(".artifact_images")!
+        const imageCount = Number(imagesContainer.dataset.imageCount!.valueOf())
 
         for (let i = 0; i < imageCount; i++) {
             const image = document.createElement("img")

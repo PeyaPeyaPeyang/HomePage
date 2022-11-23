@@ -65,6 +65,7 @@ module.exports = defineConfig({
                 checksVoidReturn: false,
             },
         ],
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-require-imports": "error",
         "@typescript-eslint/no-shadow": [
             "error",

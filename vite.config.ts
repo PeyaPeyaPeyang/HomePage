@@ -103,5 +103,8 @@ export default defineConfig(async ({ mode }) => {
             }) as unknown as VitePlugin,
             ViteMinifyPlugin({}),
         ],
+        esbuild: {
+            target: "es2016",
+        },
     }
 })

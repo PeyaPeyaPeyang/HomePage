@@ -25,35 +25,35 @@ let shigh = 600
 let sleft = 0
 let sdown = 0
 
-const tiny = []
-const star = []
-const starv = []
-const starx = []
-const stary = []
-const tinyx = []
-const tinyy = []
-const tinyv = []
+const tiny = new Array<HTMLSpanElement>()
+const star = new Array<HTMLSpanElement>()
+const starv = new Array<number>()
+const starx = new Array<number>()
+const stary = new Array<number>()
+const tinyx = new Array<number>()
+const tinyy = new Array<number>()
+const tinyv = new Array<number>()
 
-const set_width = () => {
+const setWidth = () => {
     _swide = d.documentElement.clientWidth
     shigh = d.documentElement.clientHeight
 }
 
 al("load", () => {
     for (let i = 0; i < sparkles; i++) {
-        let rats = createDiv(3, 3)
+        let rats = createSpan(3, 3)
 
         rats.style.visibility = "hidden"
         rats.style.zIndex = "999"
         d.body.append((tiny[i] = rats))
         starv[i] = 0
         tinyv[i] = 0
-        rats = createDiv(5, 5)
+        rats = createSpan(5, 5)
         rats.style.backgroundColor = "transparent"
         rats.style.visibility = "hidden"
         rats.style.zIndex = "999"
-        const rlef = createDiv(1, 5)
-        const rdow = createDiv(5, 1)
+        const rlef = createSpan(1, 5)
+        const rdow = createSpan(5, 1)
 
         rats.append(rlef)
         rats.append(rdow)
@@ -64,7 +64,7 @@ al("load", () => {
         d.body.append((star[i] = rats))
     }
 
-    set_width()
+    setWidth()
     sparkle()
 })
 
@@ -93,11 +93,17 @@ const sparkle = () => {
                     star[c].style.top = `${(stary[c] = y)}px`
                 }
 
-                star[c].style.clip = "rect(0px, 5px, 5px, 0px)"
-                star[c].childNodes[0].style.backgroundColor =
+                star[c].style.clipRule = "rect(0px, 5px, 5px, 0px)"
+
+                const child1 = star[c].childNodes[0] as HTMLSpanElement
+
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                child1.style.backgroundColor =
                     colour === "random" ? newColour() : colour
-                star[c].childNodes[1].style.backgroundColor =
-                    star[c].childNodes[0].style.backgroundColor
+
+                const child2 = star[c].childNodes[1] as HTMLSpanElement
+
+                child2.style.backgroundColor = child1.style.backgroundColor
 
                 if (
                     x < w.innerWidth + sleft - mleft &&
@@ -125,7 +131,7 @@ const sparkle = () => {
     }, 40)
 }
 
-const update_star = (i) => {
+const update_star = (i: number) => {
     if (--starv[i] === 25) star[i].style.clip = "rect(1px, 4px, 4px, 1px)"
     if (starv[i]) {
         stary[i] += 1 + m.random() * 3
@@ -147,8 +153,10 @@ const update_star = (i) => {
         tiny[i].style.left = `${(tinyx[i] = starx[i])}px`
         tiny[i].style.width = "2px"
         tiny[i].style.height = "2px"
-        tiny[i].style.backgroundColor =
-            star[i].childNodes[0].style.backgroundColor
+
+        const starChild = star[i].childNodes[0] as HTMLSpanElement
+
+        tiny[i].style.backgroundColor = starChild.style.backgroundColor
         star[i].style.visibility = "hidden"
         if (
             stary[i] < w.innerHeight + sdown - mtop &&
@@ -162,7 +170,7 @@ const update_star = (i) => {
     }
 }
 
-const update_tiny = (i) => {
+const update_tiny = (i: number) => {
     if (--tinyv[i] === 25) {
         tiny[i].style.width = "1px"
         tiny[i].style.height = "1px"
@@ -185,30 +193,19 @@ const update_tiny = (i) => {
     } else tiny[i].style.visibility = "hidden"
 }
 
-const set_scroll = () => {
-    if (typeof self.pageYOffset === "number") {
-        sdown = self.pageYOffset
-        sleft = self.pageXOffset
-    } else if (d.body.scrollTop || d.body.scrollLeft) {
-        sdown = d.body.scrollTop
-        sleft = d.body.scrollLeft
-    } else if (d.documentElement.scrollTop || d.documentElement.scrollLeft) {
-        sleft = d.documentElement.scrollLeft
-        sdown = d.documentElement.scrollTop
-    } else {
-        sdown = 0
-        sleft = 0
-    }
+const setScroll = () => {
+    sdown = self.pageYOffset
+    sleft = self.pageXOffset
 }
 
 al("mousemove", (e) => {
     if (e.pageX < w.innerWidth + sleft) x = e.pageX
     if (e.pageY < w.innerHeight + sdown) y = e.pageY
 })
-al("scroll", set_scroll)
-al("resize", set_width)
+al("scroll", setScroll)
+al("resize", setWidth)
 
-const createDiv = (height, width) => {
+const createSpan = (height: number, width: number): HTMLSpanElement => {
     const div = d.createElement("span")
 
     div.style.position = "absolute"

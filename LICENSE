@@ -17,7 +17,7 @@ C. 著作者人格権は ぺやんぐ に帰属します。著作権は放棄し
 D. 以上の３項は、以下のファイル・ディレクトリに属するファイルを除きソース・実行バイナリの双方に適用されます。
   /src/public/images/banners/
   /src/public/images/background.png
-  /src/lib/sparkles.js
+  /src/lib/sparkles.ts
 
 ---
 
@@ -43,4 +43,4 @@ D. Above three clauses without the following files and directory files are appli
   form of this software.
   /src/public/images/banners/
   /src/public/images/background.png
-  /src/lib/sparkles.js
+  /src/lib/sparkles.ts

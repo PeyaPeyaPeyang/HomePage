@@ -11,10 +11,10 @@
         <link href="@/styles/global.css" rel="stylesheet" />
         <link href="@/styles/private/global.css" rel="stylesheet" />
 
-        <script type="module" src="@/lib/global.js"></script>
-        <script type="module" src="@/lib/sparkles.js"></script>
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
 
-        <script type="module" src="@/lib/private/login.js"></script>
+        <script type="module" src="@/lib/private/login.ts"></script>
 
         <link href="@/styles/private/login.css" rel="stylesheet" />
     </head>
@@ -32,11 +32,11 @@
                         id="passwordInput"
                         placeholder="パスワードを入力してください"
                         type="text"
-                        onkeydown="if (event.keyCode === 13) submit((passwordInput).value)"
+                        onkeydown="if (event.keyCode === 13) submitPassword((passwordInput).value)"
                     />
                     <button
                         id="submit_btn"
-                        onclick="submit((passwordInput).value)"
+                        onclick="submitPassword((passwordInput).value)"
                         type="button"
                     >
                         ログイン
