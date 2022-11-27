@@ -1,7 +1,7 @@
-/**
- * @type string
- */
-const colour = "random" // in addition to "random" can be set to any valid colour eg "#f0f" or "red"
+const config = {
+    colour: "random", // in addition to "random" can be set to any valid colour eg "#f0f" or "red"
+}
+
 const sparkles = 50
 const mleft = 25
 const mtop = 12
@@ -52,6 +52,7 @@ al("load", () => {
         rats.style.backgroundColor = "transparent"
         rats.style.visibility = "hidden"
         rats.style.zIndex = "999"
+
         const rlef = createSpan(1, 5)
         const rdow = createSpan(5, 1)
 
@@ -77,16 +78,14 @@ const sparkle = () => {
 
         for (c = 0; c < sparkles; c++)
             if (!starv[c]) {
-                if (x < w.innerWidth + sleft - mleft)
-                    star[c].style.left = `${(starx[c] = x)}px`
+                if (x < w.innerWidth + sleft - mleft) star[c].style.left = `${(starx[c] = x)}px`
                 else {
                     x = w.innerWidth + sleft - mleft
 
                     star[c].style.left = `${(starx[c] = x)}px`
                 }
 
-                if (y < w.innerHeight + sdown - mtop)
-                    star[c].style.top = `${(stary[c] = y)}px`
+                if (y < w.innerHeight + sdown - mtop) star[c].style.top = `${(stary[c] = y)}px`
                 else {
                     y = w.innerHeight + sdown - mtop
 
@@ -97,18 +96,13 @@ const sparkle = () => {
 
                 const child1 = star[c].childNodes[0] as HTMLSpanElement
 
-                child1.style.backgroundColor =
-                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                    colour === "random" ? newColour() : colour
+                child1.style.backgroundColor = config.colour === "random" ? newColour() : config.colour
 
                 const child2 = star[c].childNodes[1] as HTMLSpanElement
 
                 child2.style.backgroundColor = child1.style.backgroundColor
 
-                if (
-                    x < w.innerWidth + sleft - mleft &&
-                    y < w.innerHeight + sdown - mtop
-                )
+                if (x < w.innerWidth + sleft - mleft && y < w.innerHeight + sdown - mtop)
                     star[c].style.visibility = "visible"
                 else {
                     star[c].style.top = `${w.innerHeight + sdown - mtop}px`
@@ -133,15 +127,15 @@ const sparkle = () => {
 
 const update_star = (i: number) => {
     if (--starv[i] === 25) star[i].style.clip = "rect(1px, 4px, 4px, 1px)"
+
     if (starv[i]) {
         stary[i] += 1 + m.random() * 3
         starx[i] += ((i % 5) - 2) / 5
+
         if (stary[i] < shigh + sdown) {
-            if (stary[i] < w.innerHeight + sdown - mtop)
-                star[i].style.top = `${stary[i]}px`
+            if (stary[i] < w.innerHeight + sdown - mtop) star[i].style.top = `${stary[i]}px`
             else star[i].style.top = `${w.innerHeight + sdown - mtop}px`
-            if (starx[i] < w.innerWidth + sleft - mleft)
-                star[i].style.left = `${starx[i]}px`
+            if (starx[i] < w.innerWidth + sleft - mleft) star[i].style.left = `${starx[i]}px`
             else star[i].style.left = `${w.innerWidth + sleft - mleft}px`
         } else {
             star[i].style.visibility = "hidden"
@@ -158,10 +152,8 @@ const update_star = (i: number) => {
 
         tiny[i].style.backgroundColor = starChild.style.backgroundColor
         star[i].style.visibility = "hidden"
-        if (
-            stary[i] < w.innerHeight + sdown - mtop &&
-            starx[i] < w.innerWidth + sleft - mleft
-        )
+
+        if (stary[i] < w.innerHeight + sdown - mtop && starx[i] < w.innerWidth + sleft - mleft)
             tiny[i].style.visibility = "visible"
         else {
             tiny[i].style.top = `${w.innerHeight + sdown - mtop}px`
@@ -179,12 +171,11 @@ const update_tiny = (i: number) => {
     if (tinyv[i]) {
         tinyy[i] += 1 + m.random() * 3
         tinyx[i] += ((i % 5) - 2) / 5
+
         if (tinyy[i] < shigh + sdown) {
-            if (tinyy[i] < w.innerHeight + sdown - mtop)
-                tiny[i].style.top = `${tinyy[i]}px`
+            if (tinyy[i] < w.innerHeight + sdown - mtop) tiny[i].style.top = `${tinyy[i]}px`
             else tiny[i].style.top = `${w.innerHeight + sdown - mtop}px`
-            if (tinyx[i] < w.innerWidth + sleft - mleft)
-                tiny[i].style.left = `${tinyx[i]}px`
+            if (tinyx[i] < w.innerWidth + sleft - mleft) tiny[i].style.left = `${tinyx[i]}px`
             else tiny[i].style.left = `${w.innerWidth + sleft - mleft}px`
         } else {
             tiny[i].style.visibility = "hidden"

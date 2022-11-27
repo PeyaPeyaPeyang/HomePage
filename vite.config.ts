@@ -17,9 +17,7 @@ import type { Plugin as VitePlugin } from "vite"
 const context = {}
 
 const readdirNested = (baseDir: string, dirName: string) =>
-    readdirSync(resolvePath(baseDir, dirName)).map(
-        (file) => `${dirName}/${file}`,
-    )
+    readdirSync(resolvePath(baseDir, dirName)).map((file) => `${dirName}/${file}`)
 
 const allFiles = [
     ...readdirSync(resolvePath(__dirname, "src/pages")),
@@ -36,9 +34,10 @@ const inputFiles: { [key: string]: string } = {}
 
 for (const htmlFile of htmlFiles) {
     // 拡張子とってkvにするよ
-    inputFiles[
-        htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)
-    ] = resolvePath(__dirname, `src/pages/${htmlFile}`)
+    inputFiles[htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)] = resolvePath(
+        __dirname,
+        `src/pages/${htmlFile}`,
+    )
 }
 
 export default defineConfig(async ({ mode }) => {
@@ -93,17 +92,14 @@ export default defineConfig(async ({ mode }) => {
                 root: resolvePath(__dirname, "src"),
             }),
             handlebars({
-                partialDirectory: resolvePath(
-                    __dirname,
-                    "src/pages/components",
-                ),
+                partialDirectory: resolvePath(__dirname, "src/pages/components"),
                 context: {
                     ...context,
                     ...commitContext,
                 },
             }) as unknown as VitePlugin,
             checker({
-                typescript: true,
+                typescript: { root: resolvePath(__dirname, "src") },
                 eslint: {
                     lintCommand: `eslint --cache-location=${resolvePath(
                         __dirname,

@@ -25,11 +25,11 @@ const submitContactForm = () => {
     const [form] = document.querySelectorAll("form")
     const action = form.getAttribute("action")!
 
-    const options = {
+    const options: RequestInit = {
         method: "POST",
         body: new FormData(form),
         mode: "no-cors",
-    } as RequestInit
+    }
 
     fetch(action, options)
         .then(() => {

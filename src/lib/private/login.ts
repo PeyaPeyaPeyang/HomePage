@@ -1,6 +1,6 @@
-const password = {
+const password: { [key: string]: string } = {
     えきむっごきへで: "最強の私の名前。",
-} as { [key: string]: string }
+}
 
 const generateRange = (startChar: string, endChar: string) => {
     let startCharIndex = startChar.codePointAt(0)!
@@ -15,8 +15,7 @@ const generateRange = (startChar: string, endChar: string) => {
 
     let range = ""
 
-    for (let i = startCharIndex; i <= endCharIndex; i++)
-        range += String.fromCodePoint(i)
+    for (let i = startCharIndex; i <= endCharIndex; i++) range += String.fromCodePoint(i)
 
     return range
 }
@@ -39,11 +38,7 @@ export const bakePassword = (rawPassword: string) => {
             if (current >= inputPassword.length) current = 0
 
             const charCode = inputPassword.codePointAt(current)!
-
-            const selectChar =
-                charCode % 2 === 0
-                    ? charCode + insufficiency
-                    : charCode - insufficiency
+            const selectChar = charCode % 2 === 0 ? charCode + insufficiency : charCode - insufficiency
 
             extendedPassword += chars[selectChar / chars.length]
         }
@@ -54,11 +49,7 @@ export const bakePassword = (rawPassword: string) => {
     let hash = 0
     let hashChar = "-".repeat(hashLength)
 
-    for (
-        let i = 0, j = inputPassword.length - 1;
-        i < inputPassword.length;
-        i++, j--
-    ) {
+    for (let i = 0, j = inputPassword.length - 1; i < inputPassword.length; i++, j--) {
         const h1 = (hash << 2) - hash + inputPassword.codePointAt(i)!
         const h2 = (hash << 4) - hash + inputPassword.codePointAt(j)!
         const h3 = (hash << 6) - hash + chars.indexOf(inputPassword.charAt(i))
@@ -72,10 +63,7 @@ export const bakePassword = (rawPassword: string) => {
 
         if (hashChar.charAt(putPos) !== "-") putPos = hashChar.indexOf("-")
         if (putPos === -1) putPos = hash % hashLength
-        hashChar =
-            hashChar.slice(0, Math.max(0, putPos)) +
-            calculatedHashChar +
-            hashChar.slice(Math.max(0, putPos + 1))
+        hashChar = hashChar.slice(0, Math.max(0, putPos)) + calculatedHashChar + hashChar.slice(Math.max(0, putPos + 1))
     }
 
     return hashChar
@@ -98,10 +86,7 @@ export const submitPassword = (inputPassword: string) => {
         return
     }
 
-    window.open(
-        `frame.html?dist=${bakedPassword}&password=${inputPassword}`,
-        "_self",
-    )
+    window.open(`frame.html?dist=${bakedPassword}&password=${inputPassword}`, "_self")
 }
 
 window.submitPassword = submitPassword

@@ -29,8 +29,12 @@ const genKohkokuElement = () => {
 }
 
 const closeKohkoku = () => {
-    // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
-    ;(<HTMLElement>document.querySelector("#kohkoku")).style.display = "none"
+    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")
+
+    if (kohkoku) {
+        kohkoku.style.display = "none"
+    }
+
     for (const func of closeKohkokuListeners) func()
 }
 
@@ -40,8 +44,7 @@ window.addEventListener("load", () => {
     document.body.append(genKohkokuElement())
 
     setTimeout(() => {
-        // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
-        const counter = document.querySelector("#counter") as HTMLImageElement
+        const counter = document.querySelector<HTMLImageElement>("#counter")!
 
         // if counter is loaded, adblock is not detected.
         if (!(counter.complete && counter.naturalHeight !== 0)) {
