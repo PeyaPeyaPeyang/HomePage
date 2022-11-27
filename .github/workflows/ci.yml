@@ -80,7 +80,7 @@ jobs:
         with:
           sarif_file: results.sarif
 
-      - name: Cache prettier results
+      - name: Cache Prettier results
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/node_modules/.cache/prettier/.prettier-cache
