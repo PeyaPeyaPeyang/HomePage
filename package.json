@@ -8,6 +8,7 @@
         "postinstall": "run-s setup:*",
         "check:format": "prettier --cache --check .",
         "check:lint": "run-s lint",
+        "check:type": "tsc --noEmit --project src",
         "setup:git": "simple-git-hooks",
         "setup:patch": "patch-package",
         "format": "prettier --write --cache .",
