@@ -13,6 +13,7 @@
         "setup:patch": "patch-package",
         "format": "prettier --write --cache .",
         "lint": "eslint --cache .",
+        "lint:sarif": "eslint --cache . -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true",
         "build": "vite build",
         "dev": "vite",
         "preview": "vite preview"
@@ -31,6 +32,7 @@
         "@justinribeiro/lite-youtube": "^1.4.0"
     },
     "devDependencies": {
+        "@microsoft/eslint-formatter-sarif": "^3.0.0",
         "@types/eslint": "^8.4.10",
         "@types/html-minifier-terser": "^7.0.0",
         "@types/node": "^18.11.9",

@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@justinribeiro/lite-youtube': ^1.4.0
+  '@microsoft/eslint-formatter-sarif': ^3.0.0
   '@types/eslint': ^8.4.10
   '@types/html-minifier-terser': ^7.0.0
   '@types/node': ^18.11.9
@@ -33,6 +34,7 @@ dependencies:
   '@justinribeiro/lite-youtube': 1.4.0
 
 devDependencies:
+  '@microsoft/eslint-formatter-sarif': 3.0.0
   '@types/eslint': 8.4.10
   '@types/html-minifier-terser': 7.0.0
   '@types/node': 18.11.9
@@ -191,6 +193,18 @@ packages:
   /@justinribeiro/lite-youtube/1.4.0:
     resolution: {integrity: sha512-gBuSAPla3oPLV9i2K02/x95KQWlV9rMp42Cy74s6m0WldORSAL/YvRcdK0phwwpPMJJVNsiHZvzZFa1I62LoGQ==}
     dev: false
+
+  /@microsoft/eslint-formatter-sarif/3.0.0:
+    resolution: {integrity: sha512-KIKkT44hEqCzqxODYwFMUvYEK0CrdHx/Ll9xiOWgFbBSRuzbxmVy4d/tzfgoucGz72HJZNOMjuyzFTBKntRK5Q==}
+    engines: {node: '>= 14'}
+    dependencies:
+      eslint: 8.28.0
+      jschardet: 3.0.0
+      lodash: 4.17.21
+      utf8: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2144,6 +2158,11 @@ packages:
       argparse: 2.0.1
     dev: true
 
+  /jschardet/3.0.0:
+    resolution: {integrity: sha512-lJH6tJ77V8Nzd5QWRkFYCLc13a3vADkh3r/Fi8HupZGWk2OVVDfnZP8V/VgQgZ+lzW0kG2UGb5hFgt3V3ndotQ==}
+    engines: {node: '>=0.1.90'}
+    dev: true
+
   /jsdoctypeparser/9.0.0:
     resolution: {integrity: sha512-jrTA2jJIL6/DAEILBEh2/w9QxCuwmvNXIry39Ay/HVfhE3o2yVV0U44blYkqdHA/OKloJEqvJy0xU+GSdE2SIw==}
     engines: {node: '>=10'}
@@ -3348,6 +3367,10 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.1.1
+    dev: true
+
+  /utf8/3.0.0:
+    resolution: {integrity: sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==}
     dev: true
 
   /validate-npm-package-license/3.0.4:

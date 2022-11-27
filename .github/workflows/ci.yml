@@ -38,6 +38,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    permissions:
+      security-events: write
+
     name: Lint with Node.js 16, ubuntu-latest
 
     steps:
@@ -62,7 +65,12 @@ jobs:
         run: pnpm run build
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm run lint:sarif
+
+      - name: Upload lint results to GitHub repository
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: results.sarif
 
       - name: Check formatting
         run: pnpm check:format

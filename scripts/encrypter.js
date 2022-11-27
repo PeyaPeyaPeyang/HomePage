@@ -19,8 +19,7 @@ const generateRange = (startChar, endChar) => {
 const chars = generateRange("あ", "ん")
 const hashLength = 8
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-const bakePassword = (input) => {
+export const bakePassword = (input) => {
     if (input.length > 100) return "?"
 
     let password
