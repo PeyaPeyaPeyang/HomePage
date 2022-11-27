@@ -8,6 +8,5 @@
             "@/*": ["./*"]
         }
     },
-    "include": ["./", "../types"],
-    "files": ["@types/global.d.ts"]
+    "include": ["./", "../types"]
 }
