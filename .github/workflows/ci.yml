@@ -32,15 +32,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Cache ESLint results
-        uses: actions/cache@v3
-        id: eslint-cache
-        with:
-          path: ${{ github.workspace }}/.eslintcache
-          key: ${{ runner.os }}-eslint-${{ hashFiles('.eslintcache') }}
-          restore-keys: |
-            ${{ runner.os }}-eslint-
-
       - name: Build
         run: pnpm run build
 
@@ -69,15 +60,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Cache ESLint results
-        uses: actions/cache@v3
-        id: eslint-cache
-        with:
-          path: ${{ github.workspace }}/.eslintcache
-          key: ${{ runner.os }}-eslint-${{ hashFiles('.eslintcache') }}
-          restore-keys: |
-            ${{ runner.os }}-eslint-
 
       - name: Lint
         run: pnpm run lint:sarif
