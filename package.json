@@ -6,7 +6,7 @@
     "scripts": {
         "preinstall": "npx only-allow pnpm",
         "postinstall": "run-s setup:*",
-        "check:format": "prettier --check .",
+        "check:format": "prettier --cache --check .",
         "check:lint": "run-s lint",
         "setup:git": "simple-git-hooks",
         "setup:patch": "patch-package",

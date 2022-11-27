@@ -35,7 +35,6 @@ const bakePassword = (input) => {
             if (current >= input.length) current = 0
 
             const charCode = input.codePointAt(current)
-
             const selectChar = charCode % 2 === 0 ? charCode + insufficiency : charCode - insufficiency
 
             extendedPassword += chars[selectChar / chars.length]
