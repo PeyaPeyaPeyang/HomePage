@@ -99,7 +99,7 @@ export default defineConfig(async ({ mode }) => {
                 },
             }) as unknown as VitePlugin,
             checker({
-                typescript: true,
+                typescript: { root: resolvePath(__dirname, "src") },
                 eslint: {
                     lintCommand: `eslint --cache-location=${resolvePath(
                         __dirname,
