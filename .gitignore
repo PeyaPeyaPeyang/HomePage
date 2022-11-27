@@ -34,3 +34,5 @@ fabric.properties
 
 .vscode/*
 !.vscode/settings.json
+
+*.tsbuildinfo

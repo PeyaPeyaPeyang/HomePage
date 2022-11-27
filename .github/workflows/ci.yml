@@ -64,6 +64,14 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Cache ESLint results
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/.eslintcache
+          key: ${{ runner.os }}-eslint
+          restore-keys: |
+            ${{ runner.os }}-eslint
+
       - name: Lint
         run: pnpm run lint:sarif
 
@@ -72,8 +80,24 @@ jobs:
         with:
           sarif_file: results.sarif
 
+      - name: Cache prettier results
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules/.cache/prettier/.prettier-cache
+          key: ${{ runner.os }}-prettier
+          restore-keys: |
+            ${{ runner.os }}-prettier
+
       - name: Check formatting
         run: pnpm check:format
+
+      - name: Cache TypeScript incremental building results
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/src/tsconfig.tsbuildinfo
+          key: ${{ runner.os }}-typescript-incremental
+          restore-keys: |
+            ${{ runner.os }}-typescript-incremental
 
       - name: Typecheck
         run: pnpm check:type
