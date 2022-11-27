@@ -1,6 +1,6 @@
-const closeKohkokuListeners = []
+const closeKohkokuListeners = new Array<() => void>()
 
-window.onAdClose = (func) => {
+const onAdClose = (func: () => void) => {
     closeKohkokuListeners.push(func)
 }
 
@@ -11,7 +11,7 @@ const kohkokus = [
     ["Gaming_pail.svg", "https://dotbeans.tool/pail/"],
 ]
 
-const kohkokuHTML = (kohkokuName, url) => `
+const kohkokuHTML = (kohkokuName: string, url: string) => `
     <div id="kohkoku" style="z-index: 1000; cursor: default; user-select: all;">
         <a aria-label="Kohkoku" href="${url}" target="_blank"><img decoding="async" loading="lazy" style="cursor: pointer" id="kohkoku-image" src="/images/kohkokus/${kohkokuName}" alt="Kohkoku画像"></a>
         <span class="button" onclick="closeKohkoku()"><a href="#隠しページパスワードは「広告」">➕</a></span>
@@ -28,18 +28,23 @@ const genKohkokuElement = () => {
     return kohkokuFooter
 }
 
-window.closeKohkoku = () => {
-    document.querySelector("#kohkoku").style = "display: none"
+const closeKohkoku = () => {
+    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")
+
+    if (kohkoku) {
+        kohkoku.style.display = "none"
+    }
+
     for (const func of closeKohkokuListeners) func()
 }
 
-window.addEventListener("load", () => {
-    const [body] = document.querySelectorAll("body")
+window.closeKohkoku = closeKohkoku
 
-    body.append(genKohkokuElement())
+window.addEventListener("load", () => {
+    document.body.append(genKohkokuElement())
 
     setTimeout(() => {
-        const counter = document.querySelector("#counter")
+        const counter = document.querySelector<HTMLImageElement>("#counter")!
 
         // if counter is loaded, adblock is not detected.
         if (!(counter.complete && counter.naturalHeight !== 0)) {
@@ -57,3 +62,5 @@ document.addEventListener("contextmenu", () => {
 
     return false
 })
+
+export { onAdClose, closeKohkoku }

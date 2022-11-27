@@ -11,8 +11,7 @@ const generateRange = (startChar, endChar) => {
 
     let range = ""
 
-    for (let i = startCharIndex; i <= endCharIndex; i++)
-        range += String.fromCodePoint(i)
+    for (let i = startCharIndex; i <= endCharIndex; i++) range += String.fromCodePoint(i)
 
     return range
 }
@@ -20,8 +19,7 @@ const generateRange = (startChar, endChar) => {
 const chars = generateRange("あ", "ん")
 const hashLength = 8
 
-// eslint-disable-next-line unused-imports/no-unused-vars
-const bakePassword = (input) => {
+export const bakePassword = (input) => {
     if (input.length > 100) return "?"
 
     let password
@@ -36,11 +34,7 @@ const bakePassword = (input) => {
             if (current >= input.length) current = 0
 
             const charCode = input.codePointAt(current)
-
-            const selectChar =
-                charCode % 2 === 0
-                    ? charCode + insufficiency
-                    : charCode - insufficiency
+            const selectChar = charCode % 2 === 0 ? charCode + insufficiency : charCode - insufficiency
 
             extendedPassword += chars[selectChar / chars.length]
         }
@@ -65,10 +59,7 @@ const bakePassword = (input) => {
 
         if (hashChar.charAt(putPos) !== "-") putPos = hashChar.indexOf("-")
         if (putPos === -1) putPos = hash % hashLength
-        hashChar =
-            hashChar.slice(0, Math.max(0, putPos)) +
-            calculatedHashChar +
-            hashChar.slice(Math.max(0, putPos + 1))
+        hashChar = hashChar.slice(0, Math.max(0, putPos)) + calculatedHashChar + hashChar.slice(Math.max(0, putPos + 1))
     }
 
     return hashChar

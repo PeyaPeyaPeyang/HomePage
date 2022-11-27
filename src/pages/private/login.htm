@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
         <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-        <title>♡ぺやんぐの隠しページ♡</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>♡ぺやんぐの隠しページ♡ | ログイン</title>
+        <meta property="og:title" content="隠しページにログイン！" />
+        {{> ogp}}
 
         <link href="@/styles/global.css" rel="stylesheet" />
         <link href="@/styles/private/global.css" rel="stylesheet" />
 
-        <script type="module" src="@/lib/global.js"></script>
-        <script type="module" src="@/lib/sparkles.js"></script>
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
 
-        <script type="module" src="@/lib/private/login.js"></script>
+        <script type="module" src="@/lib/private/login.ts"></script>
 
         <link href="@/styles/private/login.css" rel="stylesheet" />
+
+        <script>
+            location.href = "../underconstruction.htm"
+        </script>
     </head>
     <body>
         <div id="wrapper">
@@ -21,30 +26,22 @@
 
             <div class="container">
                 <br />
-                <h2 class="title">
-                    隠しページに入室するにはパスワードを入力してください！
-                </h2>
+                <h2 class="title">隠しページに入室するにはパスワードを入力してください！</h2>
                 <div style="text-align: center">
                     <input
                         id="passwordInput"
                         placeholder="パスワードを入力してください"
                         type="text"
-                        onkeydown="if (event.keyCode === 13) submit((passwordInput).value)"
+                        onkeydown="if (event.keyCode === 13) submitPassword((passwordInput).value)"
                     />
-                    <button
-                        id="submit_btn"
-                        onclick="submit((passwordInput).value)"
-                        type="button"
-                    >
+                    <button id="submit_btn" onclick="submitPassword((passwordInput).value)" type="button">
                         ログイン
                     </button>
                     <br />
                     <br />
                     <br />
                     <br />
-                    <a href="javascript:alert(getRandomHint())">
-                        パスワードが分からない？
-                    </a>
+                    <a href="javascript:alert(getRandomHint())">パスワードが分からない？</a>
                     <br />
                     <br />
 

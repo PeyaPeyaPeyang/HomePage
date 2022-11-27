@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
         <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-        <title>✞ぺやんぐのホームページ✞</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>✞ぺやんぐのホームページ✞ | ようこそ!!</title>
+        <meta property="og:title" content="ぺやんぐのホームページ" />
+        {{> ogp}}
 
         <link href="@/styles/global.css" rel="stylesheet" />
-        <script type="module" src="@/lib/global.js"></script>
-        <script type="module" src="@/lib/sparkles.js"></script>
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
 
-        <link
-            href="@/pages/components/component_header/style.css"
-            rel="stylesheet"
-        />
+        <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
     </head>
     <body>
         <header class="container">{{> header}}</header>

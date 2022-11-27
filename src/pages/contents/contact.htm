@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
         <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-        <title>✞ぺやんぐのホームページ✞</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>✞ぺやんぐのホームページ✞ | 問い合わせ</title>
+        <meta property="og:title" content="ぺやんぐに問い合わせ" />
+        {{> ogp}}
 
         <link href="@/styles/global.css" rel="stylesheet" />
-        <script type="module" src="@/lib/global.js"></script>
-        <script type="module" src="@/lib/sparkles.js"></script>
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
 
-        <link
-            href="@/pages/components/component_header/style.css"
-            rel="stylesheet"
-        />
+        <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
 
         <link href="@/styles/contents/contact.css" rel="stylesheet" />
 
-        <script type="module" src="@/lib/contents/contact.js"></script>
+        <script type="module" src="@/lib/contents/contact.ts"></script>
     </head>
 
     <body>
@@ -38,9 +36,9 @@
                                 class="small"
                                 id="name"
                                 name="entry.1409364796"
-                                onchange="validation()"
-                                onfocus="validation()"
-                                onkeydown="validation()"
+                                onchange="validateEmail()"
+                                onfocus="validateEmail()"
+                                onkeydown="validateEmail()"
                                 placeholder="お名前"
                                 type="text"
                                 value="名無しさん"
@@ -49,9 +47,9 @@
                                 class="small"
                                 id="email"
                                 name="entry.1668002432"
-                                onchange="validation()"
-                                onfocus="validation()"
-                                onkeydown="validation()"
+                                onchange="validateEmail()"
+                                onfocus="validateEmail()"
+                                onkeydown="validateEmail()"
                                 placeholder="メールアドレス"
                                 type="text"
                             />
@@ -60,29 +58,23 @@
                                 class="medium"
                                 id="f_title"
                                 name="entry.2078083426"
-                                onchange="validation()"
-                                onfocus="validation()"
-                                onkeydown="validation()"
+                                onchange="validateEmail()"
+                                onfocus="validateEmail()"
+                                onkeydown="validateEmail()"
                                 placeholder="タイトル"
                                 type="text"
                             />
                             <br />
                             <textarea
                                 id="body"
-                                laceholder="お問い合わせ内容"
+                                placeholder="お問い合わせ内容"
                                 name="entry.716654385"
-                                onchange="validation()"
-                                onfocus="validation()"
-                                onkeydown="validation()"
+                                onchange="validateEmail()"
+                                onfocus="validateEmail()"
+                                onkeydown="validateEmail()"
                             ></textarea>
                             <br />
-                            <input
-                                disabled
-                                id="submit_btn"
-                                onclick="doSubmit()"
-                                type="button"
-                                value="送信"
-                            />
+                            <input disabled id="submit_btn" onclick="submitContactForm()" type="button" value="送信" />
                         </fieldset>
                     </form>
                 </div>

@@ -9,4 +9,4 @@
 - この README および このリポジトリは**以下のファイル・ディレクトリを除き**, [NYSL ライセンス v0.9982](LICENSE)で公開されています.
   - /src/public/images/banners/
   - /src/public/images/background.png
-  - /src/lib/sparkles.js
+  - /src/lib/sparkles.ts

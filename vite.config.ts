@@ -3,6 +3,7 @@ import { resolve as resolvePath } from "node:path"
 
 import { getLastCommit } from "git-last-commit"
 import { defineConfig } from "vite"
+import { checker } from "vite-plugin-checker"
 import handlebars from "vite-plugin-handlebars"
 import { ViteMinifyPlugin } from "vite-plugin-minify"
 import tsconfigPaths from "vite-tsconfig-paths"
@@ -16,9 +17,7 @@ import type { Plugin as VitePlugin } from "vite"
 const context = {}
 
 const readdirNested = (baseDir: string, dirName: string) =>
-    readdirSync(resolvePath(baseDir, dirName)).map(
-        (file) => `${dirName}/${file}`,
-    )
+    readdirSync(resolvePath(baseDir, dirName)).map((file) => `${dirName}/${file}`)
 
 const allFiles = [
     ...readdirSync(resolvePath(__dirname, "src/pages")),
@@ -35,9 +34,10 @@ const inputFiles: { [key: string]: string } = {}
 
 for (const htmlFile of htmlFiles) {
     // 拡張子とってkvにするよ
-    inputFiles[
-        htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)
-    ] = resolvePath(__dirname, `src/pages/${htmlFile}`)
+    inputFiles[htmlFile.endsWith("l") ? htmlFile.slice(0, -5) : htmlFile.slice(0, -4)] = resolvePath(
+        __dirname,
+        `src/pages/${htmlFile}`,
+    )
 }
 
 export default defineConfig(async ({ mode }) => {
@@ -50,8 +50,19 @@ export default defineConfig(async ({ mode }) => {
 
     const commitDate = new Date(+lastCommit.committedOn * 1000)
 
+    const formatDateTime = (date: Date) => {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        const second = date.getSeconds()
+
+        return `${year}/${month}/${day} ${hour}:${minute}:${second}`
+    }
+
     const commitContext = {
-        commit_date: commitDate.toLocaleString(),
+        commit_date: formatDateTime(commitDate),
         commit_message: lastCommit.subject,
     }
 
@@ -81,16 +92,25 @@ export default defineConfig(async ({ mode }) => {
                 root: resolvePath(__dirname, "src"),
             }),
             handlebars({
-                partialDirectory: resolvePath(
-                    __dirname,
-                    "src/pages/components",
-                ),
+                partialDirectory: resolvePath(__dirname, "src/pages/components"),
                 context: {
                     ...context,
                     ...commitContext,
                 },
             }) as unknown as VitePlugin,
+            checker({
+                typescript: { root: resolvePath(__dirname, "src") },
+                eslint: {
+                    lintCommand: `eslint --cache-location=${resolvePath(
+                        __dirname,
+                        ".eslintcache",
+                    )} --cache ${resolvePath(__dirname, "src")}/**/*.{js,ts}`,
+                },
+            }),
             ViteMinifyPlugin({}),
         ],
+        esbuild: {
+            target: "es2016",
+        },
     }
 })

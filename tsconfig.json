@@ -1,7 +1,8 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "declaration": false
+        "declaration": false,
+        "target": "ESNext"
     },
     "include": ["./vite.config.ts", "./.eslintrc.cjs", "scripts/"]
 }

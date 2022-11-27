@@ -1,10 +1,10 @@
-const password = {
+const password: { [key: string]: string } = {
     えきむっごきへで: "最強の私の名前。",
 }
 
-const generateRange = (startChar, endChar) => {
-    let startCharIndex = startChar.codePointAt(0)
-    let endCharIndex = endChar.codePointAt(0)
+const generateRange = (startChar: string, endChar: string) => {
+    let startCharIndex = startChar.codePointAt(0)!
+    let endCharIndex = endChar.codePointAt(0)!
 
     if (startCharIndex > endCharIndex) {
         const temp = startCharIndex
@@ -15,8 +15,7 @@ const generateRange = (startChar, endChar) => {
 
     let range = ""
 
-    for (let i = startCharIndex; i <= endCharIndex; i++)
-        range += String.fromCodePoint(i)
+    for (let i = startCharIndex; i <= endCharIndex; i++) range += String.fromCodePoint(i)
 
     return range
 }
@@ -24,7 +23,7 @@ const generateRange = (startChar, endChar) => {
 const chars = generateRange("あ", "ん")
 const hashLength = 8
 
-export const bakePassword = (rawPassword) => {
+export const bakePassword = (rawPassword: string) => {
     let inputPassword = rawPassword
 
     if (inputPassword.length > 100) return "?"
@@ -38,12 +37,8 @@ export const bakePassword = (rawPassword) => {
         for (let i = 0; i < insufficiency; i++) {
             if (current >= inputPassword.length) current = 0
 
-            const charCode = inputPassword.codePointAt(current)
-
-            const selectChar =
-                charCode % 2 === 0
-                    ? charCode + insufficiency
-                    : charCode - insufficiency
+            const charCode = inputPassword.codePointAt(current)!
+            const selectChar = charCode % 2 === 0 ? charCode + insufficiency : charCode - insufficiency
 
             extendedPassword += chars[selectChar / chars.length]
         }
@@ -54,13 +49,9 @@ export const bakePassword = (rawPassword) => {
     let hash = 0
     let hashChar = "-".repeat(hashLength)
 
-    for (
-        let i = 0, j = inputPassword.length - 1;
-        i < inputPassword.length;
-        i++, j--
-    ) {
-        const h1 = (hash << 2) - hash + inputPassword.codePointAt(i)
-        const h2 = (hash << 4) - hash + inputPassword.codePointAt(j)
+    for (let i = 0, j = inputPassword.length - 1; i < inputPassword.length; i++, j--) {
+        const h1 = (hash << 2) - hash + inputPassword.codePointAt(i)!
+        const h2 = (hash << 4) - hash + inputPassword.codePointAt(j)!
         const h3 = (hash << 6) - hash + chars.indexOf(inputPassword.charAt(i))
 
         hash = h1 ^ h2 ^ h3
@@ -72,10 +63,7 @@ export const bakePassword = (rawPassword) => {
 
         if (hashChar.charAt(putPos) !== "-") putPos = hashChar.indexOf("-")
         if (putPos === -1) putPos = hash % hashLength
-        hashChar =
-            hashChar.slice(0, Math.max(0, putPos)) +
-            calculatedHashChar +
-            hashChar.slice(Math.max(0, putPos + 1))
+        hashChar = hashChar.slice(0, Math.max(0, putPos)) + calculatedHashChar + hashChar.slice(Math.max(0, putPos + 1))
     }
 
     return hashChar
@@ -83,8 +71,8 @@ export const bakePassword = (rawPassword) => {
 
 window.bakePassword = bakePassword
 
-window.submit = (inputPassword) => {
-    if (password === "") {
+export const submitPassword = (inputPassword: string) => {
+    if (inputPassword === "") {
         alert("パスワードを入力してください！")
 
         return
@@ -92,22 +80,24 @@ window.submit = (inputPassword) => {
 
     const bakedPassword = bakePassword(inputPassword)
 
-    if (password[bakedPassword] === undefined) {
+    if (!(bakedPassword in password)) {
         alert("パスワードが間違っています！")
 
         return
     }
 
-    window.open(
-        `frame.html?dist=${bakedPassword}&password=${inputPassword}`,
-        "_self",
-    )
+    window.open(`frame.html?dist=${bakedPassword}&password=${inputPassword}`, "_self")
 }
 
-window.getRandomHint = () => {
+window.submitPassword = submitPassword
+
+export const getRandomHint = () => {
     const keys = Object.keys(password)
     const index = Math.floor(Math.random() * keys.length)
     const randomKey = keys[index]
+    const hint = password[randomKey]
 
-    return `${index + 1}ページ目のヒント：${password[randomKey]}`
+    return `${index + 1}ページ目のヒント：${hint}`
 }
+
+window.getRandomHint = getRandomHint

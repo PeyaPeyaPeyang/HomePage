@@ -8,8 +8,7 @@
 
 body {
     background-color: #000;
-    background-image: url("/images/background.png"),
-        url("/images/background.png");
+    background-image: url("/images/background.png"), url("/images/background.png");
     background-repeat: repeat-y;
     background-position: -60px, calc(100vw - 100px);
     background-size: 150px;
@@ -43,6 +42,11 @@ header,
     font-size: 35px;
 }
 
+#counter {
+    width: 80px;
+    height: 40px;
+}
+
 .so_warning_box {
     position: fixed;
     right: 10px;
@@ -66,13 +70,7 @@ header,
 .so_warning_box .accent {
     height: 100%;
     width: 100%;
-    background: repeating-linear-gradient(
-        -45deg,
-        red,
-        red 10px,
-        gold 10px,
-        gold 20px
-    );
+    background: repeating-linear-gradient(-45deg, red, red 10px, gold 10px, gold 20px);
 }
 
 .so_warning_box .content {
