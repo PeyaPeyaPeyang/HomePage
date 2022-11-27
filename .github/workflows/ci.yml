@@ -68,9 +68,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/.eslintcache
-          key: ${{ runner.os }}-eslint
+          key: ${{ runner.os }}-eslint-${{ hashFiles('.eslintcache') }}
           restore-keys: |
-            ${{ runner.os }}-eslint
+            ${{ runner.os }}-eslint-
 
       - name: Lint
         run: pnpm run lint:sarif
@@ -84,9 +84,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/node_modules/.cache/prettier/.prettier-cache
-          key: ${{ runner.os }}-prettier
+          key: ${{ runner.os }}-prettier-${{ hashFiles('**/node_modules/.cache/prettier/.prettier-cache') }}
           restore-keys: |
-            ${{ runner.os }}-prettier
+            ${{ runner.os }}-prettier-
 
       - name: Check formatting
         run: pnpm check:format
@@ -95,9 +95,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/src/tsconfig.tsbuildinfo
-          key: ${{ runner.os }}-typescript-incremental
+          key: ${{ runner.os }}-typescript-incremental-${{ hashFiles('**/*.tsbuildinfo') }}
           restore-keys: |
-            ${{ runner.os }}-typescript-incremental
+            ${{ runner.os }}-typescript-incremental-
 
       - name: Typecheck
         run: pnpm check:type
