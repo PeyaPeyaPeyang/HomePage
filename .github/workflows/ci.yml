@@ -32,16 +32,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Cache TypeScript incremental building results
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/src/tsconfig.tsbuildinfo
-          key: ${{ runner.os }}-typescript-incremental-${{ hashFiles('**/tsconfig.tsbuildinfo') }}
-          restore-keys: |
-            ${{ runner.os }}-typescript-incremental-
-
       - name: Cache ESLint results
         uses: actions/cache@v3
+        id: eslint-cache
         with:
           path: ${{ github.workspace }}/.eslintcache
           key: ${{ runner.os }}-eslint-${{ hashFiles('.eslintcache') }}
@@ -79,6 +72,7 @@ jobs:
 
       - name: Cache ESLint results
         uses: actions/cache@v3
+        id: eslint-cache
         with:
           path: ${{ github.workspace }}/.eslintcache
           key: ${{ runner.os }}-eslint-${{ hashFiles('.eslintcache') }}
@@ -92,14 +86,6 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
-
-      - name: Cache Prettier results
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/node_modules/.cache/prettier/.prettier-cache
-          key: ${{ runner.os }}-prettier-${{ hashFiles('node_modules/.cache/prettier/.prettier-cache') }}
-          restore-keys: |
-            ${{ runner.os }}-prettier-
 
       - name: Check formatting
         run: pnpm check:format
