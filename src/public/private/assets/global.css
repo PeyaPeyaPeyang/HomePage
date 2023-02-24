@@ -1,0 +1,29 @@
+* {
+    color: #000;
+}
+
+body {
+    background-color: #fff;
+    background-image: url("/private/images/background.png"), url("/private/images/background.png");
+    background-repeat: repeat-y;
+    background-position: -60px, calc(100vw - 100px);
+    background-size: 150px;
+}
+
+#counter {
+    filter: invert(1);
+    width: 77px;
+    height: 39px;
+}
+
+#title {
+    border: solid 7px #000;
+}
+
+a {
+    color: deeppink;
+}
+
+#kohkoku-information {
+    color: #000;
+}

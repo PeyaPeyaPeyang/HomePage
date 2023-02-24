@@ -58,7 +58,8 @@
         "vite-plugin-checker": "^0.5.1",
         "vite-plugin-handlebars": "^1.6.0",
         "vite-plugin-minify": "^1.5.2",
-        "vite-tsconfig-paths": "^3.6.0"
+        "vite-tsconfig-paths": "^3.6.0",
+        "rollup": "^3.17.2"
     },
     "lint-staged": {
         "*": [

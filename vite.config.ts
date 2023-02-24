@@ -76,9 +76,9 @@ export default defineConfig(async ({ mode }) => {
             rollupOptions: {
                 input: inputFiles,
                 output: {
-                    assetFileNames: `assets/[name].[ext]`,
-                    entryFileNames: `assets/[name].js`,
-                    chunkFileNames: `assets/[name].js`,
+                    chunkFileNames: "assets/[name].js",
+                    entryFileNames: "assets/[name].js",
+                    assetFileNames: "assets/[name].[ext]",
                 },
             },
             sourcemap: mode === "development",
