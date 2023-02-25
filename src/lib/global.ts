@@ -57,7 +57,9 @@ window.addEventListener("load", () => {
     }, 1000)
 })
 
-document.addEventListener("contextmenu", () => {
+document.addEventListener("contextmenu", (e: Event) => {
+    e.preventDefault()
+
     alert("右クリックは禁止です！")
 
     return false
