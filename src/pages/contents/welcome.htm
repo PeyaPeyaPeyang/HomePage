@@ -11,11 +11,100 @@
         <script type="module" src="@/lib/sparkles.ts"></script>
 
         <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
+        <link href="@/styles/contents/welcome.css" rel="stylesheet" />
     </head>
     <body>
         <header class="container">{{> header}}</header>
         <div id="wrapper">
-            <div class="container">{{> content_header}}</div>
+            <div class="container">
+                {{> content_header}}
+                <div class="content_detail">
+                    <h1>ぺやんぐのホームページにようこそ。</h1>
+                    <p>
+                        私、ぺやんぐ
+                        <small>[誰?]</small>
+                        が気まま
+                        <small>[何?]</small>
+                        に更新
+                        <small>[どのように?]</small>
+                        しています。
+                        <small>[要出典][独自研究?]</small>
+                    </p>
+                </div>
+                <div class="content_detail">
+                    <h2>このページのコンセプトてきな</h2>
+                    <p>
+                        このページでは、古の時代に流行ったホームページを
+                        <a href="https://ja.vitejs.dev/">令和最新フレームワーク</a>
+                        をつかって再現したページです。
+                    </p>
+                    <p>再現範囲は用語やスタイルのみなので、書いてあること自体は大体合ってます。 ← おい(あ)</p>
+                    <p>インターネット老人会用のページです。</p>
+                </div>
+                <div class="content_detail">
+                    <h2>なんでぺやんぐ?</h2>
+                    <p>ぺやんぐといっても、あの焼きそばのペヤングじゃないです。(実際私は UFO 派ですし（爆）)</p>
+                    <p>
+                        名前の由来は、お昼時に食べるのを忘れてしまい、別のことに没頭した結果、２時間放置してしまったペヤング焼きそばを食べたことに由来します。
+                    </p>
+                    <small>（今でも鮮明に思い出せるほど衝撃的な味でした）</small>
+                </div>
+                <div class="content_detail">
+                    <h2>ぺやんぐじゃなくてぺやんって書いてあるの見たけど?</h2>
+                    <p>ぺやんは型エイリアスです。暗黙脳内型変換してください。</p>
+                </div>
+                <div>
+                    <h2 style="text-align: center">さいごに</h2>
+                    <p>
+                        <span class="person p_a">A さん</span>
+                        ：
+                        <a href="/">トップページ</a>
+                        に、隠しページにつながるリンクを設置した覚えがあります。
+                    </p>
+                    <p>
+                        <span class="person p_b">B さん</span>
+                        ： そんなページは無いって古事記と薄い本に書いてありますよ。
+                    </p>
+                    <p>
+                        <span class="person p_c">C さん</span>
+                        ： あ、その隠しページってやつ。私も知っています。パスワードが必要だとか。
+                    </p>
+                    <p>
+                        <span class="person p_a">A</span>
+                        ： そうですね。パスワードは自分で考える必要がありそうです。
+                    </p>
+                    <p>
+                        <span class="person p_b">B</span>
+                        ： 隠しページは存在しないですよ。私は古事記と薄い本を読んでいるので知っています。
+                    </p>
+                    <p>
+                        <span class="person p_cm">謎のデスゲームの主催者</span>
+                        ： この中のひとりは嘘をついています。
+                    </p>
+                    <p>
+                        <span class="person p_a">A</span>
+                        ： そうですね。
+                        <span class="person p_b">B さん</span>
+                        は嘘をついています。
+                    </p>
+                    <p>
+                        <span class="person p_b">B</span>
+                        ： いいえ。私は嘘をついていません。信じてください。
+                    </p>
+                    <p>
+                        <span class="person p_c">C</span>
+                        ： そうですね。
+                        <span class="person p_b">B さん</span>
+                        は嘘をついています。
+                    </p>
+                    <p>
+                        <span class="person p_cm">謎デ者</span>
+                        ： そうですね。
+                        <span class="person p_b">&lt;パスワードの1つ&gt;さん</span>
+                        は嘘をついています。
+                    </p>
+                </div>
+            </div>
         </div>
     </body>
 </html>

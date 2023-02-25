@@ -40,6 +40,12 @@ header,
 
 #title strong {
     font-size: 35px;
+    margin-bottom: 10px;
+}
+
+#title #since {
+    font-size: 15px;
+    font-weight: lighter;
 }
 
 #counter {

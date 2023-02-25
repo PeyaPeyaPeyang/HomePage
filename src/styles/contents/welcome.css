@@ -1,0 +1,19 @@
+div.content_detail {
+    text-align: center;
+}
+
+.person.p_a {
+    color: red;
+}
+
+.person.p_b {
+    color: dodgerblue;
+}
+
+.person.p_c {
+    color: green;
+}
+
+.person.p_cm {
+    color: lightslategray;
+}
