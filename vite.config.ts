@@ -75,6 +75,11 @@ export default defineConfig(async ({ mode }) => {
             outDir: "../../dist", // /dist
             rollupOptions: {
                 input: inputFiles,
+                output: {
+                    chunkFileNames: "assets/[name].js",
+                    entryFileNames: "assets/[name].js",
+                    assetFileNames: "assets/[name].[ext]",
+                },
             },
             sourcemap: mode === "development",
         },

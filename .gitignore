@@ -36,3 +36,5 @@ fabric.properties
 !.vscode/settings.json
 
 *.tsbuildinfo
+
+/private-pages

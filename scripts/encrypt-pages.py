@@ -6,7 +6,8 @@ from Crypto.Util.Padding import pad
 from base64 import b64encode
 from hashlib import md5
 
-dir = 'src/public/private/pages/pages'
+src = 'private-pages/pages/'
+dest = 'src/public/private/pages/'
 encrypter = "scripts/encrypter.js"
 
 
@@ -43,13 +44,13 @@ def encryptPage(page):
         print('Password is ' + password)
 
         name = page[page.rfind('\\') + 1:-5]
-        with open(dir + "/../" + password + '.asc', 'w', encoding="utf-8") as f:
+        with open(dest + password + '.asc', 'w', encoding="utf-8") as f:
             encryptedData = encryptData(data.encode('utf-8'), name + "|" + password)
             f.write(encryptedData)
-            print('Encrypted data written to ' + dir + "/../" + password + '.asc')
+            print('Encrypted data written to ' + dest + password + '.asc')
 
 
 if __name__ == '__main__':
-    target_pages = glob.glob(dir + '**/*.html', recursive=True)
+    target_pages = glob.glob(src + '**/*.html', recursive=True)
     for page in target_pages:
         encryptPage(page)
