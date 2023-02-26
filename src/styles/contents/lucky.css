@@ -1,0 +1,30 @@
+#lucky_table {
+    width: 900px;
+    border-collapse: collapse;
+    border: 1px solid #fff;
+}
+
+#lucky_table th {
+    background-color: #222;
+    color: #eee;
+    font-weight: bold;
+    border: 1px solid #fff;
+    padding: 5px;
+    height: 20px;
+}
+
+#lucky_table .request_finished {
+    width: 5px;
+}
+
+#lucky_table .date {
+    width: 20%;
+}
+
+#lucky_table .number {
+    width: 10%;
+}
+
+#lucky_table .author {
+    width: 13%;
+}
