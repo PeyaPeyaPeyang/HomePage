@@ -3,11 +3,13 @@ lockfileVersion: 5.3
 specifiers:
   '@justinribeiro/lite-youtube': ^1.4.0
   '@microsoft/eslint-formatter-sarif': ^3.0.0
+  '@types/crypto-js': ^4.1.1
   '@types/eslint': ^8.4.10
   '@types/html-minifier-terser': ^7.0.0
   '@types/node': ^18.11.9
   '@typescript-eslint/eslint-plugin': ^5.43.0
   '@typescript-eslint/parser': ^5.43.0
+  crypto-js: ^4.1.1
   eslint: ^8.28.0
   eslint-define-config: ^1.12.0
   eslint-import-resolver-typescript: ^3.5.2
@@ -33,9 +35,11 @@ specifiers:
 
 dependencies:
   '@justinribeiro/lite-youtube': 1.4.0
+  crypto-js: 4.1.1
 
 devDependencies:
   '@microsoft/eslint-formatter-sarif': 3.0.0
+  '@types/crypto-js': 4.1.1
   '@types/eslint': 8.4.10
   '@types/html-minifier-terser': 7.0.0
   '@types/node': 18.11.9
@@ -239,6 +243,10 @@ packages:
       picocolors: 1.0.0
       tiny-glob: 0.2.9
       tslib: 2.4.1
+    dev: true
+
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
 
   /@types/eslint/8.4.10:
@@ -736,6 +744,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
