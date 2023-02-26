@@ -3,6 +3,7 @@ const password: { [key: string]: string } = {
     げどぴんやせぎく: "広告を消したとき、どのページに移動する？",
     がびてちぶけぢん: "ようこそページの対話。",
     うぅぢはれぉぜぉ: "HTML を見ても何もありませんよ。",
+    やわごぇるでぉほ: "右クリックは禁止です！",
 }
 
 const generateRange = (startChar: string, endChar: string) => {
