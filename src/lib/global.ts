@@ -61,6 +61,7 @@ document.addEventListener("contextmenu", (e: Event) => {
     e.preventDefault()
 
     alert("右クリックは禁止です！")
+    window.location.hash = "隠しページパスワードは「右クリック禁止」"
 
     return false
 })
