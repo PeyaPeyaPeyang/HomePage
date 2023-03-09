@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+        <title>✞ぺやんぐのホームページ✞ | キリ番・キリリク</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <link href="@/styles/contents/lucky.css" rel="stylesheet" />
+        <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
+
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
+        <script type="module" src="@/lib/contents/lucky.ts"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header class="container">{{> header}}</header>
+            <div class="container">
+                {{> content_header}}
+
+                <h2 class="title">キリ番・キリリク 一覧</h2>
+                <p>キリ番を踏んだ方はおめでとうございます！</p>
+                <p>踏み逃げは禁止ですので、踏んだ場合は掲示板から報告してください！</p>
+                <table id="lucky_table">
+                    <tr>
+                        <th class="lucky_element request_finished"></th>
+                        <th class="lucky_element number">＃</th>
+                        <th class="lucky_element date">日付</th>
+                        <th class="lucky_element author">ラッキーな人</th>
+                        <th class="lucky_element request">リクエスト内容</th>
+                    </tr>
+                    <tr>
+                        <td class="lucky_element request_finished">✓</td>
+                        <td class="lucky_element number">200</td>
+                        <td class="lucky_element date" data-issue-number="2">2022/11/05 15:26:53</td>
+                        <td class="lucky_element author">Potato1682</td>
+                        <td class="lucky_element request">
+                            Page Speed Insightsでオール100点・最新フレームワークリプレース
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="lucky_element request_finished"></td>
+                        <td class="lucky_element number">222</td>
+                        <td class="lucky_element date" data-issue-number="1">2022/11/14 16:45:15</td>
+                        <td class="lucky_element author">inaridy</td>
+                        <td class="lucky_element request"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
