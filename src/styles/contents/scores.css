@@ -1,0 +1,46 @@
+#scores_container {
+    text-align: center;
+}
+
+.score_star {
+    color: #ffd700;
+    font-size: 1.4em;
+}
+
+.genre_title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.genre_list {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.genre_list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.genre_list li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.score_embed {
+    width: 700px;
+    height: 400px;
+    resize: both;
+}
+
+.score_embed_wrapper {
+    padding: 10px;
+    user-select: all;
+}
+
+.score_title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
