@@ -6,8 +6,7 @@ const processRows = (rows: HTMLTableRowElement[]) => {
             continue
         }
 
-        // eslint-disable-next-line prefer-destructuring
-        const issueNumberElm = issueNumberElms[0]
+        const issueNumberElm = issueNumberElms.item(0)
         const { issueNumber } = issueNumberElm.dataset
 
         if (issueNumber) {
