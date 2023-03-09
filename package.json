@@ -1,6 +1,6 @@
 {
     "name": "peyang-homepage",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Peyang's homepage",
     "type": "module",
     "scripts": {
