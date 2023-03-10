@@ -4,6 +4,7 @@ const password: { [key: string]: string } = {
     がびてちぶけぢん: "ようこそページの対話。",
     うぅぢはれぉぜぉ: "HTML を見ても何もありませんよ。",
     やわごぇるでぉほ: "右クリックは禁止です！",
+    ゐかいぅゎっげし: "楽譜置き場訪問してください！",
 }
 
 const generateRange = (startChar: string, endChar: string) => {
