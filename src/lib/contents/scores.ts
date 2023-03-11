@@ -228,15 +228,19 @@ const isGenreOpen = (genre: Genre) => {
     return genre.genreDOM!.classList.contains("genre_open")
 }
 
-const onGenreClick = (e: Event) => {
-    const target = e.target as HTMLAnchorElement
-    const genre = genres[target.dataset.genreId!]
-
+const toggleGenreVisibility = (genre: Genre) => {
     if (isGenreOpen(genre)) {
         collapseGenre(genre)
     } else {
         openGenre(genre)
     }
+}
+
+const onGenreClick = (e: Event) => {
+    const target = e.target as HTMLAnchorElement
+    const genre = genres[target.dataset.genreId!]
+
+    toggleGenreVisibility(genre)
 }
 
 const initGenreSet = () => {
@@ -268,8 +272,12 @@ const onWindowLoad = () => {
 
     initGenreSet()
     initScoreSet()
+
+    document.querySelector("#jump_to_starred")!.addEventListener("click", () => {
+        toggleGenreVisibility(genres["starred"])
+    })
 }
 
 window.addEventListener("load", onWindowLoad)
 
-export { onGenreClick }
+export { toggleGenreVisibility, genres }
