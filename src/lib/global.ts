@@ -1,3 +1,5 @@
+import Swal from "sweetalert2"
+
 const closeKohkokuListeners = new Array<() => void>()
 
 const onAdClose = (func: () => void) => {
@@ -48,11 +50,13 @@ window.addEventListener("load", () => {
 
         // if counter is loaded, adblock is not detected.
         if (!(counter.complete && counter.naturalHeight !== 0)) {
-            alert(
-                "AdBlockが検出されました。\n" +
-                    "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n" +
-                    "(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
-            )
+            // eslint-disable-next-line no-void
+            void Swal.fire({
+                title: "AdBlockが検出されました。",
+                text: "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
+                icon: "warning",
+                confirmButtonText: "OK",
+            })
         }
     }, 1000)
 })
@@ -60,7 +64,13 @@ window.addEventListener("load", () => {
 document.addEventListener("contextmenu", (e: Event) => {
     e.preventDefault()
 
-    alert("右クリックは禁止です！")
+    // eslint-disable-next-line no-void
+    void Swal.fire({
+        title: "右クリックは禁止です！",
+        icon: "error",
+        confirmButtonText: "OK",
+    })
+
     window.location.hash = "隠しページパスワードは「右クリック禁止」"
 
     return false

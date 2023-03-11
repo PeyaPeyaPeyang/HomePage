@@ -1,9 +1,17 @@
+import Swal from "sweetalert2"
+
 import { onAdClose } from "./global"
 
 const onDummyEnterClick = (e: Event) => {
     e.preventDefault()
-    alert("注意事項 を読みましたか？しっかり読んでください！")
-    window.location.href = "https://www.yahoo.co.jp/"
+    Swal.fire({
+        title: "注意事項を読んでください！",
+        text: "注意事項をしっかり読んでいないと、このサイトを利用できません！",
+        icon: "error",
+        confirmButtonText: "このページから退出する",
+    }).finally(() => {
+        window.location.href = "https://www.yahoo.co.jp/"
+    })
 
     return false
 }

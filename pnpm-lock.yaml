@@ -26,6 +26,7 @@ specifiers:
   prettier: ^2.7.1
   rollup: ^3.17.2
   simple-git-hooks: ^2.8.1
+  sweetalert2: ^11.7.3
   typescript: ^4.9.3
   vite: ^3.2.4
   vite-plugin-checker: ^0.5.1
@@ -36,6 +37,7 @@ specifiers:
 dependencies:
   '@justinribeiro/lite-youtube': 1.4.0
   crypto-js: 4.1.1
+  sweetalert2: 11.7.3
 
 devDependencies:
   '@microsoft/eslint-formatter-sarif': 3.0.0
@@ -3194,6 +3196,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /sweetalert2/11.7.3:
+    resolution: {integrity: sha512-fUN/fyVSBZNtY4Rr/Qtxn7tNNnlRAbUhQxTQ9uOo0xVMIHBmqq4/9pau5N9dB2pvkB353XL/ywRAycscLoYU3w==}
+    dev: false
 
   /synckit/0.8.4:
     resolution: {integrity: sha512-Dn2ZkzMdSX827QbowGbU/4yjWuvNaCoScLLoMo/yKbu+P4GBR6cRGKZH27k6a9bRzdqcyd1DE96pQtQ6uNkmyw==}

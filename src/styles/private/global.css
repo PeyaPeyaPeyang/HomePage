@@ -27,3 +27,16 @@ a {
 #kohkoku-information {
     color: #000;
 }
+
+.swal2-x-mark-line-right,
+.swal2-x-mark-line-left {
+    font-size: 16px !important;
+}
+
+.swal2-container * {
+    font-family: sans-serif;
+}
+
+.swal2-icon.swal2-warning.swal2-icon-show .swal2-icon-content {
+    color: #f8bb86;
+}
