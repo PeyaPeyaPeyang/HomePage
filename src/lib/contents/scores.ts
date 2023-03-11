@@ -127,7 +127,10 @@ const genScoreDOM = (score: Score) => {
         : `<div class="score_composer"><p>作曲：${score.composer}</p></div>`
 
     const star = score.isGood ? `<span class="score_star">★</span>` : ""
-    const genresDOM = score.genres.map((genre) => `<a href="#genre_${genre.id}">${genre.displayName}</a>`).join(", ")
+
+    const genresDOM = score.genres
+        .map((genre) => `<a class="genre_link" href="#genre_${genre.id}">${genre.displayName}</a>`)
+        .join(" / ")
 
     return `
         <div class="score">
@@ -205,6 +208,14 @@ const openGenre = (genre: Genre) => {
         if (unneededGenre.id !== genre.id) {
             collapseGenre(unneededGenre)
         }
+    }
+
+    for (const element of container.querySelectorAll("a.genre_link")!) {
+        element.addEventListener("click", (e) => {
+            const target = e.target as HTMLAnchorElement
+
+            openGenre(genres[target.dataset.genreId!])
+        })
     }
 }
 
