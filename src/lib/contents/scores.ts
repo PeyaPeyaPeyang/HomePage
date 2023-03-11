@@ -154,14 +154,19 @@ const genGenreDOM = (genre: Genre) => {
     `
 }
 
+const MIN_GENRE_WIDTH = 100
+const MAX_GENRE_WIDTH = 300
+
 const genGenreListElementDom = (genre: Genre) => {
     const popularity = scores.filter((score) => score.genres.some((g) => g.id === genre.id)).length
     const popularityRate = popularity / maxPopularity
-    const width = 100 + popularityRate * 100
+    const width = Math.max(MIN_GENRE_WIDTH, Math.min(MAX_GENRE_WIDTH, Math.floor(popularityRate * MAX_GENRE_WIDTH)))
 
     return `
         <li>
-            <a href="#genre_${genre.id}" style="font-size: ${width}%" data-genre-id="${genre.id}">${genre.displayName}</a>
+            <a href="#genre_${genre.id}" style="font-size: ${width}%" data-genre-id="${genre.id}">
+                ${genre.displayName}(${popularity})
+            </a>
         </li>
     `
 }
