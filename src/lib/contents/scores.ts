@@ -225,13 +225,13 @@ const onGenreClick = (e: Event) => {
 
 const initGenreSet = () => {
     for (const genre of Object.values(genres)) {
+        genre.genreDOM = document.querySelector(`#genre_${genre.id}`)!
+
         const genreButton = document.querySelector(`#genre_${genre.id} .genre_title`)!
         const genreListButton = document.querySelector(`.genre_list a[data-genre-id="${genre.id}"]`)!
 
         genreButton.addEventListener("click", onGenreClick)
         genreListButton.addEventListener("click", onGenreClick)
-
-        genre.genreDOM = document.querySelector(`#genre_${genre.id}`)!
     }
 }
 
