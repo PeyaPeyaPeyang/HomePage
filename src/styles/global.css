@@ -254,3 +254,8 @@ h2.title {
     margin: 10px;
     font-family: "Meiryo", serif;
 }
+
+.swal2-x-mark-line-right,
+.swal2-x-mark-line-left {
+    font-size: 16px !important;
+}

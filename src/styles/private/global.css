@@ -27,3 +27,8 @@ a {
 #kohkoku-information {
     color: #000;
 }
+
+.swal2-x-mark-line-right,
+.swal2-x-mark-line-left {
+    font-size: 16px !important;
+}
