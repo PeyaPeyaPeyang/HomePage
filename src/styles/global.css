@@ -263,3 +263,7 @@ h2.title {
 .swal2-container * {
     font-family: sans-serif;
 }
+
+.swal2-icon.swal2-warning.swal2-icon-show .swal2-icon-content {
+    color: #f8bb86;
+}
