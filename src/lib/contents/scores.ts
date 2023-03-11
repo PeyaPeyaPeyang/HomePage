@@ -40,13 +40,17 @@ const genres: { [key: string]: Genre } = {
         displayName: "サウンドトラック",
         id: "soundtrack",
     },
+    starred: {
+        displayName: "スター付き",
+        id: "starred",
+    },
 }
 
 const scores: Score[] = [
     {
         title: "地球最後の告白を",
         composer: "kemu",
-        genres: [genres["vocaloid"]],
+        genres: [genres["vocaloid"], genres["starred"]],
         url: "https://musescore.com/user/31876905/scores/7939085",
         embedUrl: "https://musescore.com/user/31876905/scores/7939085/embed",
         isGood: true,
@@ -74,7 +78,7 @@ const scores: Score[] = [
     {
         title: "Summer Pockets BGM 1",
         composer: "水月陵",
-        genres: [genres["game"], genres["anime"], genres["soundtrack"]],
+        genres: [genres["game"], genres["anime"], genres["soundtrack"], genres["starred"]],
         url: "https://musescore.com/user/31876905/scores/10109962",
         embedUrl: "https://musescore.com/user/31876905/scores/10109962/embed",
         isGood: true,
@@ -84,7 +88,7 @@ const scores: Score[] = [
     {
         title: "芥川龍之介の河童 ～ Candid Friend",
         composer: "ZUN",
-        genres: [genres["touhou"], genres["game"], genres["soundtrack"]],
+        genres: [genres["touhou"], genres["game"], genres["soundtrack"], genres["starred"]],
         url: "https://musescore.com/user/31876905/scores/8602988",
         embedUrl: "https://musescore.com/user/31876905/scores/8602988/embed",
         isGood: true,
@@ -93,7 +97,7 @@ const scores: Score[] = [
     {
         title: "コウを追いかけて",
         composer: "坂本秀一",
-        genres: [genres["movie_and_drama"], genres["soundtrack"]],
+        genres: [genres["movie_and_drama"], genres["soundtrack"], genres["starred"]],
         url: "https://musescore.com/user/31876905/scores/9981193",
         embedUrl: "https://musescore.com/user/31876905/scores/9981193/embed",
         isGood: true,
@@ -102,7 +106,7 @@ const scores: Score[] = [
     {
         title: "君の知らない物語",
         composer: "ryo(supercell)",
-        genres: [genres["anime"]],
+        genres: [genres["anime"], genres["starred"]],
         url: "https://musescore.com/user/31876905/scores/8604026",
         embedUrl: "https://musescore.com/user/31876905/scores/8604026/embed",
         isGood: true,
@@ -141,12 +145,7 @@ const genGenreDOM = (genre: Genre) => {
     return `
         <div class="genre" id="genre_${genre.id}">
             <h2 class="genre_title"><a href="#genre_${genre.id}">${genre.displayName}</a></h2>
-            <div class="genre_scores">
-                ${scores
-                    .filter((score) => score.genres.some((g) => g.id === genre.id))
-                    .map((element) => genScoreDOM(element))
-                    .join("")}
-            </div>
+            <div class="genre_scores"></div>
         </div>
     `
 }
@@ -177,18 +176,30 @@ const genGenreListDOM = () => {
     `
 }
 
-const genStarredScoresDOM = () => {
-    return `
-        <div class="starred_scores" id="starred_scores">
-            <h2 class="genre_title"><a href="#starred_scores">スター付き</a></h2>
-            <div class="scores_container">
-                ${scores
-                    .filter((score) => score.isGood)
-                    .map((element) => genScoreDOM(element))
-                    .join("")}
-            </div>
-        </div>
-    `
+const wipeScores = (genre: Genre) => {
+    const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
+
+    container.innerHTML = ""
+}
+
+const onGenreClick = (e: Event) => {
+    const target = e.target as HTMLElement
+    const genre = genres[target.dataset.genreId!]
+    const isOpen = target.classList.contains("genre_title_open")
+
+    if (isOpen) {
+        target.classList.remove("genre_title_open")
+        wipeScores(genre)
+    } else {
+        target.classList.add("genre_title_open")
+
+        const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
+
+        container.innerHTML = scores
+            .filter((score) => score.genres.some((g) => g.id === genre.id))
+            .map((element) => genScoreDOM(element))
+            .join("")
+    }
 }
 
 const onWindowLoad = () => {
@@ -196,7 +207,15 @@ const onWindowLoad = () => {
 
     container.innerHTML = `${genGenreListDOM()}<hr>${Object.values(genres)
         .map((element) => genGenreDOM(element))
-        .join("<hr>")}<hr>${genStarredScoresDOM()}`
+        .join("<hr>")}`
+
+    for (const genre of Object.values(genres)) {
+        const target = document.querySelector(`#genre_${genre.id} .genre_title`)!
+
+        target.addEventListener("click", onGenreClick)
+    }
 }
 
 window.addEventListener("load", onWindowLoad)
+
+export { onGenreClick }
