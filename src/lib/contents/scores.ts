@@ -199,6 +199,15 @@ const onGenreClick = (e: Event) => {
             .filter((score) => score.genres.some((g) => g.id === genre.id))
             .map((element) => genScoreDOM(element))
             .join("")
+
+        for (const unneededGenre of Object.values(genres)) {
+            const genreTarget = document.querySelector(`#genre_${genre.id} .genre_title`)!
+
+            if (genreTarget.classList.contains("genre_title_open")) {
+                genreTarget.classList.remove("genre_title_open")
+                wipeScores(unneededGenre)
+            }
+        }
     }
 }
 
