@@ -13,16 +13,17 @@ interface Score {
 interface Genre {
     displayName: string
     id: string
+    genreDOM?: Element
 }
 
 const genres: { [key: string]: Genre } = {
     anime: {
         displayName: "アニソン",
-        id: "anime_songs",
+        id: "anime",
     },
     game: {
         displayName: "ゲーム",
-        id: "game_songs",
+        id: "game",
     },
     vocaloid: {
         displayName: "VOCALOID(ボカロ)",
@@ -34,7 +35,7 @@ const genres: { [key: string]: Genre } = {
     },
     movie_and_drama: {
         displayName: "映画とドラマ",
-        id: "drama",
+        id: "movie_and_drama",
     },
     soundtrack: {
         displayName: "サウンドトラック",
@@ -144,7 +145,7 @@ const genScoreDOM = (score: Score) => {
 const genGenreDOM = (genre: Genre) => {
     return `
         <div class="genre" id="genre_${genre.id}">
-            <h2 class="genre_title"><a href="#genre_${genre.id}">${genre.displayName}</a></h2>
+            <h2 class="genre_title"><a href="#genre_${genre.id}" data-genre-id="${genre.id}">${genre.displayName}▼</a></h2>
             <div class="genre_scores"></div>
         </div>
     `
@@ -157,7 +158,7 @@ const genGenreListElementDom = (genre: Genre) => {
 
     return `
         <li>
-            <a href="#genre_${genre.id}" style="font-size: ${width}%">${genre.displayName}</a>
+            <a href="#genre_${genre.id}" style="font-size: ${width}%" data-genre-id="${genre.id}">${genre.displayName}</a>
         </li>
     `
 }
@@ -182,32 +183,43 @@ const wipeScores = (genre: Genre) => {
     container.innerHTML = ""
 }
 
-const onGenreClick = (e: Event) => {
-    const target = e.target as HTMLElement
-    const genre = genres[target.id.replace("genre_", "")]
-    const isOpen = target.classList.contains("genre_title_open")
+const collapseGenre = (genre: Genre) => {
+    const genreDOM = genre.genreDOM!
 
-    if (isOpen) {
-        target.classList.remove("genre_title_open")
-        wipeScores(genre)
-    } else {
-        target.classList.add("genre_title_open")
+    genreDOM.classList.remove("genre_open")
+    wipeScores(genre)
+}
 
-        const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
+const openGenre = (genre: Genre) => {
+    const genreDOM = genre.genreDOM!
+    const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
 
-        container.innerHTML = scores
-            .filter((score) => score.genres.some((g) => g.id === genre.id))
-            .map((element) => genScoreDOM(element))
-            .join("")
+    genreDOM.classList.add("genre_open")
 
-        for (const unneededGenre of Object.values(genres)) {
-            const genreTarget = document.querySelector(`#genre_${genre.id} .genre_title`)!
+    container.innerHTML = scores
+        .filter((score) => score.genres.some((g) => g.id === genre.id))
+        .map((element) => genScoreDOM(element))
+        .join("")
 
-            if (genreTarget.classList.contains("genre_title_open")) {
-                genreTarget.classList.remove("genre_title_open")
-                wipeScores(unneededGenre)
-            }
+    for (const unneededGenre of Object.values(genres)) {
+        if (unneededGenre.id !== genre.id) {
+            collapseGenre(unneededGenre)
         }
+    }
+}
+
+const isGenreOpen = (genre: Genre) => {
+    return genre.genreDOM!.classList.contains("genre_open")
+}
+
+const onGenreClick = (e: Event) => {
+    const target = e.target as HTMLAnchorElement
+    const genre = genres[target.dataset.genreId!]
+
+    if (isGenreOpen(genre)) {
+        collapseGenre(genre)
+    } else {
+        openGenre(genre)
     }
 }
 
@@ -219,9 +231,13 @@ const onWindowLoad = () => {
         .join("<hr>")}`
 
     for (const genre of Object.values(genres)) {
-        const target = document.querySelector(`#genre_${genre.id} .genre_title`)!
+        const genreButton = document.querySelector(`#genre_${genre.id} .genre_title`)!
+        const genreListButton = document.querySelector(`.genre_list a[data-genre-id="${genre.id}"]`)!
 
-        target.addEventListener("click", onGenreClick)
+        genreButton.addEventListener("click", onGenreClick)
+        genreListButton.addEventListener("click", onGenreClick)
+
+        genre.genreDOM = document.querySelector(`#genre_${genre.id}`)!
     }
 }
 
