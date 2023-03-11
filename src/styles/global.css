@@ -259,3 +259,7 @@ h2.title {
 .swal2-x-mark-line-left {
     font-size: 16px !important;
 }
+
+.swal2-container * {
+    font-family: sans-serif;
+}
