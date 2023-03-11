@@ -184,7 +184,7 @@ const wipeScores = (genre: Genre) => {
 
 const onGenreClick = (e: Event) => {
     const target = e.target as HTMLElement
-    const genre = genres[target.dataset.genreId!]
+    const genre = genres[target.id.replace("genre_", "")]
     const isOpen = target.classList.contains("genre_title_open")
 
     if (isOpen) {
