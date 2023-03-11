@@ -13,16 +13,17 @@ interface Score {
 interface Genre {
     displayName: string
     id: string
+    genreDOM?: Element
 }
 
 const genres: { [key: string]: Genre } = {
     anime: {
         displayName: "アニソン",
-        id: "anime_songs",
+        id: "anime",
     },
     game: {
         displayName: "ゲーム",
-        id: "game_songs",
+        id: "game",
     },
     vocaloid: {
         displayName: "VOCALOID(ボカロ)",
@@ -34,11 +35,15 @@ const genres: { [key: string]: Genre } = {
     },
     movie_and_drama: {
         displayName: "映画とドラマ",
-        id: "drama",
+        id: "movie_and_drama",
     },
     soundtrack: {
         displayName: "サウンドトラック",
         id: "soundtrack",
+    },
+    starred: {
+        displayName: "スター付き",
+        id: "starred",
     },
 }
 
@@ -122,7 +127,10 @@ const genScoreDOM = (score: Score) => {
         : `<div class="score_composer"><p>作曲：${score.composer}</p></div>`
 
     const star = score.isGood ? `<span class="score_star">★</span>` : ""
-    const genresDOM = score.genres.map((genre) => `<a href="#genre_${genre.id}">${genre.displayName}</a>`).join(", ")
+
+    const genresDOM = score.genres
+        .map((genre) => `<a class="genre_link" href="#genre_${genre.id}">${genre.displayName}</a>`)
+        .join(" / ")
 
     return `
         <div class="score">
@@ -140,25 +148,25 @@ const genScoreDOM = (score: Score) => {
 const genGenreDOM = (genre: Genre) => {
     return `
         <div class="genre" id="genre_${genre.id}">
-            <h2 class="genre_title"><a href="#genre_${genre.id}">${genre.displayName}</a></h2>
-            <div class="genre_scores">
-                ${scores
-                    .filter((score) => score.genres.some((g) => g.id === genre.id))
-                    .map((element) => genScoreDOM(element))
-                    .join("")}
-            </div>
+            <h2 class="genre_title"><a href="#genre_${genre.id}" data-genre-id="${genre.id}">${genre.displayName}▼</a></h2>
+            <div class="genre_scores"></div>
         </div>
     `
 }
 
+const MIN_GENRE_WIDTH = 100
+const MAX_GENRE_WIDTH = 300
+
 const genGenreListElementDom = (genre: Genre) => {
     const popularity = scores.filter((score) => score.genres.some((g) => g.id === genre.id)).length
     const popularityRate = popularity / maxPopularity
-    const width = 100 + popularityRate * 100
+    const width = Math.max(MIN_GENRE_WIDTH, Math.min(MAX_GENRE_WIDTH, Math.floor(popularityRate * MAX_GENRE_WIDTH)))
 
     return `
         <li>
-            <a href="#genre_${genre.id}" style="font-size: ${width}%">${genre.displayName}</a>
+            <a href="#genre_${genre.id}" style="font-size: ${width}%" data-genre-id="${genre.id}">
+                ${genre.displayName}(${popularity})
+            </a>
         </li>
     `
 }
@@ -177,18 +185,82 @@ const genGenreListDOM = () => {
     `
 }
 
-const genStarredScoresDOM = () => {
-    return `
-        <div class="starred_scores" id="starred_scores">
-            <h2 class="genre_title"><a href="#starred_scores">スター付き</a></h2>
-            <div class="scores_container">
-                ${scores
-                    .filter((score) => score.isGood)
-                    .map((element) => genScoreDOM(element))
-                    .join("")}
-            </div>
-        </div>
-    `
+const wipeScores = (genre: Genre) => {
+    const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
+
+    container.innerHTML = ""
+}
+
+const collapseGenre = (genre: Genre) => {
+    const genreDOM = genre.genreDOM!
+
+    genreDOM.classList.remove("genre_open")
+    wipeScores(genre)
+}
+
+const openGenre = (genre: Genre) => {
+    const genreDOM = genre.genreDOM!
+    const container = document.querySelector(`#genre_${genre.id} .genre_scores`)!
+
+    genreDOM.classList.add("genre_open")
+
+    container.innerHTML = scores
+        .filter((score) => score.genres.some((g) => g.id === genre.id))
+        .map((element) => genScoreDOM(element))
+        .join("")
+
+    for (const unneededGenre of Object.values(genres)) {
+        if (unneededGenre.id !== genre.id) {
+            collapseGenre(unneededGenre)
+        }
+    }
+
+    for (const element of container.querySelectorAll("a.genre_link")!) {
+        element.addEventListener("click", (e) => {
+            const target = e.target as HTMLAnchorElement
+
+            openGenre(genres[target.dataset.genreId!])
+        })
+    }
+}
+
+const isGenreOpen = (genre: Genre) => {
+    return genre.genreDOM!.classList.contains("genre_open")
+}
+
+const toggleGenreVisibility = (genre: Genre) => {
+    if (isGenreOpen(genre)) {
+        collapseGenre(genre)
+    } else {
+        openGenre(genre)
+    }
+}
+
+const onGenreClick = (e: Event) => {
+    const target = e.target as HTMLAnchorElement
+    const genre = genres[target.dataset.genreId!]
+
+    toggleGenreVisibility(genre)
+}
+
+const initGenreSet = () => {
+    for (const genre of Object.values(genres)) {
+        genre.genreDOM = document.querySelector(`#genre_${genre.id}`)!
+
+        const genreButton = document.querySelector(`#genre_${genre.id} .genre_title`)!
+        const genreListButton = document.querySelector(`.genre_list a[data-genre-id="${genre.id}"]`)!
+
+        genreButton.addEventListener("click", onGenreClick)
+        genreListButton.addEventListener("click", onGenreClick)
+    }
+}
+
+const initScoreSet = () => {
+    for (const score of scores) {
+        if (score.isGood) {
+            score.genres.push(genres["starred"])
+        }
+    }
 }
 
 const onWindowLoad = () => {
@@ -196,7 +268,16 @@ const onWindowLoad = () => {
 
     container.innerHTML = `${genGenreListDOM()}<hr>${Object.values(genres)
         .map((element) => genGenreDOM(element))
-        .join("<hr>")}<hr>${genStarredScoresDOM()}`
+        .join("<hr>")}`
+
+    initGenreSet()
+    initScoreSet()
+
+    document.querySelector("#jump_to_starred")!.addEventListener("click", () => {
+        toggleGenreVisibility(genres["starred"])
+    })
 }
 
 window.addEventListener("load", onWindowLoad)
+
+export { toggleGenreVisibility, genres }

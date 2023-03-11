@@ -24,6 +24,14 @@
     margin: 0;
 }
 
+.genre.genre_open {
+    background-color: #111;
+    border: 1px solid #666;
+    border-radius: 5px;
+
+    margin: 10px;
+}
+
 .genre_list li {
     display: inline-block;
     margin: 0 5px;
