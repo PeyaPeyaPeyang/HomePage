@@ -51,7 +51,7 @@ const scores: Score[] = [
     {
         title: "地球最後の告白を",
         composer: "kemu",
-        genres: [genres["vocaloid"], genres["starred"]],
+        genres: [genres["vocaloid"]],
         url: "https://musescore.com/user/31876905/scores/7939085",
         embedUrl: "https://musescore.com/user/31876905/scores/7939085/embed",
         isGood: true,
@@ -79,7 +79,7 @@ const scores: Score[] = [
     {
         title: "Summer Pockets BGM 1",
         composer: "水月陵",
-        genres: [genres["game"], genres["anime"], genres["soundtrack"], genres["starred"]],
+        genres: [genres["game"], genres["anime"], genres["soundtrack"]],
         url: "https://musescore.com/user/31876905/scores/10109962",
         embedUrl: "https://musescore.com/user/31876905/scores/10109962/embed",
         isGood: true,
@@ -89,7 +89,7 @@ const scores: Score[] = [
     {
         title: "芥川龍之介の河童 ～ Candid Friend",
         composer: "ZUN",
-        genres: [genres["touhou"], genres["game"], genres["soundtrack"], genres["starred"]],
+        genres: [genres["touhou"], genres["game"], genres["soundtrack"]],
         url: "https://musescore.com/user/31876905/scores/8602988",
         embedUrl: "https://musescore.com/user/31876905/scores/8602988/embed",
         isGood: true,
@@ -98,7 +98,7 @@ const scores: Score[] = [
     {
         title: "コウを追いかけて",
         composer: "坂本秀一",
-        genres: [genres["movie_and_drama"], genres["soundtrack"], genres["starred"]],
+        genres: [genres["movie_and_drama"], genres["soundtrack"]],
         url: "https://musescore.com/user/31876905/scores/9981193",
         embedUrl: "https://musescore.com/user/31876905/scores/9981193/embed",
         isGood: true,
@@ -107,7 +107,7 @@ const scores: Score[] = [
     {
         title: "君の知らない物語",
         composer: "ryo(supercell)",
-        genres: [genres["anime"], genres["starred"]],
+        genres: [genres["anime"]],
         url: "https://musescore.com/user/31876905/scores/8604026",
         embedUrl: "https://musescore.com/user/31876905/scores/8604026/embed",
         isGood: true,
@@ -223,13 +223,7 @@ const onGenreClick = (e: Event) => {
     }
 }
 
-const onWindowLoad = () => {
-    const container = document.querySelector("#scores_container")!
-
-    container.innerHTML = `${genGenreListDOM()}<hr>${Object.values(genres)
-        .map((element) => genGenreDOM(element))
-        .join("<hr>")}`
-
+const initGenreSet = () => {
     for (const genre of Object.values(genres)) {
         const genreButton = document.querySelector(`#genre_${genre.id} .genre_title`)!
         const genreListButton = document.querySelector(`.genre_list a[data-genre-id="${genre.id}"]`)!
@@ -239,6 +233,25 @@ const onWindowLoad = () => {
 
         genre.genreDOM = document.querySelector(`#genre_${genre.id}`)!
     }
+}
+
+const initScoreSet = () => {
+    for (const score of scores) {
+        if (score.isGood) {
+            score.genres.push(genres["starred"])
+        }
+    }
+}
+
+const onWindowLoad = () => {
+    const container = document.querySelector("#scores_container")!
+
+    container.innerHTML = `${genGenreListDOM()}<hr>${Object.values(genres)
+        .map((element) => genGenreDOM(element))
+        .join("<hr>")}`
+
+    initGenreSet()
+    initScoreSet()
 }
 
 window.addEventListener("load", onWindowLoad)
