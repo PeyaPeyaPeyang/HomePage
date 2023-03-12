@@ -30,11 +30,26 @@ const genKohkokuElement = () => {
     return kohkokuFooter
 }
 
+const genKohkokuMerginElement = () => {
+    const kohkokuMergin = document.createElement("div")
+
+    kohkokuMergin.id = "kohkoku-margin"
+    kohkokuMergin.style.minHeight = "120px"
+    kohkokuMergin.style.width = "1px"
+
+    return kohkokuMergin
+}
+
 const closeKohkoku = () => {
     const kohkoku = document.querySelector<HTMLElement>("#kohkoku")
+    const kohKokuMergin = document.querySelector("#kohkoku-margin")
 
     if (kohkoku) {
         kohkoku.style.display = "none"
+    }
+
+    if (kohKokuMergin) {
+        kohKokuMergin.remove()
     }
 
     for (const func of closeKohkokuListeners) func()
@@ -43,6 +58,7 @@ const closeKohkoku = () => {
 window.closeKohkoku = closeKohkoku
 
 window.addEventListener("load", () => {
+    document.body.append(genKohkokuMerginElement())
     document.body.append(genKohkokuElement())
 
     setTimeout(() => {

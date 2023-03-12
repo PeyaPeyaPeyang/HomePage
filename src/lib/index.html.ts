@@ -1,7 +1,5 @@
 import Swal from "sweetalert2"
 
-import { onAdClose } from "./global"
-
 const onDummyEnterClick = (e: Event) => {
     e.preventDefault()
     Swal.fire({
@@ -25,8 +23,4 @@ window.addEventListener("load", () => {
     for (let i = 0; i < 100; i++) {
         sayonara.append("↲\n")
     }
-
-    onAdClose(() => {
-        document.querySelector("#kohkoku-margin")!.remove()
-    })
 })
