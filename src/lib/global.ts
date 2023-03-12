@@ -55,6 +55,26 @@ const closeKohkoku = () => {
     for (const func of closeKohkokuListeners) func()
 }
 
+const notifyKohkokuBlocker = () => {
+    const lastAdBlockWarn = window.localStorage.getItem("adblock-warn")
+    const time = Date.now()
+
+    if (lastAdBlockWarn && time - Number.parseInt(lastAdBlockWarn, 10) < 1000 * 60 * 60) {
+        // an hour
+        return
+    }
+
+    // eslint-disable-next-line no-void
+    void Swal.fire({
+        title: "AdBlockが検出されました。",
+        text: "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
+        icon: "warning",
+        confirmButtonText: "OK",
+    }).finally(() => {
+        window.localStorage.setItem("adblock-warn", String(time))
+    })
+}
+
 window.closeKohkoku = closeKohkoku
 
 window.addEventListener("load", () => {
@@ -64,15 +84,8 @@ window.addEventListener("load", () => {
     setTimeout(() => {
         const counter = document.querySelector<HTMLImageElement>("#counter")!
 
-        // if counter is loaded, adblock is not detected.
         if (!(counter.complete && counter.naturalHeight !== 0)) {
-            // eslint-disable-next-line no-void
-            void Swal.fire({
-                title: "AdBlockが検出されました。",
-                text: "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
-                icon: "warning",
-                confirmButtonText: "OK",
-            })
+            notifyKohkokuBlocker()
         }
     }, 1000)
 })
