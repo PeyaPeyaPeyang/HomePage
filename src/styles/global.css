@@ -138,11 +138,17 @@ span,
     font-size: small;
 }
 
-a {
+a,
+a * {
     /* color: red; */
     /* color: olivedrab; */
     color: chocolate;
     cursor: pointer;
+}
+
+sup > small,
+sup > small * {
+    font-size: 10px;
 }
 
 table {
