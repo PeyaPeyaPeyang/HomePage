@@ -1,11 +1,5 @@
 import Swal from "sweetalert2"
 
-const closeKohkokuListeners = new Array<() => void>()
-
-const onAdClose = (func: () => void) => {
-    closeKohkokuListeners.push(func)
-}
-
 const kohkokus = [
     ["Lorem_ipsum_cloud.svg", "https://cloud.lorem.ipsum/"],
     ["Bermuda_phone.svg", "https://camp-fill.co.jpn/projects/bermuda-2022/"],
@@ -41,18 +35,11 @@ const genKohkokuMerginElement = () => {
 }
 
 const closeKohkoku = () => {
-    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")
-    const kohKokuMergin = document.querySelector("#kohkoku-margin")
+    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")!
+    const kohKokuMergin = document.querySelector("#kohkoku-margin")!
 
-    if (kohkoku) {
-        kohkoku.style.display = "none"
-    }
-
-    if (kohKokuMergin) {
-        kohKokuMergin.remove()
-    }
-
-    for (const func of closeKohkokuListeners) func()
+    kohkoku.style.display = "none"
+    kohKokuMergin.remove()
 }
 
 const notifyKohkokuBlocker = () => {
@@ -74,8 +61,6 @@ const notifyKohkokuBlocker = () => {
         window.localStorage.setItem("adblock-warn", String(time))
     })
 }
-
-window.closeKohkoku = closeKohkoku
 
 window.addEventListener("load", () => {
     document.body.append(genKohkokuMerginElement())
@@ -105,4 +90,4 @@ document.addEventListener("contextmenu", (e: Event) => {
     return false
 })
 
-export { onAdClose, closeKohkoku }
+export { closeKohkoku }
