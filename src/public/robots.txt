@@ -3,6 +3,3 @@ User-agent: *
 Disallow: /private/
 User-agent: *
 Allow: /private/login.htm
-
-User-agent: *
-Disallow: /contents/welcome.htm
