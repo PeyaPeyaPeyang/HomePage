@@ -1,6 +1,11 @@
+@font-face {
+    font-family: "ayu-gothic";
+    src: url("/fonts/ayu-gothic.woff2") format("woff2");
+}
+
 * {
     color: #eee;
-    font-family: "MS Gothic", serif;
+    font-family: "ayu-gothic", "MS Gothic", "serif";
     cursor: crosshair;
 
     user-select: none;
@@ -133,11 +138,17 @@ span,
     font-size: small;
 }
 
-a {
+a,
+a * {
     /* color: red; */
     /* color: olivedrab; */
     color: chocolate;
     cursor: pointer;
+}
+
+sup > small,
+sup > small * {
+    font-size: 10px;
 }
 
 table {

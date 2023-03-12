@@ -1,11 +1,5 @@
 import Swal from "sweetalert2"
 
-const closeKohkokuListeners = new Array<() => void>()
-
-const onAdClose = (func: () => void) => {
-    closeKohkokuListeners.push(func)
-}
-
 const kohkokus = [
     ["Lorem_ipsum_cloud.svg", "https://cloud.lorem.ipsum/"],
     ["Bermuda_phone.svg", "https://camp-fill.co.jpn/projects/bermuda-2022/"],
@@ -16,7 +10,7 @@ const kohkokus = [
 const kohkokuHTML = (kohkokuName: string, url: string) => `
     <div id="kohkoku" style="z-index: 1000; cursor: default; user-select: all;">
         <a aria-label="Kohkoku" href="${url}" target="_blank"><img decoding="async" loading="lazy" style="cursor: pointer" id="kohkoku-image" src="/images/kohkokus/${kohkokuName}" alt="Kohkoku画像"></a>
-        <span class="button" onclick="closeKohkoku()"><a href="#隠しページパスワードは「広告」">➕</a></span>
+        <span class="button" id="kohkoku-close"><a href="#隠しページパスワードは「広告」">➕</a></span>
         <span id="kohkoku-information" style="cursor: text; user-select: text;">この広告は1分以上更新がない場合に表示されます。このページの更新/GitHub経由での更新後、24時間以内に表示されなくなるはずです。</span>
     </div>
 `
@@ -30,33 +24,54 @@ const genKohkokuElement = () => {
     return kohkokuFooter
 }
 
-const closeKohkoku = () => {
-    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")
+const genKohkokuMerginElement = () => {
+    const kohkokuMergin = document.createElement("div")
 
-    if (kohkoku) {
-        kohkoku.style.display = "none"
-    }
+    kohkokuMergin.id = "kohkoku-margin"
+    kohkokuMergin.style.minHeight = "120px"
+    kohkokuMergin.style.width = "1px"
 
-    for (const func of closeKohkokuListeners) func()
+    return kohkokuMergin
 }
 
-window.closeKohkoku = closeKohkoku
+const closeKohkoku = () => {
+    const kohkoku = document.querySelector<HTMLElement>("#kohkoku")!
+    const kohKokuMergin = document.querySelector("#kohkoku-margin")!
+
+    kohkoku.style.display = "none"
+    kohKokuMergin.remove()
+}
+
+const notifyKohkokuBlocker = () => {
+    const lastAdBlockWarn = window.localStorage.getItem("adblock-warn")
+    const time = Date.now()
+
+    if (lastAdBlockWarn && time - Number.parseInt(lastAdBlockWarn, 10) < 1000 * 60 * 60) {
+        // an hour
+        return
+    }
+
+    // eslint-disable-next-line no-void
+    void Swal.fire({
+        title: "AdBlockが検出されました。",
+        text: "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
+        icon: "warning",
+        confirmButtonText: "OK",
+    }).finally(() => {
+        window.localStorage.setItem("adblock-warn", String(time))
+    })
+}
 
 window.addEventListener("load", () => {
+    document.body.append(genKohkokuMerginElement())
     document.body.append(genKohkokuElement())
+    document.querySelector("#kohkoku-close")?.addEventListener("click", closeKohkoku)
 
     setTimeout(() => {
         const counter = document.querySelector<HTMLImageElement>("#counter")!
 
-        // if counter is loaded, adblock is not detected.
         if (!(counter.complete && counter.naturalHeight !== 0)) {
-            // eslint-disable-next-line no-void
-            void Swal.fire({
-                title: "AdBlockが検出されました。",
-                text: "ユーザエクスペリエンスを向上させるために、AdBlockを解除してください。\n(アクセスカウンターが動きません！)\nキリ番が踏めなくなります！！！",
-                icon: "warning",
-                confirmButtonText: "OK",
-            })
+            notifyKohkokuBlocker()
         }
     }, 1000)
 })
@@ -76,4 +91,4 @@ document.addEventListener("contextmenu", (e: Event) => {
     return false
 })
 
-export { onAdClose, closeKohkoku }
+export { closeKohkoku }

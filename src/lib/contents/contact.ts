@@ -8,13 +8,12 @@ const validateEmail = () => {
     const title: HTMLInputElement = document.querySelector("#f_title")!
     const body: HTMLTextAreaElement = document.querySelector("#body")!
 
-    let disabled
-
-    if (username.value.length === 0) disabled = true
-    else if (email.value.length === 0) disabled = true
-    else if (!emailRegex.test(email.value)) disabled = true
-    else if (title.value.length === 0) disabled = true
-    else disabled = body.value.length === 0
+    const disabled =
+        username.value.length === 0 ||
+        email.value.length === 0 ||
+        !emailRegex.test(email.value) ||
+        title.value.length === 0 ||
+        body.value.length === 0
 
     submitButton.disabled = disabled
 
@@ -40,4 +39,15 @@ const submitContactForm = () => {
         })
 }
 
-export { validateEmail, submitContactForm }
+window.addEventListener("load", () => {
+    const inputs = document.querySelectorAll(".form-input")
+    const submitButton: HTMLButtonElement = document.querySelector("#submit_btn")!
+
+    for (const input of inputs) {
+        input.addEventListener("change", validateEmail)
+        input.addEventListener("focus", validateEmail)
+        input.addEventListener("keydown", validateEmail)
+    }
+
+    submitButton.addEventListener("click", submitContactForm)
+})
