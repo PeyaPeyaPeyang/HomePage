@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  vite@3.2.7:
+    hash: ktuhr33h7nfiyfd2sgw2nnedwi
+    path: patches/vite@3.2.7.patch
+
 dependencies:
   '@justinribeiro/lite-youtube':
     specifier: ^1.4.0
@@ -89,20 +94,20 @@ devDependencies:
     specifier: ^4.9.3
     version: 4.9.3
   vite:
-    specifier: ^3.2.4
-    version: 3.2.4(@types/node@18.11.9)
+    specifier: ^3.2.7
+    version: 3.2.7(patch_hash=ktuhr33h7nfiyfd2sgw2nnedwi)(@types/node@18.11.9)
   vite-plugin-checker:
     specifier: ^0.5.1
-    version: 0.5.1(eslint@8.28.0)(typescript@4.9.3)(vite@3.2.4)
+    version: 0.5.1(eslint@8.28.0)(typescript@4.9.3)(vite@3.2.7)
   vite-plugin-handlebars:
     specifier: ^1.6.0
     version: 1.6.0
   vite-plugin-minify:
     specifier: ^1.5.2
-    version: 1.5.2(vite@3.2.4)
+    version: 1.5.2(vite@3.2.7)
   vite-tsconfig-paths:
     specifier: ^3.6.0
-    version: 3.6.0(vite@3.2.4)
+    version: 3.6.0(vite@3.2.7)
 
 packages:
 
@@ -3442,7 +3447,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-checker@0.5.1(eslint@8.28.0)(typescript@4.9.3)(vite@3.2.4):
+  /vite-plugin-checker@0.5.1(eslint@8.28.0)(typescript@4.9.3)(vite@3.2.7):
     resolution: {integrity: sha512-NFiO1PyK9yGuaeSnJ7Whw9fnxLc1AlELnZoyFURnauBYhbIkx9n+PmIXxSFUuC9iFyACtbJQUAEuQi6yHs2Adg==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -3474,7 +3479,7 @@ packages:
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
       typescript: 4.9.3
-      vite: 3.2.4(@types/node@18.11.9)
+      vite: 3.2.7(patch_hash=ktuhr33h7nfiyfd2sgw2nnedwi)(@types/node@18.11.9)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.7
@@ -3492,16 +3497,16 @@ packages:
       - stylus
     dev: true
 
-  /vite-plugin-minify@1.5.2(vite@3.2.4):
+  /vite-plugin-minify@1.5.2(vite@3.2.7):
     resolution: {integrity: sha512-clf3THHlet1jD35y8+mbw/xgACbdUQ1Eyc9zZFiqaxVOZLSC3UbrkOYOG+Nf4cleRjWgb8czbXrnQiWZICVh3Q==}
     peerDependencies:
       vite: '*'
     dependencies:
       html-minifier-terser: 6.1.0
-      vite: 3.2.4(@types/node@18.11.9)
+      vite: 3.2.7(patch_hash=ktuhr33h7nfiyfd2sgw2nnedwi)(@types/node@18.11.9)
     dev: true
 
-  /vite-tsconfig-paths@3.6.0(vite@3.2.4):
+  /vite-tsconfig-paths@3.6.0(vite@3.2.7):
     resolution: {integrity: sha512-UfsPYonxLqPD633X8cWcPFVuYzx/CMNHAjZTasYwX69sXpa4gNmQkR0XCjj82h7zhLGdTWagMjC1qfb9S+zv0A==}
     peerDependencies:
       vite: '>2.0.0-0'
@@ -3510,7 +3515,7 @@ packages:
       globrex: 0.1.2
       recrawl-sync: 2.2.3
       tsconfig-paths: 4.1.0
-      vite: 3.2.4(@types/node@18.11.9)
+      vite: 3.2.7(patch_hash=ktuhr33h7nfiyfd2sgw2nnedwi)(@types/node@18.11.9)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3539,8 +3544,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@3.2.4(@types/node@18.11.9):
-    resolution: {integrity: sha512-Z2X6SRAffOUYTa+sLy3NQ7nlHFU100xwanq1WDwqaiFiCe+25zdxP1TfCS5ojPV2oDDcXudHIoPnI1Z/66B7Yw==}
+  /vite@3.2.7(patch_hash=ktuhr33h7nfiyfd2sgw2nnedwi)(@types/node@18.11.9):
+    resolution: {integrity: sha512-29pdXjk49xAP0QBr0xXqu2s5jiQIXNvE/xwd0vUizYT2Hzqe4BksNNoWllFVXJf4eLZ+UlVQmXfB4lWrc+t18g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3572,6 +3577,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+    patched: true
 
   /vscode-jsonrpc@6.0.0:
     resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==}

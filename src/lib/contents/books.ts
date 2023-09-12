@@ -4,11 +4,8 @@ const BOOKS_API_ENDPOINT = "/api/contents/books.json"
 
 const getBooks = async () => {
     const response = await fetch(BOOKS_API_ENDPOINT)
-    const jsonLike = await response.text() // 取得した配列は末尾にカンマがあるため、JSON.parse() でパースできない
-    const lastCommaIndex = jsonLike.lastIndexOf(",")
-    const json = jsonLike.slice(0, Math.max(0, lastCommaIndex)) + jsonLike.slice(Math.max(0, lastCommaIndex + 1)) // 末尾のカンマを削除
 
-    return JSON.parse(json) as Book[]
+    return (await response.json()) as Book[]
 }
 
 const projectile = (i: number, book: Book): HTMLElement => {

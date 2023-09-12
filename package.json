@@ -10,7 +10,6 @@
         "check:lint": "run-s lint",
         "check:type": "tsc --noEmit --project src",
         "setup:git": "simple-git-hooks",
-        "setup:patch": "patch-package",
         "format": "prettier --write --cache .",
         "lint": "eslint --cache .",
         "lint:sarif": "eslint --cache . -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true",
@@ -35,12 +34,12 @@
     },
     "devDependencies": {
         "@microsoft/eslint-formatter-sarif": "^3.0.0",
+        "@types/crypto-js": "^4.1.1",
         "@types/eslint": "^8.4.10",
         "@types/html-minifier-terser": "^7.0.0",
         "@types/node": "^18.11.9",
         "@typescript-eslint/eslint-plugin": "^5.43.0",
         "@typescript-eslint/parser": "^5.43.0",
-        "@types/crypto-js": "^4.1.1",
         "eslint": "^8.28.0",
         "eslint-define-config": "^1.12.0",
         "eslint-import-resolver-typescript": "^3.5.2",
@@ -53,16 +52,15 @@
         "git-last-commit": "^1.0.1",
         "lint-staged": "^13.0.3",
         "npm-run-all": "^4.1.5",
-        "patch-package": "^6.5.0",
         "prettier": "^2.7.1",
+        "rollup": "^3.17.2",
         "simple-git-hooks": "^2.8.1",
         "typescript": "^4.9.3",
-        "vite": "3.2.4",
+        "vite": "^3.2.7",
         "vite-plugin-checker": "^0.5.1",
         "vite-plugin-handlebars": "^1.6.0",
         "vite-plugin-minify": "^1.5.2",
-        "vite-tsconfig-paths": "^3.6.0",
-        "rollup": "^3.17.2"
+        "vite-tsconfig-paths": "^3.6.0"
     },
     "lint-staged": {
         "*": [
@@ -75,5 +73,10 @@
     "simple-git-hooks": {
         "pre-commit": "pnpm exec lint-staged --allow-empty --concurrent false"
     },
-    "packageManager": "pnpm@7.15.0"
+    "packageManager": "pnpm@7.15.0",
+    "pnpm": {
+        "patchedDependencies": {
+            "vite@3.2.7": "patches/vite@3.2.7.patch"
+        }
+    }
 }
