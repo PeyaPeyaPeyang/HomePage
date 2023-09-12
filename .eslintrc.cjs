@@ -320,6 +320,7 @@ module.exports = defineConfig({
         // conflicts with prettier
         "unicorn/empty-brace-spaces": "off",
         "unicorn/no-nested-ternary": "off",
+        "unicorn/prefer-ternary": "off",
         "unicorn/number-literal-case": "off",
 
         // Project-specific rules
