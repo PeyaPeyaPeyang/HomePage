@@ -2,6 +2,7 @@
 
 echo "Creating github deployment..."
 
+# https://qiita.com/htsnul/items/2c7d40af1068cb0d7d2a
 normalize_and_encode() (
   json=$(cat \
     | sed 's/\\"/\\042/g' \
