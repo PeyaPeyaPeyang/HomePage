@@ -2,7 +2,7 @@
 
 echo "Creating github deployment..."
 
-sudo apt install jq
+apt install jq
 
 # Create a deployment
 curl \
