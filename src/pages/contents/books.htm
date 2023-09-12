@@ -2,18 +2,18 @@
 <html lang="ja">
     <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
         <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-        <title>✞ぺやんぐのホームページ✞ | 楽譜とか</title>
-        <meta property="og:title" content="楽譜とか" />
+        <title>✞ぺやんぐのホームページ✞ | 蔵書</title>
+        <meta property="og:title" content="蔵書" />
         {{> ogp}}
 
         <link href="@/styles/global.css" rel="stylesheet" />
         <script type="module" src="@/lib/global.ts"></script>
         <script type="module" src="@/lib/sparkles.ts"></script>
-        <script type="module" src="@/lib/contents/scores.ts"></script>
+        <script type="module" src="@/lib/contents/books.ts"></script>
 
         <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
 
-        <link href="@/styles/contents/scores.css" rel="stylesheet" />
+        <link href="@/styles/contents/books.css" rel="stylesheet" />
     </head>
     <body>
         <div id="wrapper">
@@ -22,41 +22,31 @@
                 {{> content_header }}
 
                 <div class="container">
-                    <h2 class="title">楽譜とか</h2>
-                    <p>
-                        ぺやんぐがアレンジした楽譜置き場です。クオリティがいいのも、わるいのも揃ってます（いいやつは☆つけときました）。
-                    </p>
-                    <p>
-                        著作権等の問題は、当サイトと公開委託先の
-                        <a href="https://www.musescore.com/">MuseScore.com</a>
-                        にもお問い合わせください。
+                    <h2 class="title">私本たち</h2>
+                    <p>ぺやんぐの蔵書です。床にちらばってるやつも含みます。</p>
+                    <p class="book_count_container">
+                        現在
+                        <span id="book-count">0</span>
+                        冊を所蔵しています。
                     </p>
                 </div>
                 <div class="container">
-                    <h3>ぺやん製スコアの特徴</h3>
+                    <h3>ぺやんがよく読む本</h3>
                     <ul>
-                        <li>シンコペがむちゃくちゃあります。</li>
-                        <li>スラーもむちゃくちゃあります。</li>
-                        <li>(上向き矢印の)アルペジオもやはりむちゃくちゃあります。</li>
-                        <li>リハーサルマークが丁寧に振ってあります</li>
-                        <li>10度オクターブ多用しがちです。弾く時がんばってね。</li>
+                        <li>湊かなえと米澤穂信を好みます。</li>
+                        <li>ミステリーとかサスペンスとかが好きです。</li>
+                        <li>本屋大賞ノミネートは全部よみます。</li>
+                        <li>
+                            青春モノすきです。
+                            <strike>最近あるあるの, ラストで主人公ヒロインが死ぬ・病気になるやつはちょっと…</strike>
+                        </li>
+                        <li>大体文庫本です。</li>
                     </ul>
                 </div>
 
-                <p id="starred_landing">
-                    <a href="#genre_starred" id="jump_to_starred" style="font-size: 1.5rem">
-                        高クオリティ楽譜のみ見たい忙しい人はこちら
-                    </a>
-                </p>
-
-                <p>
-                    (注) Arr. の yamasy
-                    はぺやんぐのエイリアスです。同じ意味です。隠しページのパスワードとかではないですからね。
-                </p>
-                <!--嘘です。-->
-                <hr />
-
-                <div id="scores_container"></div>
+                <div class="container book_details">
+                    <ul id="books-container"></ul>
+                </div>
             </div>
         </div>
     </body>
