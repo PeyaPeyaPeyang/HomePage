@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+        <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+        <title>✞ぺやんぐのホームページ✞ | 蔵書</title>
+        <meta property="og:title" content="蔵書" />
+        {{> ogp}}
+
+        <link href="@/styles/global.css" rel="stylesheet" />
+        <script type="module" src="@/lib/global.ts"></script>
+        <script type="module" src="@/lib/sparkles.ts"></script>
+        <script type="module" src="@/lib/contents/books.ts"></script>
+
+        <link href="@/pages/components/component_header/style.css" rel="stylesheet" />
+
+        <link href="@/styles/contents/books.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <header class="container">{{> header}}</header>
+            <div class="container">
+                {{> content_header }}
+
+                <div class="container">
+                    <h2 class="title">私本たち</h2>
+                    <p>ぺやんぐの蔵書です。床にちらばってるやつも含みます。</p>
+                    <p class="book_count_container">
+                        現在
+                        <span id="book-count">0</span>
+                        冊を所蔵しています。
+                    </p>
+                </div>
+                <div class="container">
+                    <h3>ぺやんがよく読む本</h3>
+                    <ul>
+                        <li>湊かなえと米澤穂信を好みます。</li>
+                        <li>ミステリーとかサスペンスとかが好きです。</li>
+                        <li>本屋大賞ノミネートは全部よみます。</li>
+                        <li>
+                            青春モノすきです。
+                            <strike>最近あるあるの, ラストで主人公ヒロインが死ぬ・病気になるやつはちょっと…</strike>
+                        </li>
+                        <li>大体文庫本です。</li>
+                    </ul>
+                </div>
+
+                <div class="container book_details">
+                    <ul id="books-container"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

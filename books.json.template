@@ -1,0 +1,125 @@
+[
+<!--Start--> {
+        "isbn":"<!--ISBN-->",
+        "title": {
+            "original": "<!--Title-->",
+            "kana": "<!--TitleKana-->",
+            "sub": "<!--SubTitle-->"
+        },
+        "volume": "<!--Volume-->",
+        "author": {
+            "main": {
+                "name": "<!--Author1-->",
+                "kana": "<!--Author1Kana-->"
+            },
+            "sub": {
+                "name": "<!--Author2-->",
+                "kana": "<!--Author2Kana-->"
+            },
+            "other": {
+                "name": "<!--OtherAuthor-->",
+                "kana": null
+            }
+        },
+        "kind": {
+            "name": "<!--Kind-->",
+            "code": "<!--KindCD-->"
+        },
+        "publisher": {
+            "name": "<!--Publication-->",
+            "label": "<!--Labels-->",
+            "series": "<!--Series-->"
+        },
+        "size": "<!--Size-->",
+        "link": "<!--Link-->",
+        "notes": {
+            "1": "<!--BaseNote1-->",
+            "2": "<!--BaseNote2-->"
+        },
+        "purchase": {
+            "status": "<!--Purachase-->",
+            "price": {
+                "original": {
+                    "price": "<!--Price-->",
+                    "tax": "<!--Tax1-->"
+                },
+                "purchase": {
+                    "price": "<!--PurchasePrice-->",
+                    "tax": "<!--Tax2-->"
+                }
+            }
+        },
+        "publish": {
+            "first": {
+                "year": "<!--FirstY-->",
+                "month": "<!--FirstM-->",
+                "day": "<!--FirstD-->"
+            },
+            "edition": {
+                "edition": "<!--Edition-->",
+                "year": "<!--EditionY-->",
+                "month": "<!--EditionM-->",
+                "day": "<!--EditionD-->"
+            },
+            "schedule": {
+                "year": "<!--ScheduleY-->",
+                "month": "<!--ScheduleM-->",
+                "day": "<!--ScheduleD-->"
+            }
+        },
+        "page": "<!--Page-->",
+        "memo": "<!--Memo-->",
+        "image": "<!--FrontCover-->",
+        "details": {
+            "1": "<!--DetailsNote1-->",
+            "2": "<!--DetailsNote2-->"
+        },
+        "cabinet": "<!--Cavinet-->",
+        "lend": {
+            "cabinet": "<!--LendCavinet-->",
+            "date": {
+                "year": "<!--LendY-->",
+                "month": "<!--LendM-->",
+                "day": "<!--LendD-->"
+            }
+        },
+        "read": {
+            "status": "<!--Read-->",
+            "start": {
+                "year": "<!--ReadStartY-->",
+                "month": "<!--ReadStartM-->",
+                "day": "<!--ReadStartD-->"
+            },
+            "end": {
+                "year": "<!--ReadEndY-->",
+                "month": "<!--ReadEndM-->",
+                "day": "<!--ReadEndD-->"
+            }
+        },
+        "other": {
+            "1": {
+                "year": "<!--Date1Y-->",
+                "month": "<!--Date1M-->",
+                "day": "<!--Date1D-->"
+            },
+            "2": {
+                "year": "<!--Date2Y-->",
+                "month": "<!--Date2M-->",
+                "day": "<!--Date2D-->"
+            },
+            "3": {
+                "year": "<!--Date3Y-->",
+                "month": "<!--Date3M-->",
+                "day": "<!--Date3D-->"
+            },
+            "4": {
+                "year": "<!--Date4Y-->",
+                "month": "<!--Date4M-->",
+                "day": "<!--Date4D-->"
+            },
+            "5": "<!--OtherNote1-->",
+            "6": "<!--OtherNote2-->",
+            "7": "<!--OtherNote3-->"
+        }
+    },<!--End-->
+]

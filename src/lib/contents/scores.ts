@@ -113,6 +113,16 @@ const scores: Score[] = [
         isGood: true,
         arrangeComment: "アニメ「化物語」の一期のEDです。ちょっと難しいので、中級者向けだと思います。",
     },
+    {
+        title: "Ghost of a smile",
+        composer: "EGOIST",
+        genres: [genres["anime"]],
+        url: "https://musescore.com/user/31876905/scores/11345218",
+        embedUrl: "https://musescore.com/user/31876905/scores/11345218/embed",
+        isGood: true,
+        arrangeComment:
+            "アニメ「&gt;harmony/&lt;」の主題歌です。悲壮感あふれる歌詞とイントロのペダルのノイズが推しポイントです。",
+    },
 ]
 
 const maxPopularity = Math.max(

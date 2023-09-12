@@ -1,0 +1,13 @@
+diff --git a/dist/node/chunks/dep-2faf2534.js b/dist/node/chunks/dep-2faf2534.js
+index 415c49ce1a910db73c02b20debc1b6da4b0a8ef2..c75f851e022fa3ef119141fe8777aeeb8a1ad25e 100644
+--- a/dist/node/chunks/dep-2faf2534.js
++++ b/dist/node/chunks/dep-2faf2534.js
+@@ -43021,7 +43021,7 @@ function buildHtmlPlugin(config) {
+     return {
+         name: 'vite:build-html',
+         async transform(html, id) {
+-            if (id.endsWith('.html')) {
++            if (id.endsWith('.html') || id.endsWith('.htm')) {
+                 const relativeUrlPath = path$o.posix.relative(config.root, normalizePath$3(id));
+                 const publicPath = `/${relativeUrlPath}`;
+                 const publicBase = getBaseInHTML(relativeUrlPath, config);

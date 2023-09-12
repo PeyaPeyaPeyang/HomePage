@@ -1,0 +1,70 @@
+.book_count_container {
+    font-size: 1.15em;
+}
+
+#book-count {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.book_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 65%;
+    height: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.book_detail.book_info {
+    margin: 10px;
+    text-align: center;
+    width: fit-content;
+}
+
+.book_detail.book_info .book_idx {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.book_detail.book_info .book_title {
+    font-weight: bold;
+}
+
+.book_detail.book_info .book_author {
+    font-style: italic;
+}
+
+li.book_info_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+    border: 2px solid #ccc;
+}
+
+.book_info:nth-child(1) {
+    margin: 2px 2px 2px 5px;
+    width: 230px;
+}
+
+.container.book_details > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.book_published_at {
+    font-style: italic;
+    color: #aaa;
+}
+
+.book_meta_info {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #bbb;
+}
