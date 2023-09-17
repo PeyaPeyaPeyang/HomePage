@@ -1,6 +1,7 @@
 @font-face {
     font-family: "ayu-gothic";
     src: url("/fonts/ayu-gothic.woff2") format("woff2");
+    font-display: swap;
 }
 
 * {
