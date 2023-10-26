@@ -29,7 +29,7 @@
     "homepage": "https://github.com/PeyaPeyaPeyang/HomePage#readme",
     "dependencies": {
         "@justinribeiro/lite-youtube": "^1.4.0",
-        "crypto-js": "^4.1.1",
+        "crypto-js": "^4.2.0",
         "sweetalert2": "^11.7.3"
     },
     "devDependencies": {
